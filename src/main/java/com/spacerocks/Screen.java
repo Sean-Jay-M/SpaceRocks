@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 // This class is responsible for handling the GUI elements of the game
 public class Screen {
 
+    // We may decide that these can be modifiable - to be discussed
     private static final int SCREEN_WIDTH = 500;
     private static final int SCREEN_HEIGHT = 500;
 
