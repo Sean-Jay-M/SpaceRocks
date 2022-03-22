@@ -43,4 +43,11 @@ public class Screen {
         // Displaying the application
         gameStage.show();
     }
+
+    // Placeholder for drawing objects, this will change depending on how we
+    // decide to implement this:
+
+    // public void drawGameObject(GameObject gameObject) {
+    //     gameWindow.getChildren().add(gameObject);
+    // }
 }
