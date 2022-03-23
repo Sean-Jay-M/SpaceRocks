@@ -18,6 +18,16 @@ public class Screen {
     private final Pane gamePane;
     private final Scene gameScene;
 
+    //Getter for the screen Width
+    public static int getScreenWidth(){
+        return SCREEN_WIDTH;
+    }
+
+    //Getter for the screen Height
+    public static int getScreenHeight(){
+        return SCREEN_HEIGHT;
+    }
+
     public Screen(Stage gameStage) {
         // Constructor creates new instances of these objects. The reason why we need
         // the Stage as an argument is because the Main class automatically creates a
@@ -51,4 +61,5 @@ public class Screen {
     // public void drawGameObject(GameObject gameObject) {
     //     gameWindow.getChildren().add(gameObject);
     // }
+
 }
