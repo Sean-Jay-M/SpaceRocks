@@ -8,40 +8,44 @@ public class Asteroid extends GameObject {
     private enum AsteroidSize {
 
         // Constant variables containing x coordinates, y coordinates and speed.
-        SMALL(new double [] {5.0, 7.5, 17.5, 20.0, 12.5}, new double [] {7.5, 15.0, 15.0, 7.5, 2.5}, 3),
-        MEDIUM(new double [] {10.0, 15.0, 35.0, 40.0, 25.0}, new double [] {15.0, 30.0, 30.0, 15.0, 5.0}, 2),
-        BIG(new double [] {20.0, 30.0, 70.0, 80.0, 50.0}, new double [] {30.0, 60.0, 60.0, 30.0, 10.0}, 1);
+        SMALL(new Polygon(200.0, 50.0,
+                400.0, 50.0,
+                450.0, 150.0,
+                400.0, 250.0,
+                200.0, 250.0,
+                150.0, 150.0 )),
+        MEDIUM(new Polygon(120.0, 30.0,
+                240.0, 30.0,
+                270.0, 90.0,
+                240.0, 150.0,
+                120.0, 150.0,
+                90.0, 90.0)),
+        BIG(new Polygon(50.0, 12.5,
+                100.0, 12.5,
+                112.5, 37.5,
+                100.0, 62.5,
+                50.0, 62.5,
+                37.5, 37.5 ));
 
         // Initial fields for the enum
-        private final double[] xpoints;
-        private final double[] ypoints;
-        private final int speed;
+        private final Polygon polygon;
 
         // Constructor for the enum
-        AsteroidSize(double[] xpoints, double[] ypoints, int speed) {
-            this.xpoints = xpoints;
-            this.ypoints = ypoints;
-            this.speed = speed;
+        AsteroidSize(Polygon polygon) {
+            this.polygon = polygon;
         }
 
         // Getters for the enum
-        public double[] getXpoints() {
-            return xpoints;
+        public Polygon getAsteroid(){
+            return polygon;
         }
 
-        public double[] getYpoints() {
-            return ypoints;
-        }
-
-        public int getSpeed() {
-            return speed;
-        }
     }
 
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
-    public Asteroid(AsteroidSize size, double xposition, double yposition) {
-        super(new Polygon(size.getXpoints()[0], size.getYpoints()[0], size.getXpoints()[1], size.getYpoints()[1], size.getXpoints()[2], size.getYpoints()[2], size.getXpoints()[3], size.getYpoints()[3], size.getXpoints()[4], size.getYpoints()[4]), size.getSpeed(), xposition, yposition);
+    public Asteroid(AsteroidSize size, double speed, double xposition, double yposition) {
+        super(size.getAsteroid(), speed, xposition, yposition);
     }
 
     // The below is just a quick demo showing the creation of a small asteroid would look like, with proof showing
