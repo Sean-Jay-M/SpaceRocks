@@ -58,8 +58,8 @@ public class Screen {
     // Placeholder for drawing objects, this will change depending on how we
     // decide to implement this:
 
-    // public void drawGameObject(GameObject gameObject) {
-    //     gameWindow.getChildren().add(gameObject);
-    // }
+     public void drawGameObject(GameObject gameObject) {
+         gamePane.getChildren().add(gameObject.getPolygon());
+     }
 
 }
