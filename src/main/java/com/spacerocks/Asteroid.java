@@ -1,5 +1,7 @@
 package com.spacerocks;
 
+import javafx.scene.shape.Polygon;
+
 public class Asteroid extends GameObject {
 
     // Enum containing all the constant variables relating to a particular asteroid size.
@@ -38,8 +40,8 @@ public class Asteroid extends GameObject {
 
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
-    public Asteroid(AsteroidSize size, int rotation, double xposition, double yposition) {
-        super(size.getXpoints(), size.getYpoints(), rotation, size.getSpeed(), xposition, yposition);
+    public Asteroid(AsteroidSize size, double xposition, double yposition) {
+        super(new Polygon(size.getXpoints()[0], size.getYpoints()[0], size.getXpoints()[1], size.getYpoints()[1], size.getXpoints()[2], size.getYpoints()[2], size.getXpoints()[3], size.getYpoints()[3], size.getXpoints()[4], size.getYpoints()[4]), size.getSpeed(), xposition, yposition);
     }
 
     // The below is just a quick demo showing the creation of a small asteroid would look like, with proof showing
