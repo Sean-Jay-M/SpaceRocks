@@ -72,6 +72,10 @@ public class GameObject{
         }
     }
 
+    private void collisionCheck(){
+
+    }
+
     //check if it has crashed.
 //    public boolean crash(GameObject obj){
 //        Area areaObj1 = new Area(this.getPath());
