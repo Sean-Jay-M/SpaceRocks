@@ -72,6 +72,11 @@ public class GameObject{
         }
     }
 
+    private boolean collisionCheck(Polygon object1, Polygon object2){
+                //checks coordinates bounded by both objects and if there is overlap returns true
+        return object1.getBoundsInParent().intersects(object2.getBoundsInParent());
+    }
+
     //check if it has crashed.
 //    public boolean crash(GameObject obj){
 //        Area areaObj1 = new Area(this.getPath());
