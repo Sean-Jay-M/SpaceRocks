@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 
 // By extending "Application", we are creating a JavaFX app (i.e. an app with a GUI).
 // Anytime we want to use this library we should extend Application with our main class.
-public class JavaFXDemo extends Application {
+public class
+JavaFXDemo extends Application {
     public static void main(String[] args) {
         // We use launch method here so that the IDE can run it.
         // Once we build the application, "start" method (below) will be used instead. We don't actually need a "main" method for the
@@ -48,7 +49,7 @@ public class JavaFXDemo extends Application {
         // The polygon class constructor will take an argument of pairs of coordinates. Here we have three pairs, so it will be
         // a triangle.
         // We can do something similar for the asteroids themselves, too.
-        Polygon spaceShip = new Polygon(-5, -5, 10, 0, -5, 5);
+        Polygon spaceShip = new Polygon(-20, -20, -5, -15, -20, 20);
 
         // setTranslate sets the coordinates of where the shape will be rendered.
         // Eventually we can use these methods to move the shape around the screen (i.e., while key is pressed down,
