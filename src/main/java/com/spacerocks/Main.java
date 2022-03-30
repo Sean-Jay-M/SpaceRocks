@@ -17,17 +17,28 @@ public class Main extends Application {
 
         // Create the screen object and generate the main window
         Screen screen = new Screen(gameStage);
+        Ship ship = new Ship(screen.getScreenWidth()/2,screen.getScreenHeight()/2);
+
+        // Creating the ship controller, passing in the Ship that we have created and the Scene property of the Screen.
+        Controller shipController = new Controller(ship, screen.getScene());
+
         screen.createMainWindow();
-        Ship ship = new Ship(1,screen.getScreenWidth()/2,screen.getScreenHeight()/2);
         screen.drawGameObject(ship);
 
+        // Starting new animation timer and setting up the controls inside to read user input continuously.
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-                // movement test
-//                ship.move();
-//                ship.turn(5);
-//                ship.turn(-5);
+                // default speed of ship is 0, so the ship is moving all the time.
+                ship.move();
+
+                // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
+                if (ship.isThrusting()){
+                    ship.accelerate();
+                } else{
+                    ship.slowDown();
+                }
+                shipController.initControls();
             }
         }.start();
     }
