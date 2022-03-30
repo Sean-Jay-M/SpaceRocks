@@ -28,6 +28,8 @@ public class Screen {
         return SCREEN_HEIGHT;
     }
 
+    public Scene getScene() { return gameScene; }
+
     public Screen(Stage gameStage) {
         // Constructor creates new instances of these objects. The reason why we need
         // the Stage as an argument is because the Main class automatically creates a
