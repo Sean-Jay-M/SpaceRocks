@@ -13,6 +13,7 @@ public class Screen {
     private final Stage gameStage;
     private final Pane gamePane;
     private final Scene gameScene;
+    private UI ui;
     //Getter for the screen Width
     public static int getScreenWidth(){
         return SCREEN_WIDTH;
@@ -32,6 +33,7 @@ public class Screen {
         this.gameStage = gameStage;
         gamePane = new Pane();
         gameScene = new Scene(gamePane);
+        ui = new UI(gamePane);
     }
     public void createMainWindow() {
         // Set title of the game window
@@ -42,8 +44,10 @@ public class Screen {
         gameScene.setFill(Color.BLACK);
         // Activating the scene on the stage when the application launches
         gameStage.setScene(gameScene);
+
         // Displaying the application
         gameStage.show();
+
     }
     // Placeholder for drawing objects, this will change depending on how we
     // decide to implement this:

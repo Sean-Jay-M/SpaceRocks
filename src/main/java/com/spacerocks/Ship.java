@@ -30,6 +30,8 @@ public class Ship extends GameObject {
         public void slowDown(){
             if (this.getSpeed() > 0){
                 this.setSpeed(this.getSpeed() - 0.1);
+            } else if (this.getSpeed() < 0) {
+                this.setSpeed(0);
             }
         }
     }
