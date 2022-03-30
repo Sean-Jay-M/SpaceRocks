@@ -35,6 +35,9 @@ public class Screen {
         gameScene = new Scene(gamePane);
         ui = new UI(gamePane);
     }
+
+    public UI getUI() { return ui; }
+
     public void createMainWindow() {
         // Set title of the game window
         gameStage.setTitle("SpaceRocks");
