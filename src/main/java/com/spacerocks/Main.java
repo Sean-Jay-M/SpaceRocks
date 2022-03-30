@@ -29,6 +29,8 @@ public class Main extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
+                shipController.initControls();
+                shipController.control();
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
 
@@ -38,7 +40,6 @@ public class Main extends Application {
                 } else{
                     ship.slowDown();
                 }
-                shipController.initControls();
             }
         }.start();
     }

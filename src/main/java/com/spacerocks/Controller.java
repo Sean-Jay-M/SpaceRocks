@@ -1,6 +1,12 @@
 package com.spacerocks;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller {
 
@@ -10,37 +16,44 @@ public class Controller {
 
     // Controls are run from the "Scene" object in JavaFX, so we will need to include this in this class.
     Scene gameScene;
+    Map<KeyCode, Boolean> pressedKeys;
 
     public Controller(Ship ship, Scene gameScene) {
         this.ship = ship;
         this.gameScene = gameScene;
+        this.pressedKeys = new HashMap<>();
     }
 
     public void initControls() {
         // Sets up an event that will continuously read user input with the help of AnimationTimer.
-        gameScene.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case UP:
-                    // This is where the gameObject.thrust() will go
-                    // if UP is pressed, set thrusting true
-                    ship.setThrusting(true);
-                    break;
-                case LEFT:
-                    ship.turn(-10);
-                    break;
-                case RIGHT:
-                    ship.turn(10);
-                    break;
+        // source: https://programming-f20.mooc.fi/part-14/3-larger-application-asteroids
+        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                pressedKeys.put(keyEvent.getCode(), Boolean.TRUE);
             }
         });
+        gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                pressedKeys.put(keyEvent.getCode(), Boolean.FALSE);
+            }
+        });
+    }
 
-        gameScene.setOnKeyReleased(event -> {
-            switch (event.getCode()) {
-                case UP:
-                    // if UP is released, set thrusting false
-                    ship.setThrusting(false);
-                    break;
-            }
-        });
+    public void control(){
+        if(this.pressedKeys.getOrDefault(KeyCode.LEFT, false)) {
+            ship.turn(-10);
+        }
+
+        if(this.pressedKeys.getOrDefault(KeyCode.RIGHT, false)) {
+            ship.turn(10);
+        }
+
+        if(this.pressedKeys.getOrDefault(KeyCode.UP, false)) {
+            ship.setThrusting(true);
+        }else{
+            ship.setThrusting(false);
+        }
     }
 }
