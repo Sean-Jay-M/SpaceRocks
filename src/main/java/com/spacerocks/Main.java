@@ -1,13 +1,17 @@
 package com.spacerocks;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 public class Main extends Application {
+
     // Main method for debugging. To be deleted once the Java project has been built
     public static void main(String[] args) {
         launch(args);
         System.exit(0);
     }
+
     // Start method is the method that will launch the JavaFX application
     public void start(Stage gameStage) {
 
@@ -25,6 +29,8 @@ public class Main extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
+                shipController.initControls();
+                shipController.control();
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
 
@@ -34,7 +40,6 @@ public class Main extends Application {
                 } else{
                     ship.slowDown();
                 }
-                shipController.initControls();
             }
         }.start();
     }
