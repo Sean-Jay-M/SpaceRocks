@@ -9,6 +9,9 @@ public class GameObject{
     // replace xpoints, ypoints, rotation by polygon, so we can remove AffineTransform
     private Polygon polygon;
     private double speed;
+    //initial spawning place
+    protected double spawn_x;
+    protected double spawn_y;
 
     //sets the variables for the game object 
     public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
@@ -26,6 +29,12 @@ public class GameObject{
     public Polygon getPolygon() {
         return polygon;
     }
+
+    //Getter for the spaawn_x
+    public double getSpawn_x(){return spawn_x ;}
+
+    //Getter for the spawn_y
+    public double getSpawn_y() {return spawn_y;}
 
     //Getter for the speed
     public double getSpeed() {
