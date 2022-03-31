@@ -20,7 +20,7 @@ public class Main extends Application {
         Ship ship = new Ship(screen.getScreenWidth()/2,screen.getScreenHeight()/2);
 
         // Creating the ship controller, passing in the Ship that we have created and the Scene property of the Screen.
-        Controller shipController = new Controller(ship, screen.getScene());
+        Controller shipController = new Controller(ship, screen);
 
         screen.createMainWindow();
         screen.drawGameObject(ship);
@@ -39,6 +39,18 @@ public class Main extends Application {
                     ship.accelerate();
                 } else{
                     ship.slowDown();
+                }
+
+                // move all the bullets
+                for (Bullet bullet: ship.getBullets()){
+                    bullet.move();
+                    // if the bullet is over certain distance, it should be removed.
+                    if (bullet.getDistance() > 10){
+                        ship.getBullets().remove(bullet);
+                        screen.removeGameObject(bullet);
+                        // it is mandatory to break the loop. otherwise, it will crash.
+                        break;
+                    }
                 }
             }
         }.start();
