@@ -65,4 +65,11 @@ public class Screen {
     }
 
 
+
+
+    // remove object from the pane
+    public void removeGameObject(GameObject gameObject){
+        gamePane.getChildren().remove(gameObject.getPolygon());
+    }
+
 }
