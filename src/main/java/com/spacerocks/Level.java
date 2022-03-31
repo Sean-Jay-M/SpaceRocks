@@ -1,9 +1,11 @@
 package com.spacerocks;
 
-//a Level object would be created when the game is started
-//reset the object on losing back to 1
-//increase when level has been won
-//get level at start of next level to spawn number of asteroids
+/*
+a Level object would be created when the game is started
+reset the object on losing back to 1
+increase when level has been won
+get level at start of new level gives number of asteroids to spawn
+*/
 public class Level {
     private int level;
 
