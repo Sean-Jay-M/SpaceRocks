@@ -9,14 +9,17 @@ public class Ship extends GameObject {
     private ArrayList<Bullet> bullets;
 
     public Ship( double xposition, double yposition) {
-        super(new Polygon(-10, -10, 20, 0, -10, 10), 0, xposition, yposition);
+            super(new Polygon(-10, -10, 20, 0, -10, 10), 0, xposition, yposition);
+            this.thrusting = false;
 
-        this.thrusting = false;
+            //Half screen lateer
+            spawn_x = 250;
+            spawn_y = 250;
 
-        // change initial angle
-        this.turn(270);
-        bullets = new ArrayList<>();
-    }
+            // change initial angle
+            this.turn(270);
+            bullets = new ArrayList<>();
+        }
 
     public boolean isThrusting() {
         return thrusting;
