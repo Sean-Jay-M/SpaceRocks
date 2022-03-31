@@ -1,0 +1,77 @@
+Index: src/main/java/com/spacerocks/GameObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.spacerocks;\r\n\r\n//Import the relvent packages\r\nimport java.awt.*;\r\nimport java.awt.geom.AffineTransform;\r\nimport java.awt.geom.Area;\r\nimport java.awt.geom.Path2D;\r\nimport java.awt.geom.Point2D;\r\n\r\n//Import the relevent packages\r\npublic class GameObject{\r\n    private double [] xpoints;\r\n    private double [] ypoints;\r\n    private int rotation;\r\n    private double speed;\r\n\r\n    //sets the variables for the game object \r\n    public GameObject(double[] xpoints, double[] ypoints, int rotation, double speed, double xposition, double yposition) {\r\n        this.xpoints = xpoints;\r\n        this.ypoints = ypoints;\r\n        this.rotation = rotation;\r\n        this.speed = speed;\r\n        AffineTransform at = new AffineTransform();\r\n        at.translate(xposition,yposition);\r\n\r\n        for (int i=0; i<xpoints.length; i++){\r\n            Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n            at.transform(p,p);\r\n            xpoints[i] = p.getX();\r\n            ypoints[i] = p.getY();\r\n        }\r\n    }\r\n    //getter for the X point\r\n    public double[] getXpoints() {\r\n        return xpoints;\r\n    }\r\n    //Getter for the Y Point\r\n    public double[] getYpoints() {\r\n        return ypoints;\r\n    }\r\n    //Getter for the Rotation\r\n    public int getRotation() {\r\n        return rotation;\r\n    }\r\n    //Getter for the speed\r\n    public double getSpeed() {\r\n        return speed;\r\n    }\r\n    //Setter for the speed\r\n    public void setSpeed(double speed) {\r\n        this.speed = speed;\r\n    }\r\n    //Get the path\r\n    public Path2D getPath(){\r\n        Path2D path = new Path2D.Double();\r\n        path.moveTo(xpoints[0],ypoints[0]);\r\n        for(int i=1; i<xpoints.length; i++){\r\n            path.lineTo(xpoints[i],ypoints[i]);\r\n        }\r\n        path.lineTo(xpoints[0],ypoints[0]);\r\n        return path;\r\n    }\r\n    //Get the center X point\r\n    public double getCenterX(){\r\n        double total = 0;\r\n        for (double xpoint : this.xpoints) {\r\n            total = total + xpoint;\r\n        }\r\n        return total / this.xpoints.length;\r\n    }\r\n    //Get the center Y point\r\n    public double getCenterY(){\r\n        double total = 0;\r\n        for (double ypoint : this.ypoints) {\r\n            total = total + ypoint;\r\n        }\r\n        return total / this.ypoints.length;\r\n    }\r\n    //Draw the path\r\n    public void draw(Graphics g){\r\n        g.setColor(Color.WHITE);\r\n        Graphics2D g2d = (Graphics2D) g;\r\n        Path2D path = this.getPath();\r\n        g2d.draw(path);\r\n    }\r\n    //Turn the object\r\n    public void turn(int angle){\r\n        AffineTransform at = new AffineTransform();\r\n        at.rotate(Math.toRadians(angle), (xpoints[0]+xpoints[1]+xpoints[2])/3, (ypoints[0]+ypoints[1]+ypoints[2])/3);\r\n\r\n        for (int i=0; i<xpoints.length; i++) {\r\n            Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n            at.transform(p, p);\r\n            xpoints[i] = p.getX();\r\n            ypoints[i] = p.getY();\r\n        }\r\n        this.rotation = this.rotation + angle;\r\n    }\r\n    //Move the object\r\n    public void move(){\r\n        double swiftX = Math.cos(Math.toRadians(this.rotation));\r\n        double swiftY = Math.sin(Math.toRadians(this.rotation));\r\n        AffineTransform at = new AffineTransform();\r\n        at.translate(swiftX*this.speed,swiftY*this.speed);\r\n\r\n        for (int i=0; i<xpoints.length; i++){\r\n            Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n            at.transform(p,p);\r\n            xpoints[i] = p.getX();\r\n            ypoints[i] = p.getY();\r\n        }\r\n    }\r\n    //Check if object is in range\r\n    public void checkInRange(){\r\n        //set variables\r\n        double totalX = 0;\r\n        double totalY = 0;\r\n        //add points together\r\n        for (int i=0; i<xpoints.length; i++){\r\n            totalX = totalX + xpoints[i];\r\n            totalY = totalY + ypoints[i];\r\n        }\r\n        double positionX = totalX / xpoints.length;\r\n        double positionY = totalY / ypoints.length;\r\n\r\n        AffineTransform at = new AffineTransform();\r\n        if (positionX < 0){\r\n            at.translate(positionX+Screen.getScreenWidth(),0);\r\n            for (int i=0; i<xpoints.length; i++){\r\n                Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n                at.transform(p,p);\r\n                xpoints[i] = p.getX();\r\n                ypoints[i] = p.getY();\r\n            }\r\n        }\r\n        if (positionX > Screen.getScreenWidth()){\r\n            at.translate(-Screen.getScreenWidth(),0);\r\n            for (int i=0; i<xpoints.length; i++){\r\n                Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n                at.transform(p,p);\r\n                xpoints[i] = p.getX();\r\n                ypoints[i] = p.getY();\r\n            }\r\n        }\r\n        if (positionY < 0){\r\n            at.translate(0, positionY+Screen.getScreenHeight());\r\n            for (int i=0; i<xpoints.length; i++){\r\n                Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n                at.transform(p,p);\r\n                xpoints[i] = p.getX();\r\n                ypoints[i] = p.getY();\r\n            }\r\n        }\r\n        if (positionY > Screen.getScreenHeight()){\r\n            at.translate(0, -Screen.getScreenHeight());\r\n            for (int i=0; i<xpoints.length; i++){\r\n                Point2D p = new Point2D.Double(xpoints[i], ypoints[i]);\r\n                at.transform(p,p);\r\n                xpoints[i] = p.getX();\r\n                ypoints[i] = p.getY();\r\n            }\r\n        }\r\n    }\r\n\r\n    //check if it has crashed.\r\n    public boolean crash(GameObject obj){\r\n        Area areaObj1 = new Area(this.getPath());\r\n        Area areaObj2 = new Area(obj.getPath());\r\n        areaObj1.intersect(areaObj2);\r\n        return !areaObj1.isEmpty();\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/spacerocks/GameObject.java b/src/main/java/com/spacerocks/GameObject.java
+--- a/src/main/java/com/spacerocks/GameObject.java	(revision aa62ec62a50f854b1f725f8e8242e51945230cc6)
++++ b/src/main/java/com/spacerocks/GameObject.java	(date 1648225824413)
+@@ -1,5 +1,5 @@
+ package com.spacerocks;
+-
++//testing comment
+ //Import the relvent packages
+ import java.awt.*;
+ import java.awt.geom.AffineTransform;
+Index: SpaceRocks.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule=\"true\" type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" LANGUAGE_LEVEL=\"JDK_17\">\r\n    <output url=\"file://$MODULE_DIR$/target/classes\" />\r\n    <output-test url=\"file://$MODULE_DIR$/target/test-classes\" />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src/main/java\" isTestSource=\"false\" />\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src/main/resources\" type=\"java-resource\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/target\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-controls:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-controls:win:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-graphics:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-graphics:win:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-base:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-base:win:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-fxml:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"Maven: org.openjfx:javafx-fxml:win:17.0.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.junit.jupiter:junit-jupiter-api:5.8.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.opentest4j:opentest4j:1.2.0\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.junit.platform:junit-platform-commons:1.8.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.apiguardian:apiguardian-api:1.1.2\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" scope=\"TEST\" name=\"Maven: org.junit.platform:junit-platform-engine:1.8.1\" level=\"project\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SpaceRocks.iml b/SpaceRocks.iml
+--- a/SpaceRocks.iml	(revision aa62ec62a50f854b1f725f8e8242e51945230cc6)
++++ b/SpaceRocks.iml	(date 1648225348536)
+@@ -24,5 +24,7 @@
+     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
+     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
+     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
++    <orderEntry type="library" name="javafx-sdk-18" level="project" />
++    <orderEntry type="library" name="jdk-17.0" level="project" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/libraries/javafx_sdk_18.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/javafx_sdk_18.xml b/.idea/libraries/javafx_sdk_18.xml
+new file mode 100644
+--- /dev/null	(date 1648225181752)
++++ b/.idea/libraries/javafx_sdk_18.xml	(date 1648225181752)
+@@ -0,0 +1,10 @@
++<component name="libraryTable">
++  <library name="javafx-sdk-18">
++    <CLASSES />
++    <JAVADOC />
++    <SOURCES>
++      <root url="file://$PROJECT_DIR$/../../../../../../../Program Files/Java/javafx-sdk-18" />
++    </SOURCES>
++    <jarDirectory url="file://$PROJECT_DIR$/../../../../../../../Program Files/Java/javafx-sdk-18" recursive="false" type="SOURCES" />
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/jdk_17_0.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/jdk_17_0.xml b/.idea/libraries/jdk_17_0.xml
+new file mode 100644
+--- /dev/null	(date 1648225348548)
++++ b/.idea/libraries/jdk_17_0.xml	(date 1648225348548)
+@@ -0,0 +1,9 @@
++<component name="libraryTable">
++  <library name="jdk-17.0">
++    <CLASSES>
++      <root url="file://$PROJECT_DIR$/../../../../../../../Program Files/Java/jdk-17.0.2" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
