@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added getter for UI class inside screen">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed bug with continuous bullets with one ArrayList">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpaceRocks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpaceRocks.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid$AsteroidSize.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid$AsteroidSize.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648737800331</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed bug with continuous bullets with one ArrayList">
+      <created>1648830795678</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648830795678</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,6 +109,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created Level class and some associated methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="created Level class and some associated methods" />
+    <MESSAGE value="Fixed bug with continuous bullets with one ArrayList" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with continuous bullets with one ArrayList" />
   </component>
 </project>

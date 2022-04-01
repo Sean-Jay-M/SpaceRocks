@@ -19,4 +19,8 @@ public class Bullet extends GameObject{
         super.move();
         this.distance = this.distance + 1.0 / 60.0;
     }
+
+    public boolean bulletIsDecayed() {
+        return distance > 10;
+    }
 }

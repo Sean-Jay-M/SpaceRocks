@@ -16,9 +16,6 @@ public class Controller {
 
     ArrayList<String> pressedKeys;
 
-    // avoid the bullets to be consecutive.
-    ArrayList<String> tempPressedKeys;
-
     // Added immutable strings to avoid typos.
     final String up = "UP";
     final String left = "LEFT";
@@ -54,7 +51,7 @@ public class Controller {
         });
     }
 
-    public void control(){
+    public void readUserInput(){
         initControls();
         readMovementKeys();
         readShootKey();

@@ -24,7 +24,7 @@ public class Game {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-                shipController.control();
+                shipController.readUserInput();
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
 
@@ -36,12 +36,15 @@ public class Game {
                 }
 
                 // move all the bullets
+                ship.moveBullets();
+
                 for (Bullet bullet: ship.getBullets()){
                     bullet.move();
                     // if the bullet is over certain distance, it should be removed.
-                    if (bullet.getDistance() > 10){
-                        ship.getBullets().remove(bullet);
-                        screen.removeGameObject(bullet);
+                    if (bullet.bulletIsDecayed()){
+                        screen.removeGameObject(ship.getBullets());
+                        ship.removeAllBullets();
+
                         // it is mandatory to break the loop. otherwise, it will crash.
                         break;
                     }

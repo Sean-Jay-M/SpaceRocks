@@ -1,7 +1,11 @@
 package com.spacerocks;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+
+import java.util.ArrayList;
 
 
 public class Spawner {
@@ -27,12 +31,21 @@ public class Spawner {
     }
 
     //This draws the object
-    private void drawGameObject(GameObject gameObject) {
+    public void drawGameObject(GameObject gameObject) {
         gamePane.getChildren().add(gameObject.getPolygon());
     }
 
     //this removes the game object
-    private void removeGameObject(GameObject gameObject){
+    public void removeGameObject(GameObject gameObject){
         gamePane.getChildren().remove(gameObject.getPolygon());
+    }
+
+    // Removes an array list of game objects (to be used for bullets)
+    public void removeGameObject(ArrayList<Bullet> gameObjects) {
+        ObservableList<Node> currentObjects = gamePane.getChildren();
+
+        for (GameObject gameObject: gameObjects) {
+            currentObjects.remove(gameObject);
+        }
     }
 }

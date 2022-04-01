@@ -47,6 +47,21 @@ public class Ship extends GameObject {
         bullets.add(bullet);
     }
 
+    public void moveBullets() {
+        for (Bullet bullet: bullets) {
+            bullet.move();
+        }
+    }
+
+    public void removeAllBullets() { bullets.clear(); }
+
+//    public void manageFiredBullets() {
+//        for (Bullet bullet: bullets) {
+//            bullets.remove(bullet);
+//            screen.removeGameObject(bullet);
+//        }
+//    }
+
     public ArrayList<Bullet> getBullets() {
         return bullets;
     }
