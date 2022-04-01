@@ -8,7 +8,7 @@ import javafx.scene.shape.Polygon;
 import java.util.ArrayList;
 
 
-public class Spawner {
+public class Spawner implements DespawnListener {
     //This class is responsible for handling the spawning of new objects
     Pane gamePane;
     public Spawner(Pane gamePane){
@@ -35,13 +35,19 @@ public class Spawner {
         gamePane.getChildren().add(gameObject.getPolygon());
     }
 
+    @Override
+    public void onDespawn(GameObject gameObject) {
+        despawn(gameObject);
+    }
+
+
     //this removes the game object
-    public void removeGameObject(GameObject gameObject){
+    public void despawn(GameObject gameObject){
         gamePane.getChildren().remove(gameObject.getPolygon());
     }
 
     // Removes an array list of game objects (to be used for bullets)
-    public void removeGameObject(ArrayList<Bullet> gameObjects) {
+    public void despawn(ArrayList<Bullet> gameObjects) {
         ObservableList<Node> currentObjects = gamePane.getChildren();
 
         for (GameObject gameObject: gameObjects) {

@@ -43,24 +43,32 @@ public class Ship extends GameObject {
         }
     }
 
-    public void shoot(Bullet bullet){
+    public void addBullet(Bullet bullet){
         bullets.add(bullet);
     }
 
-    public void moveBullets() {
+    // move all the bullets
+    public void shoot() {
         for (Bullet bullet: bullets) {
             bullet.move();
+            if (bullet.isDecayed()) {
+                removeBullet(bullet);
+                if (despawnListener != null) despawnListener.onDespawn(bullet);
+                break;
+            }
         }
     }
 
-    public void removeAllBullets() { bullets.clear(); }
+    // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
+    public void thrust() {
+        if (isThrusting()) {
+            accelerate();
+            return;
+        }
+        slowDown();
+    }
 
-//    public void manageFiredBullets() {
-//        for (Bullet bullet: bullets) {
-//            bullets.remove(bullet);
-//            screen.removeGameObject(bullet);
-//        }
-//    }
+    public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
 
     public ArrayList<Bullet> getBullets() {
         return bullets;

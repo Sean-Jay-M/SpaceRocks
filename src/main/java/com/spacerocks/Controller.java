@@ -29,6 +29,12 @@ public class Controller {
         this.pressedKeys = new ArrayList<>();
     }
 
+    public void readUserInput(){
+        initControls();
+        readMovementKeys();
+        readShootKey();
+    }
+
     private void initControls() {
         // Sets up an event that will continuously read user input with the help of AnimationTimer.
         // source: https://www.youtube.com/watch?v=7Vb9StpxFtw&t=637s&ab_channel=LeeStemkoski
@@ -51,26 +57,25 @@ public class Controller {
         });
     }
 
-    public void readUserInput(){
-        initControls();
-        readMovementKeys();
-        readShootKey();
-    }
-
     private void readShootKey() {
-        // use tempPressedKeys
         if (pressedKeys.contains("SPACE")) {
-            // create new bullet
-            Bullet bullet = new Bullet((int)ship.getPolygon().getTranslateX(),(int)ship.getPolygon().getTranslateY());
-            bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
-            // add bullet to the arraylist in ship class
-            ship.shoot(bullet);
-            // draw the bullet
-            screen.drawGameObject(bullet);
+            // Potentially refactor this using listeners
+            showBulletOnScreen();
         }
-
         // to avoid the continuous bullets
         pressedKeys.remove(space);
+    }
+
+    private void showBulletOnScreen() {
+        // create new bullet
+        Bullet bullet = new Bullet((int)ship.getPolygon().getTranslateX(),(int)ship.getPolygon().getTranslateY());
+        bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
+
+        // add bullet to the arraylist in ship class
+        ship.addBullet(bullet);
+
+        // draw the bullet
+        screen.getSpawner().drawGameObject(bullet);
     }
 
     private void readMovementKeys() {

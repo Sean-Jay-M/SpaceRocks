@@ -20,7 +20,7 @@ public class Bullet extends GameObject{
         this.distance = this.distance + 1.0 / 60.0;
     }
 
-    public boolean bulletIsDecayed() {
+    public boolean isDecayed() {
         return distance > 10;
     }
 }

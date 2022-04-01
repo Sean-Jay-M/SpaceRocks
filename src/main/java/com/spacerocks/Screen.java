@@ -61,18 +61,4 @@ public class Screen {
         gameStage.show();
     }
 
-    // Placeholder for drawing objects, this will change depending on how we
-    // decide to implement this:
-    public void drawGameObject(GameObject gameObject) {
-        gamePane.getChildren().add(gameObject.getPolygon());
-    }
-
-    // remove object from the pane
-    public void removeGameObject(ArrayList<Bullet> gameObject){
-        for (Bullet bullet: gameObject) {
-            gamePane.getChildren().remove(bullet.getPolygon());
-        }
-
-    }
-
 }

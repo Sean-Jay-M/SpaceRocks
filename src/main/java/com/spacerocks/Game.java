@@ -16,39 +16,25 @@ public class Game {
         this.shipController = new Controller(ship, screen);
 
         this.screen.createMainWindow();
-        this.screen.drawGameObject(ship);
+        this.screen.getSpawner().drawGameObject(ship);
     }
 
     public void play(){
+        // Set add listener to spawner to check if bullets need to be deleted
+        ship.setDespawnListener(screen.getSpawner());
         // Starting new animation timer and setting up the controls inside to read user input continuously.
         new AnimationTimer() {
             @Override
             public void handle(long l) {
+
+                // Read keyboard keys from the user.
                 shipController.readUserInput();
+
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
+                ship.thrust();
+                ship.shoot();
 
-                // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
-                if (ship.isThrusting()){
-                    ship.accelerate();
-                } else{
-                    ship.slowDown();
-                }
-
-                // move all the bullets
-                ship.moveBullets();
-
-                for (Bullet bullet: ship.getBullets()){
-                    bullet.move();
-                    // if the bullet is over certain distance, it should be removed.
-                    if (bullet.bulletIsDecayed()){
-                        screen.removeGameObject(ship.getBullets());
-                        ship.removeAllBullets();
-
-                        // it is mandatory to break the loop. otherwise, it will crash.
-                        break;
-                    }
-                }
             }
         }.start();
     }
