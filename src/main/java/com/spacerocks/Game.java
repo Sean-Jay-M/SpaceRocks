@@ -12,7 +12,7 @@ public class Game {
 
     public Game(Stage gameStage) {
         this.screen = new Screen(gameStage);
-        this.ship = new Ship(screen.getScreenWidth()/2,screen.getScreenHeight()/2);
+        this.ship = new Ship(Screen.getScreenWidth()/2.0,Screen.getScreenHeight()/2.0);
         this.shipController = new Controller(ship, screen);
 
         this.screen.createMainWindow();
@@ -24,7 +24,6 @@ public class Game {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-                shipController.initControls();
                 shipController.control();
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();

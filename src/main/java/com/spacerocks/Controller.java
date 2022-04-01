@@ -19,14 +19,20 @@ public class Controller {
     // avoid the bullets to be consecutive.
     ArrayList<String> tempPressedKeys;
 
+    // Added immutable strings to avoid typos.
+    final String up = "UP";
+    final String left = "LEFT";
+    final String right = "RIGHT";
+    final String space = "SPACE";
+
+
     public Controller(Ship ship, Screen screen) {
         this.ship = ship;
         this.screen = screen;
         this.pressedKeys = new ArrayList<>();
-        this.tempPressedKeys = new ArrayList<>();
     }
 
-    public void initControls() {
+    private void initControls() {
         // Sets up an event that will continuously read user input with the help of AnimationTimer.
         // source: https://www.youtube.com/watch?v=7Vb9StpxFtw&t=637s&ab_channel=LeeStemkoski
         // use arraylist rather than hashmap
@@ -36,7 +42,6 @@ public class Controller {
                 String key = keyEvent.getCode().toString();
                 if (!pressedKeys.contains(key)){
                     pressedKeys.add(key);
-                    tempPressedKeys.add(key);
                 }
             }
         });
@@ -50,22 +55,14 @@ public class Controller {
     }
 
     public void control(){
-        if(this.pressedKeys.contains("LEFT")) {
-            ship.turn(-10);
-        }
+        initControls();
+        readMovementKeys();
+        readShootKey();
+    }
 
-        if(this.pressedKeys.contains("RIGHT")) {
-            ship.turn(10);
-        }
-
-        if(this.pressedKeys.contains("UP")) {
-            ship.setThrusting(true);
-        }else{
-            ship.setThrusting(false);
-        }
-
+    private void readShootKey() {
         // use tempPressedKeys
-        if (tempPressedKeys.contains("SPACE")) {
+        if (pressedKeys.contains("SPACE")) {
             // create new bullet
             Bullet bullet = new Bullet((int)ship.getPolygon().getTranslateX(),(int)ship.getPolygon().getTranslateY());
             bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
@@ -76,6 +73,18 @@ public class Controller {
         }
 
         // to avoid the continuous bullets
-        tempPressedKeys.clear();
+        pressedKeys.remove(space);
+    }
+
+    private void readMovementKeys() {
+        if(this.pressedKeys.contains(left)) {
+            ship.turn(-10);
+        }
+
+        if(this.pressedKeys.contains(right)) {
+            ship.turn(10);
+        }
+
+        ship.setThrusting(this.pressedKeys.contains(up));
     }
 }
