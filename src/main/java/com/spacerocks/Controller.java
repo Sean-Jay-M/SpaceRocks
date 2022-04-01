@@ -15,6 +15,7 @@ public class Controller {
     Screen screen;
 
     ArrayList<String> pressedKeys;
+    ArrayList<String> tempPressedKeys;
 
     // Added immutable strings to avoid typos.
     final String up = "UP";
@@ -27,6 +28,7 @@ public class Controller {
         this.ship = ship;
         this.screen = screen;
         this.pressedKeys = new ArrayList<>();
+        this.tempPressedKeys = new ArrayList<>();
     }
 
     public void readUserInput(){
@@ -45,6 +47,7 @@ public class Controller {
                 String key = keyEvent.getCode().toString();
                 if (!pressedKeys.contains(key)){
                     pressedKeys.add(key);
+                    tempPressedKeys.add(key);
                 }
             }
         });
@@ -58,12 +61,12 @@ public class Controller {
     }
 
     private void readShootKey() {
-        if (pressedKeys.contains("SPACE")) {
+        if (tempPressedKeys.contains("SPACE")) {
             // Potentially refactor this using listeners
             showBulletOnScreen();
         }
         // to avoid the continuous bullets
-        pressedKeys.remove(space);
+        tempPressedKeys.clear();
     }
 
     private void showBulletOnScreen() {
