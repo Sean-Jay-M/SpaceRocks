@@ -1,6 +1,7 @@
 package com.spacerocks;
-
 import javafx.scene.shape.Polygon;
+
+import java.util.Random;
 
 public class Asteroid extends GameObject {
 
@@ -46,6 +47,49 @@ public class Asteroid extends GameObject {
     // populate the super class' constructor with the appropriate x points, y points and speed values.
     public Asteroid(AsteroidSize size, double speed, double xposition, double yposition) {
         super(size.getAsteroid(), speed, xposition, yposition);
+
+        spawn_x = spawnX();
+        spawn_y = spawnY();
+    }
+
+    // create methods which will generate a value outside of the inner square
+    // Get a random number, if the random number is in a range, generate another random number.
+    // If that second random number is 1, move the first random number out of the range by addition
+    //Otherwise do it by subtraction
+    private double spawnX(){
+        Random r = new Random();
+        double rangeMin = 0.0;
+        double rangeMax = Screen.getScreenWidth();
+        double random_double = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        if ((random_double > (Screen.getScreenWidth() - 50)) && (random_double < (Screen.getScreenWidth() + 50))){
+            int max = 1;
+            int min = 0;
+            int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+            if(random_int == 1){
+                random_double += 150;
+            } else if (random_int == 0) {
+                random_double -= 150;
+            }
+        }
+        return random_double;
+    }
+
+    private double spawnY(){
+        Random r = new Random();
+        double rangeMin = 0.0;
+        double rangeMax = Screen.getScreenHeight();
+        double random_double = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        if ((random_double > (Screen.getScreenHeight() - 50)) && (random_double < (Screen.getScreenHeight() + 50))){
+            int max = 1;
+            int min = 0;
+            int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+            if(random_int == 1){
+                random_double += 150;
+            } else if (random_int == 0) {
+                random_double -= 150;
+            }
+        }
+        return random_double;
     }
 
     // The below is just a quick demo showing the creation of a small asteroid would look like, with proof showing
