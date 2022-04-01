@@ -1,6 +1,8 @@
 package com.spacerocks;
 import javafx.scene.shape.Polygon;
 
+import java.util.Random;
+
 public class Asteroid extends GameObject {
 
     // Enum containing all the constant variables relating to a particular asteroid size.
@@ -55,8 +57,11 @@ public class Asteroid extends GameObject {
     // If that second random number is 1, move the first random number out of the range by addition
     //Otherwise do it by subtraction
     private double spawnX(){
-        double random_double = Math.random();
-        if ((random_double > (Screen.getScreenWidth() - 50)) || (random_double < (Screen.getScreenWidth() + 50))){
+        Random r = new Random();
+        double rangeMin = 0.0;
+        double rangeMax = Screen.getScreenWidth();
+        double random_double = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        if ((random_double > (Screen.getScreenWidth() - 50)) && (random_double < (Screen.getScreenWidth() + 50))){
             int max = 1;
             int min = 0;
             int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
@@ -70,8 +75,11 @@ public class Asteroid extends GameObject {
     }
 
     private double spawnY(){
-        double random_double = Math.random();
-        if ((random_double > (Screen.getScreenWidth() - 50)) || (random_double < (Screen.getScreenWidth() + 50))){
+        Random r = new Random();
+        double rangeMin = 0.0;
+        double rangeMax = Screen.getScreenHeight();
+        double random_double = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        if ((random_double > (Screen.getScreenHeight() - 50)) && (random_double < (Screen.getScreenHeight() + 50))){
             int max = 1;
             int min = 0;
             int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
