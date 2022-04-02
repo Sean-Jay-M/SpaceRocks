@@ -4,52 +4,18 @@ import javafx.scene.shape.Polygon;
 import java.util.Random;
 
 public class Asteroid extends GameObject {
-
-    // Enum containing all the constant variables relating to a particular asteroid size.
-    private enum AsteroidSize {
-
-        // Constant variables containing x coordinates, y coordinates and speed.
-        SMALL(new Polygon(200.0, 50.0,
-                400.0, 50.0,
-                450.0, 150.0,
-                400.0, 250.0,
-                200.0, 250.0,
-                150.0, 150.0 )),
-        MEDIUM(new Polygon(120.0, 30.0,
-                240.0, 30.0,
-                270.0, 90.0,
-                240.0, 150.0,
-                120.0, 150.0,
-                90.0, 90.0)),
-        BIG(new Polygon(50.0, 12.5,
-                100.0, 12.5,
-                112.5, 37.5,
-                100.0, 62.5,
-                50.0, 62.5,
-                37.5, 37.5 ));
-
-        // Initial fields for the enum
-        private final Polygon polygon;
-
-        // Constructor for the enum
-        AsteroidSize(Polygon polygon) {
-            this.polygon = polygon;
-        }
-
-        // Getters for the enum
-        public Polygon getAsteroid(){
-            return polygon;
-        }
-
-    }
-
+    AsteroidSize size;
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
-    public Asteroid(AsteroidSize size, double speed, double xposition, double yposition) {
-        super(size.getAsteroid(), speed, xposition, yposition);
-
+    public Asteroid(AsteroidSize size, double xposition, double yposition) {
+        super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed, xposition, yposition);
+        this.size = size;
         spawn_x = spawnX();
         spawn_y = spawnY();
+    }
+
+    public AsteroidSize getSize() {
+        return size;
     }
 
     // create methods which will generate a value outside of the inner square
@@ -90,6 +56,10 @@ public class Asteroid extends GameObject {
             }
         }
         return random_double;
+    }
+
+    public void rotate(double angle){
+        this.getPolygon().setRotate(angle);
     }
 
     // The below is just a quick demo showing the creation of a small asteroid would look like, with proof showing
