@@ -12,41 +12,29 @@ public class Game {
 
     public Game(Stage gameStage) {
         this.screen = new Screen(gameStage);
-        this.ship = new Ship(screen.getScreenWidth()/2,screen.getScreenHeight()/2);
+        this.ship = new Ship(Screen.getScreenWidth()/2.0,Screen.getScreenHeight()/2.0);
         this.shipController = new Controller(ship, screen);
 
         this.screen.createMainWindow();
-        this.screen.drawGameObject(ship);
+        this.screen.getSpawner().drawGameObject(ship);
     }
 
     public void play(){
+        // Set add listener to spawner to check if bullets need to be deleted
+        ship.setDespawnListener(screen.getSpawner());
         // Starting new animation timer and setting up the controls inside to read user input continuously.
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-                shipController.initControls();
-                shipController.control();
+
+                // Read keyboard keys from the user.
+                shipController.readUserInput();
+
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
+                ship.thrust();
+                ship.shoot();
 
-                // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
-                if (ship.isThrusting()){
-                    ship.accelerate();
-                } else{
-                    ship.slowDown();
-                }
-
-                // move all the bullets
-                for (Bullet bullet: ship.getBullets()){
-                    bullet.move();
-                    // if the bullet is over certain distance, it should be removed.
-                    if (bullet.getDistance() > 10){
-                        ship.getBullets().remove(bullet);
-                        screen.removeGameObject(bullet);
-                        // it is mandatory to break the loop. otherwise, it will crash.
-                        break;
-                    }
-                }
             }
         }.start();
     }

@@ -12,6 +12,7 @@ public class GameObject{
     //initial spawning place
     protected double spawn_x;
     protected double spawn_y;
+    protected DespawnListener despawnListener;
 
     //sets the variables for the game object 
     public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
@@ -85,6 +86,8 @@ public class GameObject{
                 //checks coordinates bounded by both objects and if there is overlap returns true
         return object1.getBoundsInParent().intersects(object2.getBoundsInParent());
     }
+
+    public void setDespawnListener(DespawnListener despawnListener) { this.despawnListener = despawnListener; }
 
     //check if it has crashed.
 //    public boolean crash(GameObject obj){

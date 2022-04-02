@@ -3,6 +3,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 // This class is responsible for handling the GUI elements of the game
 public class Screen {
     // We may decide that these can be modifiable - to be discussed
@@ -56,20 +59,6 @@ public class Screen {
 
         // Displaying the application
         gameStage.show();
-    }
-
-    // Placeholder for drawing objects, this will change depending on how we
-    // decide to implement this:
-    public void drawGameObject(GameObject gameObject) {
-        gamePane.getChildren().add(gameObject.getPolygon());
-    }
-
-
-
-
-    // remove object from the pane
-    public void removeGameObject(GameObject gameObject){
-        gamePane.getChildren().remove(gameObject.getPolygon());
     }
 
 }
