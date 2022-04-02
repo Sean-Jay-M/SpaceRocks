@@ -14,7 +14,7 @@ public class GameObject{
     protected double spawn_y;
     protected DespawnListener despawnListener;
 
-    //sets the variables for the game object 
+    //sets the variables for the game object
     public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
         this.polygon = polygon;
         this.speed = speed;
@@ -82,9 +82,9 @@ public class GameObject{
         }
     }
 
-    private boolean collisionCheck(Polygon object1, Polygon object2){
-                //checks coordinates bounded by both objects and if there is overlap returns true
-        return object1.getBoundsInParent().intersects(object2.getBoundsInParent());
+    public boolean collisionCheck(GameObject object){
+        //checks coordinates bounded by both objects and if there is overlap returns true
+        return this.getPolygon().getBoundsInParent().intersects(object.getPolygon().getBoundsInParent());
     }
 
     public void setDespawnListener(DespawnListener despawnListener) { this.despawnListener = despawnListener; }
