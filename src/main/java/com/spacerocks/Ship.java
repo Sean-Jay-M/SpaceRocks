@@ -9,14 +9,17 @@ public class Ship extends GameObject {
     private ArrayList<Bullet> bullets;
 
     public Ship( double xposition, double yposition) {
-        super(new Polygon(-10, -10, 20, 0, -10, 10), 0, xposition, yposition);
+            super(new Polygon(-10, -10, 20, 0, -10, 10), 0, xposition, yposition);
+            this.thrusting = false;
 
-        this.thrusting = false;
+            //Half screen later
+            spawn_x = 250;
+            spawn_y = 250;
 
-        // change initial angle
-        this.turn(270);
-        bullets = new ArrayList<>();
-    }
+            // change initial angle
+            this.turn(270);
+            bullets = new ArrayList<>();
+        }
 
     public boolean isThrusting() {
         return thrusting;
@@ -40,11 +43,40 @@ public class Ship extends GameObject {
         }
     }
 
-    public void shoot(Bullet bullet){
+    public void addBullet(Bullet bullet){
         bullets.add(bullet);
     }
 
+    // move all the bullets
+    public void shoot() {
+        for (Bullet bullet: bullets) {
+            bullet.move();
+            if (bullet.isDecayed()) {
+                removeBullet(bullet);
+                if (despawnListener != null) despawnListener.onDespawn(bullet);
+                break;
+            }
+        }
+    }
+
+    // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
+    public void thrust() {
+        if (isThrusting()) {
+            accelerate();
+            return;
+        }
+        slowDown();
+    }
+
+    public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
+
     public ArrayList<Bullet> getBullets() {
         return bullets;
+    }
+
+    public void respawn(){
+        this.getPolygon().setTranslateX(spawn_x);
+        this.getPolygon().setTranslateY(spawn_y);
+        this.getPolygon().setRotate(270);
     }
 }

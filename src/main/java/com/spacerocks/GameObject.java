@@ -9,6 +9,10 @@ public class GameObject{
     // replace xpoints, ypoints, rotation by polygon, so we can remove AffineTransform
     private Polygon polygon;
     private double speed;
+    //initial spawning place
+    protected double spawn_x;
+    protected double spawn_y;
+    protected DespawnListener despawnListener;
 
     //sets the variables for the game object 
     public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
@@ -26,6 +30,12 @@ public class GameObject{
     public Polygon getPolygon() {
         return polygon;
     }
+
+    //Getter for the spaawn_x
+    public double getSpawn_x(){return spawn_x ;}
+
+    //Getter for the spawn_y
+    public double getSpawn_y() {return spawn_y;}
 
     //Getter for the speed
     public double getSpeed() {
@@ -72,10 +82,12 @@ public class GameObject{
         }
     }
 
-    private boolean collisionCheck(Polygon object1, Polygon object2){
-                //checks coordinates bounded by both objects and if there is overlap returns true
-        return object1.getBoundsInParent().intersects(object2.getBoundsInParent());
+    public boolean collisionCheck(GameObject object){
+        //checks coordinates bounded by both objects and if there is overlap returns true
+        return this.getPolygon().getBoundsInParent().intersects(object.getPolygon().getBoundsInParent());
     }
+
+    public void setDespawnListener(DespawnListener despawnListener) { this.despawnListener = despawnListener; }
 
     //check if it has crashed.
 //    public boolean crash(GameObject obj){

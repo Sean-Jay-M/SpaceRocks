@@ -3,6 +3,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 // This class is responsible for handling the GUI elements of the game
 public class Screen {
     // We may decide that these can be modifiable - to be discussed
@@ -11,9 +14,11 @@ public class Screen {
     // I added "final" to these because IntelliJ suggested it. If we ended up
     // using more JavaFX elements we can remove this.
     private final Stage gameStage;
+    //Pane Creation
     private final Pane gamePane;
     private final Scene gameScene;
     private UI ui;
+    private Spawner spawner;
     //Getter for the screen Width
     public static int getScreenWidth(){
         return SCREEN_WIDTH;
@@ -34,7 +39,11 @@ public class Screen {
         gamePane = new Pane();
         gameScene = new Scene(gamePane);
         ui = new UI(gamePane);
+        spawner = new Spawner(gamePane);
     }
+
+    //Getter for the spawner
+    public Spawner getSpawner(){return spawner;}
 
     public UI getUI() { return ui; }
 
@@ -50,16 +59,6 @@ public class Screen {
 
         // Displaying the application
         gameStage.show();
-
-    }
-    // Placeholder for drawing objects, this will change depending on how we
-    // decide to implement this:
-    public void drawGameObject(GameObject gameObject) {
-        gamePane.getChildren().add(gameObject.getPolygon());
     }
 
-    // remove object from the pane
-    public void removeGameObject(GameObject gameObject){
-        gamePane.getChildren().remove(gameObject.getPolygon());
-    }
 }
