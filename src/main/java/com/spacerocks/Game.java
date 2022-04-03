@@ -19,8 +19,11 @@ public class Game {
     // Lives
     int lives;
 
-    public Game(Stage gameStage) {
-        this.screen = new Screen(gameStage);
+    Spawner spawner;
+
+    public Game(Screen screen) {
+        this.screen = screen;
+        this.spawner = screen.getSpawner();
         this.ship = new Ship(Screen.getScreenWidth()/2.0,Screen.getScreenHeight()/2.0);
         this.shipController = new Controller(ship, screen);
         this.random = new Random();
@@ -28,32 +31,32 @@ public class Game {
         this.lives = 3;
 
         this.screen.createMainWindow();
-        this.screen.getSpawner().drawGameObject(ship);
+        spawner.drawGameObject(ship);
 
         // initial asteroids
         for (int i=0; i<3; i++){
             Asteroid asteroid = new Asteroid(AsteroidSize.BIG,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
             asteroid.rotate(random.nextDouble(10,60));
-            this.screen.getSpawner().drawGameObject(asteroid);
+            spawner.drawGameObject(asteroid);
             this.asteroids.add(asteroid);
         }
         for (int i=0; i<2; i++){
             Asteroid asteroid = new Asteroid(AsteroidSize.MEDIUM,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
             asteroid.rotate(random.nextDouble(10,30));
-            this.screen.getSpawner().drawGameObject(asteroid);
+            spawner.drawGameObject(asteroid);
             this.asteroids.add(asteroid);
         }
         for (int i=0; i<1; i++){
             Asteroid asteroid = new Asteroid(AsteroidSize.SMALL,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
             asteroid.rotate(random.nextDouble(10,15));
-            this.screen.getSpawner().drawGameObject(asteroid);
+            spawner.drawGameObject(asteroid);
             this.asteroids.add(asteroid);
         }
     }
 
     public void play(){
         // Set add listener to spawner to check if bullets need to be deleted
-        ship.setDespawnListener(screen.getSpawner());
+        ship.setSpawnListener(screen.getSpawner());
         // Starting new animation timer and setting up the controls inside to read user input continuously.
         new AnimationTimer() {
             @Override
@@ -74,7 +77,7 @@ public class Game {
 
                 // detect ship collision with asteroid
                 for (Asteroid asteroid: asteroids){
-                    if (ship.collisionCheck(asteroid)){
+                    if (ship.hasCollided(asteroid)){
                         // respawn the ship
                         ship.respawn();
                         // lives minus 1
@@ -93,7 +96,7 @@ public class Game {
                 // detect bullet collision with asteroid
                 for (Bullet bullet: ship.getBullets()){
                     for (Asteroid asteroid: asteroids){
-                        if (bullet.collisionCheck(asteroid)){
+                        if (bullet.hasCollided(asteroid)){
                             // add the score
                             if (asteroid.getSize() == AsteroidSize.BIG){
                                 screen.getUI().addScoreValue(300);

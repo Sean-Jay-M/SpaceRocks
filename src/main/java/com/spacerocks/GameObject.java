@@ -6,13 +6,13 @@ import javafx.scene.shape.Polygon;
 
 //Import the relevent packages
 public class GameObject{
-    // replace xpoints, ypoints, rotation by polygon, so we can remove AffineTransform
+
     private Polygon polygon;
     private double speed;
     //initial spawning place
-    protected double spawn_x;
-    protected double spawn_y;
-    protected DespawnListener despawnListener;
+    protected double spawnX;
+    protected double spawnY;
+    protected static SpawnListener spawnListener;
 
     //sets the variables for the game object
     public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
@@ -21,10 +21,6 @@ public class GameObject{
 
         // set game object white
         this.polygon.setFill(Color.WHITE);
-
-        // set initial location
-        polygon.setTranslateX(xposition);
-        polygon.setTranslateY(yposition);
     }
 
     public Polygon getPolygon() {
@@ -32,10 +28,10 @@ public class GameObject{
     }
 
     //Getter for the spaawn_x
-    public double getSpawn_x(){return spawn_x ;}
+    public double getSpawnX(){return spawnX;}
 
     //Getter for the spawn_y
-    public double getSpawn_y() {return spawn_y;}
+    public double getSpawnY() {return spawnY;}
 
     //Getter for the speed
     public double getSpeed() {
@@ -82,12 +78,12 @@ public class GameObject{
         }
     }
 
-    public boolean collisionCheck(GameObject object){
+    public boolean hasCollided(GameObject object){
         //checks coordinates bounded by both objects and if there is overlap returns true
         return this.getPolygon().getBoundsInParent().intersects(object.getPolygon().getBoundsInParent());
     }
 
-    public void setDespawnListener(DespawnListener despawnListener) { this.despawnListener = despawnListener; }
+    public void setSpawnListener(SpawnListener spawnListener) { this.spawnListener = spawnListener; }
 
     //check if it has crashed.
 //    public boolean crash(GameObject obj){

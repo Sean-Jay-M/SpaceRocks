@@ -10,8 +10,8 @@ public class Asteroid extends GameObject {
     public Asteroid(AsteroidSize size, double xposition, double yposition) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed, xposition, yposition);
         this.size = size;
-        spawn_x = spawnX();
-        spawn_y = spawnY();
+        spawnX = spawnX();
+        spawnY = spawnY();
     }
 
     public AsteroidSize getSize() {

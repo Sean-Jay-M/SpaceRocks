@@ -8,7 +8,7 @@ import javafx.scene.shape.Polygon;
 import java.util.ArrayList;
 
 
-public class Spawner implements DespawnListener {
+public class Spawner implements SpawnListener {
     //This class is responsible for handling the spawning of new objects
     Pane gamePane;
     public Spawner(Pane gamePane){
@@ -23,8 +23,8 @@ public class Spawner implements DespawnListener {
     //sets the spawning coordinates
     private void setSpawnCords(GameObject gameObject){
         Polygon polygon = gameObject.getPolygon();
-        double spawn_x = gameObject.getSpawn_x();
-        double spawn_y = gameObject.getSpawn_y();
+        double spawn_x = gameObject.getSpawnX();
+        double spawn_y = gameObject.getSpawnY();
 
         polygon.setTranslateX(spawn_x);
         polygon.setTranslateY(spawn_y);

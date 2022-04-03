@@ -13,8 +13,8 @@ public class Ship extends GameObject {
         this.thrusting = false;
 
         //Half screen later
-        spawn_x = 250;
-        spawn_y = 250;
+        spawnX = 250;
+        spawnY = 250;
 
         // change initial angle
         this.turn(270);
@@ -53,7 +53,7 @@ public class Ship extends GameObject {
             bullet.move();
             if (bullet.isDecayed()) {
                 removeBullet(bullet);
-                if (despawnListener != null) despawnListener.onDespawn(bullet);
+                if (spawnListener != null) spawnListener.onDespawn(bullet);
                 break;
             }
         }
@@ -75,8 +75,8 @@ public class Ship extends GameObject {
     }
 
     public void respawn(){
-        this.getPolygon().setTranslateX(spawn_x);
-        this.getPolygon().setTranslateY(spawn_y);
+        this.getPolygon().setTranslateX(spawnX);
+        this.getPolygon().setTranslateY(spawnY);
         this.getPolygon().setRotate(270);
     }
 }
