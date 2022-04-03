@@ -1,5 +1,6 @@
 package com.spacerocks;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -11,9 +12,15 @@ public class Screen {
     // I added "final" to these because IntelliJ suggested it. If we ended up
     // using more JavaFX elements we can remove this.
     private final Stage gameStage;
+
+    public Pane getPane() {
+        return pane;
+    }
+
     //Pane Creation
-    private final Pane gamePane;
-    private final Scene gameScene;
+    private Pane pane;
+    private Scene scene;
+
     private UI ui;
     private Spawner spawner;
     //Getter for the screen Width
@@ -25,7 +32,7 @@ public class Screen {
         return SCREEN_HEIGHT;
     }
 
-    public Scene getScene() { return gameScene; }
+    public Scene getScene() { return scene; }
 
     public Screen(Stage gameStage) {
         // Constructor creates new instances of these objects. The reason why we need
@@ -33,10 +40,21 @@ public class Screen {
         // Stage as part of the JavaFX "Start" method, so to avoid doubling up we can
         // just use the Stage that that method created.
         this.gameStage = gameStage;
-        gamePane = new Pane();
-        gameScene = new Scene(gamePane);
-        ui = new UI(gamePane);
-        spawner = new Spawner(gamePane);
+
+        pane = new Pane();
+        pane.setStyle("-fx-background-color: transparent ;");
+        scene = new Scene(pane);
+        ui = new UI(pane, this);
+        gameStage.setTitle("SpaceRocks");
+        setDefaultScreenProperties();
+        loadNewContent();
+
+
+//        gamePane = new Pane();
+//        gameScene = new Scene(gamePane);
+//        ui = new UI(gamePane);
+//        ui.initScoreUI();
+//        spawner = new Spawner(gamePane);
     }
 
     //Getter for the spawner
@@ -44,32 +62,42 @@ public class Screen {
 
     public UI getUI() { return ui; }
 
-    public void createMainWindow() {
-        // Set title of the game window
-        gameStage.setTitle("SpaceRocks");
-        // Setting the size of the game pane
-        gamePane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
-        // Setting background color to black
-        gameScene.setFill(Color.BLACK);
-        // Activating the scene on the stage when the application launches
-        gameStage.setScene(gameScene);
+    public void setDefaultScreenProperties() {
+        pane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
+        scene.setFill(Color.BLACK);
+    }
 
-        // Displaying the application
+    public void setMenuScreen() {
+        resetScreen();
+        ui.initMenuUI();
+    }
+
+    public void setGameScreen() {
+        resetScreen();
+        ui.initScoreUI();
+        Game game = new Game(gameStage,this);
+        game.play();
+    }
+
+    public void resetScreen() {
+        pane = new Pane();
+        scene = new Scene(pane);
+    }
+
+    public void loadNewContent() {
+        gameStage.setScene(scene);
         gameStage.show();
     }
 
     // Placeholder for drawing objects, this will change depending on how we
     // decide to implement this:
     public void drawGameObject(GameObject gameObject) {
-        gamePane.getChildren().add(gameObject.getPolygon());
+        pane.getChildren().add(gameObject.getPolygon());
     }
-
-
-
 
     // remove object from the pane
     public void removeGameObject(GameObject gameObject){
-        gamePane.getChildren().remove(gameObject.getPolygon());
+        pane.getChildren().remove(gameObject.getPolygon());
     }
 
 }

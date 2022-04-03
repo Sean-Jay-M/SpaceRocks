@@ -10,12 +10,10 @@ public class Game {
     // Creating the ship controller, passing in the Ship that we have created and the Scene property of the Screen.
     Controller shipController;
 
-    public Game(Stage gameStage) {
-        this.screen = new Screen(gameStage);
+    public Game(Stage gameStage, Screen screen) {
+        this.screen = screen;
         this.ship = new Ship(screen.getScreenWidth()/2,screen.getScreenHeight()/2);
         this.shipController = new Controller(ship, screen);
-
-        this.screen.createMainWindow();
         this.screen.drawGameObject(ship);
     }
 
