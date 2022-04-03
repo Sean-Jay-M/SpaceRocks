@@ -86,8 +86,11 @@ public class Game {
                         shipController.resetShip(ship);
 
                         // lives minus 1
-                        screen.getUI().removeLife();
-                        lives = lives - 1;
+                        if (lives > 0) {
+                            screen.getUI().removeLife();
+                            lives = lives - 1;
+                        }
+
                         // break the loop. otherwise, it will crash
                         break;
                     }
