@@ -6,10 +6,10 @@ reset the object on losing back to 1
 increase when level has been won
 get level at start of new level gives number of asteroids to spawn
 */
-public class Level {
+public class LevelManager {
     private int level;
 
-    public Level(){ //can only create object with level = 1
+    public LevelManager(){ //can only create object with level = 1
         level = 1;
     }
 

@@ -5,13 +5,23 @@ import java.util.Random;
 
 public class Asteroid extends GameObject {
     AsteroidSize size;
+    Random random = new Random();
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
-    public Asteroid(AsteroidSize size, double xPosition, double yPosition) {
+    public Asteroid(AsteroidSize size) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
         this.size = size;
-        spawnX = spawnX();
-        spawnY = spawnY();
+        rotate(random.nextDouble(1, 360));
+        spawnX = getSpawnX();
+        spawnY = getSpawnY();
+    }
+
+    public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
+        super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
+        this.size = size;
+        spawnX = currentAsteroidPosX;
+        spawnY = currentAsteroidPosY;
+        rotate(random.nextDouble(1, 360));
     }
 
     public AsteroidSize getSize() {
@@ -58,5 +68,18 @@ public class Asteroid extends GameObject {
 
     public void rotate(double angle){
         this.getPolygon().setRotate(angle);
+    }
+
+    public static Asteroid[] getAsteroidPieces(Asteroid asteroid) {
+        Asteroid[] newAsteroids = new Asteroid[2];
+        if (asteroid.size == AsteroidSize.BIG) {
+            newAsteroids[0] = new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
+            newAsteroids[1] = new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
+        } else if (asteroid.size == AsteroidSize.MEDIUM) {
+            newAsteroids[0] = new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
+            newAsteroids[1] = new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
+        }
+        return newAsteroids;
+
     }
 }

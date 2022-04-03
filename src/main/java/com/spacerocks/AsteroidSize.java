@@ -3,24 +3,24 @@ package com.spacerocks;
 // Enum containing all the constant variables relating to a particular asteroid size.
 public enum AsteroidSize {
     // Constant variables containing x coordinates, y coordinates and speed.
-    SMALL(200.0, 50.0,
+    BIG(200.0, 50.0,
             400.0, 50.0,
             450.0, 150.0,
             400.0, 250.0,
             200.0, 250.0,
-            150.0, 150.0, 3),
+            150.0, 150.0, 0.6),
     MEDIUM(120.0, 30.0,
             240.0, 30.0,
             270.0, 90.0,
             240.0, 150.0,
             120.0, 150.0,
-            90.0, 90.0, 2),
-    BIG(50.0, 12.5,
+            90.0, 90.0, 1.0),
+    SMALL(50.0, 12.5,
             100.0, 12.5,
             112.5, 37.5,
             100.0, 62.5,
             50.0, 62.5,
-            37.5, 37.5, 1);
+            37.5, 37.5, 1.6);
 
     double x1;
     double y1;

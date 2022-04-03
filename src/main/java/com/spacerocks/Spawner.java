@@ -31,7 +31,7 @@ public class Spawner implements SpawnListener {
     }
 
     //This draws the object
-    public void drawGameObject(GameObject gameObject) {
+    private void drawGameObject(GameObject gameObject) {
         gamePane.getChildren().add(gameObject.getPolygon());
     }
 

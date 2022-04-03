@@ -20,37 +20,37 @@ public class Game {
     int lives;
 
     Spawner spawner;
+    LevelManager levelManager;
 
     public Game(Screen screen) {
         this.screen = screen;
-        this.spawner = screen.getSpawner();
-        this.ship = new Ship();
-        this.shipController = new Controller(ship, screen);
-        this.random = new Random();
-        this.asteroids = new ArrayList<>();
-        this.lives = 3;
+        spawner = screen.getSpawner();
+        ship = new Ship();
+        shipController = new Controller(ship, screen);
+        random = new Random();
+        asteroids = new ArrayList<>();
+        lives = 3;
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
 
-        // initial asteroids
-        for (int i=0; i<3; i++){
-            Asteroid asteroid = new Asteroid(AsteroidSize.BIG,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
-            asteroid.rotate(random.nextDouble(10,60));
-            spawner.drawGameObject(asteroid);
-            this.asteroids.add(asteroid);
-        }
-        for (int i=0; i<2; i++){
-            Asteroid asteroid = new Asteroid(AsteroidSize.MEDIUM,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
-            asteroid.rotate(random.nextDouble(10,30));
-            spawner.drawGameObject(asteroid);
-            this.asteroids.add(asteroid);
-        }
-        for (int i=0; i<1; i++){
-            Asteroid asteroid = new Asteroid(AsteroidSize.SMALL,this.random.nextDouble(Screen.getScreenWidth()/3.0),this.random.nextDouble(Screen.getScreenWidth()/3.0));
-            asteroid.rotate(random.nextDouble(10,15));
-            spawner.drawGameObject(asteroid);
-            this.asteroids.add(asteroid);
-        }
+        Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
+        bigAsteroid.rotate(random.nextDouble(10, 60));
+        asteroids.add(bigAsteroid);
+        spawner.spawnGameObject(bigAsteroid);
+
+
+//        for (int i=0; i<2; i++){
+//            Asteroid asteroid = new Asteroid(AsteroidSize.MEDIUM);
+//            asteroid.rotate(random.nextDouble(10,30));
+//            spawner.drawGameObject(asteroid);
+//            this.asteroids.add(asteroid);
+//        }
+//        for (int i=0; i<1; i++){
+//            Asteroid asteroid = new Asteroid(AsteroidSize.SMALL);
+//            asteroid.rotate(random.nextDouble(10,15));
+//            spawner.drawGameObject(asteroid);
+//            this.asteroids.add(asteroid);
+//        }
     }
 
     public void play(){
@@ -109,8 +109,17 @@ public class Game {
                             if (asteroid.getSize() == AsteroidSize.SMALL){
                                 screen.getUI().addScoreValue(100);
                             }
+
+                            spawner.despawn(bullet);
+
+                            Asteroid[] asteroidPieces = Asteroid.getAsteroidPieces(asteroid);
                             asteroids.remove(asteroid);
                             screen.getSpawner().despawn(asteroid);
+                            for (Asteroid newAsteroid: asteroidPieces) {
+                                asteroids.add(newAsteroid);
+                                screen.getSpawner().spawnGameObject(newAsteroid);
+                            }
+                            System.out.println(asteroids);
                             // break the loop. otherwise, it will crash
                             break;
                         }

@@ -64,6 +64,10 @@ public class GameObject{
 
     //Check if object is in range
     private void checkInRange(){
+        if (this instanceof Asteroid) {
+            System.out.println(this.getCurrentYPosition());
+        }
+
         if (this.polygon.getTranslateX() < 0) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() + Screen.getScreenWidth());
         }

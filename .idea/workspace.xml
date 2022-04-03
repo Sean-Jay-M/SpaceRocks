@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed bug with bullets appearing in the wrong place.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Conforming with Java Google standard, removing redundant coordinates.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648983441316</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Conforming with Java Google standard, removing redundant coordinates.">
+      <created>1648984044382</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648984044382</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,6 +142,7 @@
     <MESSAGE value="Decoupling Controller, bug in bullet to be fixed" />
     <MESSAGE value="Despawn Listener has been implemented" />
     <MESSAGE value="Fixed bug with bullets appearing in the wrong place." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with bullets appearing in the wrong place." />
+    <MESSAGE value="Conforming with Java Google standard, removing redundant coordinates." />
+    <option name="LAST_COMMIT_MESSAGE" value="Conforming with Java Google standard, removing redundant coordinates." />
   </component>
 </project>
