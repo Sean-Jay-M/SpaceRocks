@@ -1,12 +1,12 @@
 package com.spacerocks;
 
 import javafx.animation.AnimationTimer;
-import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
+    // TODO: Delete bullets after the ship is destroyed.
+
     // Create the screen object and generate the main window
     Screen screen;
     Ship ship;
@@ -24,7 +24,7 @@ public class Game {
     public Game(Screen screen) {
         this.screen = screen;
         this.spawner = screen.getSpawner();
-        this.ship = new Ship(Screen.getScreenWidth()/2.0,Screen.getScreenHeight()/2.0);
+        this.ship = new Ship();
         this.shipController = new Controller(ship, screen);
         this.random = new Random();
         this.asteroids = new ArrayList<>();

@@ -1,21 +1,21 @@
 package com.spacerocks;
 
-//Import the relvent packages
+//Import the relevant packages
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
-//Import the relevent packages
+//Import the relevant packages
 public class GameObject{
 
-    private Polygon polygon;
+    private final Polygon polygon;
     private double speed;
     //initial spawning place
     protected double spawnX;
     protected double spawnY;
-    protected static SpawnListener spawnListener;
+    static SpawnListener spawnListener;
 
     //sets the variables for the game object
-    public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
+    public GameObject(Polygon polygon, double speed) {
         this.polygon = polygon;
         this.speed = speed;
 

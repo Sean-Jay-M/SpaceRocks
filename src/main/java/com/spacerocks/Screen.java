@@ -4,17 +4,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 // This class is responsible for handling the GUI elements of the game
 public class Screen {
     // We may decide that these can be modifiable - to be discussed
     private static final int SCREEN_WIDTH = 500;
     private static final int SCREEN_HEIGHT = 500;
-
-    public Stage getGameStage() {
-        return gameStage;
-    }
 
     // I added "final" to these because IntelliJ suggested it. If we ended up
     // using more JavaFX elements we can remove this.
@@ -22,8 +16,8 @@ public class Screen {
     //Pane Creation
     private final Pane gamePane;
     private final Scene gameScene;
-    private UI ui;
-    private Spawner spawner;
+    private final UI ui;
+    private final Spawner spawner;
     //Getter for the screen Width
     public static int getScreenWidth(){
         return SCREEN_WIDTH;

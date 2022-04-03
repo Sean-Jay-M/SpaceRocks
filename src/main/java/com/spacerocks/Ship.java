@@ -8,8 +8,8 @@ public class Ship extends GameObject {
     // save bullets in ship object
     private ArrayList<Bullet> bullets;
 
-    public Ship( double xposition, double yposition) {
-        super(new Polygon(-10, -10, 20, 0, -10, 10), 0, xposition, yposition);
+    public Ship() {
+        super(new Polygon(-10, -10, 20, 0, -10, 10), 2);
         this.thrusting = false;
 
         //Half screen later

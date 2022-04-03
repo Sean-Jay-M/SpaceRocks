@@ -23,15 +23,11 @@ public class Spawner implements SpawnListener {
     //sets the spawning coordinates
     private void setSpawnCords(GameObject gameObject){
         Polygon polygon = gameObject.getPolygon();
-        double spawn_x = gameObject.getSpawnX();
-        double spawn_y = gameObject.getSpawnY();
-        if (gameObject instanceof Bullet) {
-            System.out.println(spawn_x);
-            System.out.println(spawn_y);
-        }
+        double spawnX = gameObject.getSpawnX();
+        double spawnY = gameObject.getSpawnY();
 
-        polygon.setTranslateX(spawn_x);
-        polygon.setTranslateY(spawn_y);
+        polygon.setTranslateX(spawnX);
+        polygon.setTranslateY(spawnY);
     }
 
     //This draws the object

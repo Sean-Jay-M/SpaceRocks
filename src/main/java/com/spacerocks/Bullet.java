@@ -6,7 +6,7 @@ public class Bullet extends GameObject{
     private double distance;
 
     public Bullet(int xposition, int yposition){
-        super(new Polygon(2, -2, 2, 2, -2, 2, -2, -2),1, 250, 250);
+        super(new Polygon(2, -2, 2, 2, -2, 2, -2, -2),1);
         distance = 0.0;
         spawnX = xposition;
         spawnY = yposition;
