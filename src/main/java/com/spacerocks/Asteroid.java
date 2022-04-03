@@ -69,17 +69,10 @@ public class Asteroid extends GameObject {
     public void rotate(double angle){
         this.getPolygon().setRotate(angle);
     }
-
-    public static Asteroid[] getAsteroidPieces(Asteroid asteroid) {
-        Asteroid[] newAsteroids = new Asteroid[2];
-        if (asteroid.size == AsteroidSize.BIG) {
-            newAsteroids[0] = new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
-            newAsteroids[1] = new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
-        } else if (asteroid.size == AsteroidSize.MEDIUM) {
-            newAsteroids[0] = new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
-            newAsteroids[1] = new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
+    public static Asteroid getAsteroidPieces(Asteroid asteroid) {
+        if (asteroid.getSize() == AsteroidSize.BIG) {
+            return new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
         }
-        return newAsteroids;
+        return new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());}
 
-    }
 }
