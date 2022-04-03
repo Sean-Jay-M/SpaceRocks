@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    // I have decided to keep the object to be controlled broad (i.e. not just ship). We may wish to introduce another
-    // controllable object later to which these controls might apply.
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
     Ship ship;
 
     // Controls are run from the "Scene" object in JavaFX, so we will need to include this in this class.
@@ -71,14 +73,13 @@ public class Controller {
 
     private void showBulletOnScreen() {
         // create new bullet
-        Bullet bullet = new Bullet((int)ship.getPolygon().getTranslateX(),(int)ship.getPolygon().getTranslateY());
+        Bullet bullet = new Bullet((int)ship.getCurrentXPosition(),(int)ship.getCurrentYPosition());
         bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
 
         // add bullet to the arraylist in ship class
         ship.addBullet(bullet);
-
         // draw the bullet
-        screen.getSpawner().drawGameObject(bullet);
+        screen.getSpawner().spawnGameObject(bullet);
     }
 
     private void readMovementKeys() {
@@ -91,5 +92,9 @@ public class Controller {
         }
 
         ship.setThrusting(this.pressedKeys.contains(up));
+    }
+
+    public void resetShip(Ship ship) {
+        this.ship = ship;
     }
 }

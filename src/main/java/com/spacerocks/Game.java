@@ -29,9 +29,8 @@ public class Game {
         this.random = new Random();
         this.asteroids = new ArrayList<>();
         this.lives = 3;
-
         this.screen.createMainWindow();
-        spawner.drawGameObject(ship);
+        spawner.spawnGameObject(ship);
 
         // initial asteroids
         for (int i=0; i<3; i++){
@@ -79,7 +78,10 @@ public class Game {
                 for (Asteroid asteroid: asteroids){
                     if (ship.hasCollided(asteroid)){
                         // respawn the ship
-                        ship.respawn();
+                        spawner.despawn(ship);
+                        spawner.spawnGameObject(ship);
+                        shipController.resetShip(ship);
+
                         // lives minus 1
                         screen.getUI().removeLife();
                         lives = lives - 1;

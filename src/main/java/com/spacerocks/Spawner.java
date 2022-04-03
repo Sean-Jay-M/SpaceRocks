@@ -25,6 +25,10 @@ public class Spawner implements SpawnListener {
         Polygon polygon = gameObject.getPolygon();
         double spawn_x = gameObject.getSpawnX();
         double spawn_y = gameObject.getSpawnY();
+        if (gameObject instanceof Bullet) {
+            System.out.println(spawn_x);
+            System.out.println(spawn_y);
+        }
 
         polygon.setTranslateX(spawn_x);
         polygon.setTranslateY(spawn_y);

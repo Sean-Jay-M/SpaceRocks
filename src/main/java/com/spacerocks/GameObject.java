@@ -33,6 +33,9 @@ public class GameObject{
     //Getter for the spawn_y
     public double getSpawnY() {return spawnY;}
 
+    public double getCurrentXPosition() { return polygon.getTranslateX(); }
+    public double getCurrentYPosition() { return polygon.getTranslateY(); }
+
     //Getter for the speed
     public double getSpeed() {
         return speed;
