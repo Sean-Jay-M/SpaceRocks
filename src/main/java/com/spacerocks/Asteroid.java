@@ -13,12 +13,8 @@ public class Asteroid extends GameObject {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
         this.size = size;
         rotate(random.nextDouble(1, 360));
-        spawnX = 0;
-        spawnY = 0;
-
-        //        spawnX = getSpawnX();
-//        spawnY = getSpawnY();
-        originX = new Point2D(spawnX, spawnY);
+        spawnX = getSpawnX();
+        spawnY = getSpawnY();
     }
 
 

@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed minor bug with number of lives dropping to negative number.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with asteroid wrapping.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/JavaFXDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid$AsteroidSize.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,9 +144,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
-      <workItem from="1649008356701" duration="7115000" />
+      <workItem from="1649008356701" duration="9472000" />
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
+      <created>1649063189010</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1649063189010</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +191,7 @@
     <MESSAGE value="Conforming with Java Google standard, removing redundant coordinates." />
     <MESSAGE value="Null error has been fixed." />
     <MESSAGE value="Fixed minor bug with number of lives dropping to negative number." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug with number of lives dropping to negative number." />
+    <MESSAGE value="Fixed issue with asteroid wrapping." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with asteroid wrapping." />
   </component>
 </project>

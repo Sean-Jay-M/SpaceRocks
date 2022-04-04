@@ -79,4 +79,5 @@ public class Ship extends GameObject {
         this.getPolygon().setTranslateY(spawnY);
         this.getPolygon().setRotate(270);
     }
+
 }

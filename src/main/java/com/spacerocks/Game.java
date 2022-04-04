@@ -3,6 +3,7 @@ package com.spacerocks;
 import javafx.animation.AnimationTimer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Game {
@@ -94,7 +95,7 @@ public class Game {
                     }
                 }
 
-                // if live is equal to 0, terminate the game
+                // if life is equal to 0, terminate the game
 //                if(lives == 0){
 //                    stop();
 //                }
@@ -103,6 +104,9 @@ public class Game {
                 for (Bullet bullet: ship.getBullets()){
                     for (Asteroid asteroid: asteroids){
                         if (bullet.hasCollided(asteroid)){
+                            bullet.setUsed();
+                            spawner.despawn(bullet);
+                            System.out.println("There has been a collision");
                             // add the score
                             if (asteroid.getSize() == AsteroidSize.BIG){
                                 screen.getUI().addScoreValue(300);
@@ -113,7 +117,6 @@ public class Game {
                             if (asteroid.getSize() == AsteroidSize.SMALL){
                                 screen.getUI().addScoreValue(100);
                             }
-                            spawner.despawn(bullet);
                             if (asteroid.getSize() != AsteroidSize.SMALL) {
                                 System.out.println("Making new asteroids");
 
