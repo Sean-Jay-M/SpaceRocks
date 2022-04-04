@@ -1,5 +1,6 @@
 package com.spacerocks;
 
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 public class Bullet extends GameObject{
@@ -10,8 +11,7 @@ public class Bullet extends GameObject{
         distance = 0.0;
         spawnX = xposition;
         spawnY = yposition;
-        System.out.println(spawnX);
-        System.out.println(spawnY);
+        originX = new Point2D(xposition, yposition);
     }
 
     public double getDistance() {

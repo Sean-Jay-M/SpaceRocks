@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Null error has been fixed.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed minor bug with number of lives dropping to negative number.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +41,19 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27IX0VXdyYkShJ0pHNb1WNaWjxX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
@@ -60,6 +76,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="created Level class and some associated methods">
       <created>1648737800331</created>
@@ -110,8 +127,26 @@
       <option name="project" value="LOCAL" />
       <updated>1648992918224</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed minor bug with number of lives dropping to negative number.">
+      <created>1648993103229</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1648993103229</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed minor bug with number of lives dropping to negative number." />
+      <created>1649008355347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649008355347</updated>
+      <workItem from="1649008356701" duration="7115000" />
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -144,6 +179,7 @@
     <MESSAGE value="Fixed bug with bullets appearing in the wrong place." />
     <MESSAGE value="Conforming with Java Google standard, removing redundant coordinates." />
     <MESSAGE value="Null error has been fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Null error has been fixed." />
+    <MESSAGE value="Fixed minor bug with number of lives dropping to negative number." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed minor bug with number of lives dropping to negative number." />
   </component>
 </project>

@@ -1,4 +1,5 @@
 package com.spacerocks;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 import java.util.Random;
@@ -12,9 +13,14 @@ public class Asteroid extends GameObject {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
         this.size = size;
         rotate(random.nextDouble(1, 360));
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        spawnX = 0;
+        spawnY = 0;
+
+        //        spawnX = getSpawnX();
+//        spawnY = getSpawnY();
+        originX = new Point2D(spawnX, spawnY);
     }
+
 
     public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
@@ -37,9 +43,9 @@ public class Asteroid extends GameObject {
         double rangeMin = 0.0;
         double rangeMax = Screen.getScreenWidth();
         double randomDouble = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-        if ((randomDouble > (Screen.getScreenWidth() - 50)) && (randomDouble < (Screen.getScreenWidth() + 50))){
-            randomDouble = setInRange(randomDouble);
-        }
+//        if ((randomDouble > (Screen.getScreenWidth() - 50)) && (randomDouble < (Screen.getScreenWidth() + 50))){
+//            randomDouble = setInRange(randomDouble);
+//        }
         return randomDouble;
     }
 
@@ -71,8 +77,10 @@ public class Asteroid extends GameObject {
     }
     public static Asteroid getAsteroidPieces(Asteroid asteroid) {
         if (asteroid.getSize() == AsteroidSize.BIG) {
+            System.out.println("Making medium asteroid");
             return new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
         }
+        System.out.println("Making small asteroid");
         return new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());}
 
 }

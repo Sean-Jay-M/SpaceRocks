@@ -35,11 +35,11 @@ public class Game {
         spawner.spawnGameObject(ship);
 
         Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
-        bigAsteroid.rotate(random.nextDouble(10, 60));
+//        bigAsteroid.rotate(random.nextDouble(10, 60));
         asteroids.add(bigAsteroid);
         spawner.spawnGameObject(bigAsteroid);
 
-
+// TODO: Link number of asteroids to spawn to the level number
 //        for (int i=0; i<2; i++){
 //            Asteroid asteroid = new Asteroid(AsteroidSize.MEDIUM);
 //            asteroid.rotate(random.nextDouble(10,30));
@@ -62,7 +62,6 @@ public class Game {
             @Override
             public void handle(long l) {
 
-                System.out.println("Asteroids value at the start of loop is " + asteroids);
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
 
@@ -70,7 +69,6 @@ public class Game {
                 ship.move();
                 ship.thrust();
                 ship.shoot();
-
 
                 // move each asteroid
                 for (Asteroid asteroid: asteroids){
@@ -101,8 +99,6 @@ public class Game {
 //                    stop();
 //                }
 
-                System.out.println("Asteroids arraylist currently is equal to " + asteroids);
-
                 // detect bullet collision with asteroid
                 for (Bullet bullet: ship.getBullets()){
                     for (Asteroid asteroid: asteroids){
@@ -117,10 +113,10 @@ public class Game {
                             if (asteroid.getSize() == AsteroidSize.SMALL){
                                 screen.getUI().addScoreValue(100);
                             }
-
                             spawner.despawn(bullet);
-
                             if (asteroid.getSize() != AsteroidSize.SMALL) {
+                                System.out.println("Making new asteroids");
+
                                 Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
                                 Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
 
@@ -129,19 +125,15 @@ public class Game {
 
                                 asteroids.add(newAsteroid2);
                                 screen.getSpawner().spawnGameObject(newAsteroid2);
+                                System.out.println("End of loop");
                             }
-
-                            System.out.println("Asteroids value inside collision before removal is " + asteroids);
                             asteroids.remove(asteroid);
-                            System.out.println("Asteroids value inside collision after removal is " + asteroids);
                             screen.getSpawner().despawn(asteroid);
-                            System.out.println("Asteroids value inside collision after despawn is " + asteroids);
+                            System.out.println("Destroying asteroid");
                             break;
                         }
                     }
                 }
-
-                System.out.println("Asteroids value after whole loop is " + asteroids);
             }
         }.start();
     }

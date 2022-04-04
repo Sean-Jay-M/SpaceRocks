@@ -1,15 +1,18 @@
 package com.spacerocks;
 
 //Import the relevant packages
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 //Import the relevant packages
-public class GameObject{
+public abstract class GameObject{
 
     private final Polygon polygon;
     private double speed;
     //initial spawning place
+    protected Point2D originX;
+    protected Point2D originY;
     protected double spawnX;
     protected double spawnY;
     static SpawnListener spawnListener;
@@ -27,7 +30,7 @@ public class GameObject{
         return polygon;
     }
 
-    //Getter for the spaawn_x
+    //Getter for the spawn_x
     public double getSpawnX(){return spawnX;}
 
     //Getter for the spawn_y
@@ -64,23 +67,19 @@ public class GameObject{
 
     //Check if object is in range
     private void checkInRange(){
-        if (this instanceof Asteroid) {
-            System.out.println(this.getCurrentYPosition());
-        }
-
-        if (this.polygon.getTranslateX() < 0) {
+        if (this.polygon.getBoundsInParent().getCenterX() < 0) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() + Screen.getScreenWidth());
         }
 
-        if (this.polygon.getTranslateX() > Screen.getScreenWidth()) {
+        if (this.polygon.getBoundsInParent().getCenterX() > Screen.getScreenWidth()) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() % Screen.getScreenWidth());
         }
 
-        if (this.polygon.getTranslateY() < 0) {
+        if (this.polygon.getBoundsInParent().getCenterY() < 0) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() + Screen.getScreenHeight());
         }
 
-        if (this.polygon.getTranslateY() > Screen.getScreenHeight()) {
+        if (this.polygon.getBoundsInParent().getCenterY() > Screen.getScreenHeight()) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() % Screen.getScreenHeight());
         }
     }

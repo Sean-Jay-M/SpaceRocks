@@ -22,12 +22,8 @@ public class Spawner implements SpawnListener {
 
     //sets the spawning coordinates
     private void setSpawnCords(GameObject gameObject){
-        Polygon polygon = gameObject.getPolygon();
-        double spawnX = gameObject.getSpawnX();
-        double spawnY = gameObject.getSpawnY();
-
-        polygon.setTranslateX(spawnX);
-        polygon.setTranslateY(spawnY);
+        gameObject.getPolygon().setTranslateX(gameObject.getSpawnX());
+        gameObject.getPolygon().setTranslateY(gameObject.getSpawnY());
     }
 
     //This draws the object
@@ -46,12 +42,4 @@ public class Spawner implements SpawnListener {
         gamePane.getChildren().remove(gameObject.getPolygon());
     }
 
-    // Removes an array list of game objects (to be used for bullets)
-    public void despawn(ArrayList<Bullet> gameObjects) {
-        ObservableList<Node> currentObjects = gamePane.getChildren();
-
-        for (GameObject gameObject: gameObjects) {
-            currentObjects.remove(gameObject);
-        }
-    }
 }
