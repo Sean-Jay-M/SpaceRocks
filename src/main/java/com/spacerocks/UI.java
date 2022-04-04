@@ -16,6 +16,8 @@ public class UI {
     private final Text livesText = new Text(400, 30, "Lives:");
     private Text livesValue = new Text(460, 30, "3");
 
+    private final Text crashText = new Text(170, 30, "YOU CRASHED!");
+
     public UI(Pane gamePane) {
         this.gamePane = gamePane;
         initScoreUI();
@@ -36,6 +38,10 @@ public class UI {
         livesValue.setText("3");
     }
 
+    public void setScoreValue(int scoreValue) {
+        this.scoreValue.setText(Integer.toString(scoreValue));
+    }
+
     private int getTextValue(Text text) {
         return Integer.parseInt(text.getText());
     }
@@ -45,10 +51,17 @@ public class UI {
         setDefaultTextProperties(scoreValue);
         setDefaultTextProperties(livesText);
         setDefaultTextProperties(livesValue);
+        setDefaultTextProperties(crashText);
         gamePane.getChildren().add(scoreText);
         gamePane.getChildren().add(scoreValue);
         gamePane.getChildren().add(livesText);
         gamePane.getChildren().add(livesValue);
+        gamePane.getChildren().add(crashText);
+        crashText.setVisible(false);
+    }
+
+    public void toggleCrashText(boolean on) {
+        crashText.setVisible(on);
     }
 
     private void setDefaultTextProperties(Text text) {

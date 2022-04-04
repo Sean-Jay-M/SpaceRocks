@@ -7,8 +7,8 @@ public class Ship extends GameObject {
     private boolean thrusting;
     // save bullets in ship object
     private ArrayList<Bullet> bullets;
-    private double maxSpeed = 1.5;
-    private double accelearation = 0.01;
+    private final double maxSpeed = 1.5;
+    private final double acceleration = 0.01;
 
     public int getTurnSpeedLeft() {
         return turnSpeedLeft;
@@ -18,8 +18,8 @@ public class Ship extends GameObject {
         return turnSpeedRight;
     }
 
-    private int turnSpeedLeft = -2;
-    private int turnSpeedRight = 2;
+    private final int turnSpeedLeft = -2;
+    private final int turnSpeedRight = 2;
     private double swiftX = 0;
     private double swiftY = 0;
 
@@ -48,7 +48,7 @@ public class Ship extends GameObject {
 
     public void accelerate(){
         if (this.getSpeed() < maxSpeed){
-            this.setSpeed(this.getSpeed() + accelearation);
+            this.setSpeed(this.getSpeed() + acceleration);
         }
     }
 
@@ -80,7 +80,6 @@ public class Ship extends GameObject {
     public void thrust() {
         if (isThrusting()) {
             accelerate();
-            return;
         }
     }
 
@@ -91,6 +90,7 @@ public class Ship extends GameObject {
     }
 
     public void respawn(){
+        super.setSpeed(0);
         this.getPolygon().setTranslateX(spawnX);
         this.getPolygon().setTranslateY(spawnY);
         this.getPolygon().setRotate(270);
@@ -98,17 +98,10 @@ public class Ship extends GameObject {
 
     @Override
     public void move(){
-        System.out.println(getRotateX());
-        System.out.println(getRotateY());
         if (isThrusting()) {
             swiftX = getRotateX();
             swiftY = getRotateY();
         }
-
-
-        // X 0 = South
-        // X 0.5 = South East
-        // X -1 = South West
 
         this.polygon.setTranslateX(this.polygon.getTranslateX() + swiftX * this.getSpeed());
         this.polygon.setTranslateY(this.polygon.getTranslateY() + swiftY * this.getSpeed());
@@ -124,5 +117,4 @@ public class Ship extends GameObject {
     public double getRotateY() {
         return Math.sin(Math.toRadians(this.polygon.getRotate()));
     }
-
 }

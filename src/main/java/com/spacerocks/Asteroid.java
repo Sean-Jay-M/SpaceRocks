@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Asteroid extends GameObject {
+
+    public static ArrayList<Asteroid> asteroids = new ArrayList<>();
+
     AsteroidSize size;
     Random random = new Random();
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
 
-    public static void moveAsteroids(ArrayList<Asteroid> asteroids) {
+    public static void moveAsteroids() {
         for (Asteroid asteroid: asteroids)
             asteroid.move();
     }
@@ -23,6 +26,7 @@ public class Asteroid extends GameObject {
         rotate(random.nextDouble(1, 360));
         spawnX = getSpawnX();
         spawnY = getSpawnY();
+        asteroids.add(this);
     }
 
     public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
@@ -31,6 +35,7 @@ public class Asteroid extends GameObject {
         spawnX = currentAsteroidPosX;
         spawnY = currentAsteroidPosY;
         rotate(random.nextDouble(1, 360));
+        asteroids.add(this);
     }
 
     public AsteroidSize getSize() {

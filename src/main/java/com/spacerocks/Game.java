@@ -1,9 +1,10 @@
 package com.spacerocks;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.PauseTransition;
+
+import javafx.util.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Random;
 
 public class Game {
@@ -13,11 +14,14 @@ public class Game {
     Ship ship = new Ship();
     Controller shipController;
     Random random = new Random();
-    ArrayList<Asteroid> asteroids = new ArrayList<>();
+    private final Duration pauseBetweenLevels = new Duration(1000);
+
+    ArrayList<Asteroid> asteroids = Asteroid.asteroids;
+
     int lives = 3;
 
     Spawner spawner;
-    LevelManager levelManager;
+    LevelManager levelManager = new LevelManager();
 
     public Game(Screen screen) {
         this.screen = screen;
@@ -26,72 +30,69 @@ public class Game {
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
 
-        Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
-        bigAsteroid.rotate(random.nextDouble(10, 60));
-        asteroids.add(bigAsteroid);
-        spawner.spawnGameObject(bigAsteroid);
+        initNewAsteroids();
+    }
 
-// TODO: Link number of asteroids to spawn to the level number
-//        for (int i=0; i<2; i++){
-//            Asteroid asteroid = new Asteroid(AsteroidSize.MEDIUM);
-//            asteroid.rotate(random.nextDouble(10,30));
-//            spawner.drawGameObject(asteroid);
-//            this.asteroids.add(asteroid);
-//        }
-//        for (int i=0; i<1; i++){
-//            Asteroid asteroid = new Asteroid(AsteroidSize.SMALL);
-//            asteroid.rotate(random.nextDouble(10,15));
-//            spawner.drawGameObject(asteroid);
-//            this.asteroids.add(asteroid);
-//        }
+    public void resetLevel(AnimationTimer timer) {
+        screen.getUI().toggleCrashText(false);
+        pauseTimerForDuration(timer, pauseBetweenLevels);
+        pauseGame();
+        screen.getUI().setScoreValue(levelManager.getHighestScore());
+        if (lives > 0) { reduceLife(); }
+        removeCurrentAsteroids();
+        initNewAsteroids();
+        ship.respawn();
+//        screen.getUI().toggleCrashText(false);
+    }
+
+    public void pauseGame() {
+        try {
+            Thread.sleep(1000);
+        } catch(InterruptedException e) {
+            System.out.println("Something has gone wrong");
+        }
     }
 
     public void play(){
         // Set add listener to spawner to check if bullets need to be deleted
         ship.setSpawnListener(screen.getSpawner());
         // Starting new animation timer and setting up the controls inside to read user input continuously.
+
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-
+                if (shipHasCollidedWithAsteroid()) {
+                    resetLevel(this);
+                }
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
-
                 // default speed of ship is 0, so the ship is moving all the time.
                 ship.move();
                 ship.thrust();
                 ship.shoot();
+                Asteroid.moveAsteroids();
+                checkForBulletCollisionWithAsteroid();
+                if (shipHasCollidedWithAsteroid()) {
+                    screen.getUI().toggleCrashText(true);
+                }
 
-                Asteroid.moveAsteroids(asteroids);
-
-                checkForAsteroidCollisions();
-                checkForBulletCollisions();
             }
         }.start();
     }
 
-    private void checkForAsteroidCollisions() {
+    // TODO: Potentially figure out a way to move this to ship class
+    private boolean shipHasCollidedWithAsteroid() {
         // detect ship collision with asteroid
         for (Asteroid asteroid: asteroids){
             if (ship.hasCollided(asteroid)){
-                // respawn the ship
-                spawner.despawn(ship);
-                spawner.spawnGameObject(ship);
-                shipController.resetShip(ship);
-
-                // lives minus 1
-                if (lives > 0) {
-                    screen.getUI().removeLife();
-                    lives = lives - 1;
-                }
-
-                // break the loop. otherwise, it will crash
-                break;
+                return true;
             }
         }
+        return false;
     }
 
-    private void checkForBulletCollisions() {
+    // TODO: Potentially figure out a way to move this to bullet class
+    private void checkForBulletCollisionWithAsteroid() {
         // detect bullet collision with asteroid
         for (Bullet bullet: ship.getBullets()){
             for (Asteroid asteroid: asteroids){
@@ -125,4 +126,32 @@ public class Game {
             }
         }
     }
+
+    private void reduceLife() {
+        screen.getUI().removeLife();
+        lives = lives - 1;
+    }
+
+    public void removeCurrentAsteroids() {
+        for (Asteroid asteroid: asteroids) {
+            spawner.despawn(asteroid);
+        }
+        asteroids.clear();
+    }
+
+    private void initNewAsteroids() {
+        for (int i = 0; i < levelManager.getLevel(); i++) {
+            Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
+            bigAsteroid.rotate(random.nextDouble(10, 60));
+            spawner.spawnGameObject(bigAsteroid);
+        }
+    }
+
+    void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
+        PauseTransition pt = new PauseTransition(duration);
+        pt.setOnFinished(event -> timer.start());
+        timer.stop();
+        pt.play();
+    }
+
 }

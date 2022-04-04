@@ -22,20 +22,20 @@ public enum AsteroidSize {
             50.0, 62.5,
             37.5, 37.5, 1.0);
 
-    double x1;
-    double y1;
-    double x2;
-    double y2;
-    double x3;
-    double y3;
-    double x4;
-    double y4;
-    double x5;
-    double y5;
-    double x6;
-    double y6;
+    final double x1;
+    final double y1;
+    final double x2;
+    final double y2;
+    final double x3;
+    final double y3;
+    final double x4;
+    final double y4;
+    final double x5;
+    final double y5;
+    final double x6;
+    final double y6;
 
-    double speed;
+    final double speed;
 
 
     AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double speed) {
