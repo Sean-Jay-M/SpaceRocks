@@ -49,9 +49,9 @@ public class Asteroid extends GameObject {
         double rangeMin = 0.0;
         double rangeMax = Screen.getScreenWidth();
         double randomDouble = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-//        if ((randomDouble > (Screen.getScreenWidth() - 50)) && (randomDouble < (Screen.getScreenWidth() + 50))){
-//            randomDouble = setInRange(randomDouble);
-//        }
+            if ((randomDouble > ((Screen.getScreenWidth() /2) - 120)) && (randomDouble < ((Screen.getScreenWidth() /2) + 120))){
+                randomDouble = setInRange(randomDouble);
+      }
         return randomDouble;
     }
 
@@ -60,7 +60,7 @@ public class Asteroid extends GameObject {
         double rangeMin = 0.0;
         double rangeMax = Screen.getScreenHeight();
         double randomDouble = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-        if ((randomDouble > (Screen.getScreenHeight() - 50)) && (randomDouble < (Screen.getScreenHeight() + 50))){
+        if ((randomDouble > ((Screen.getScreenHeight() / 2) - 120)) && (randomDouble < ((Screen.getScreenHeight() /2) + 120))){
             randomDouble = setInRange(randomDouble);
         }
         return randomDouble;
