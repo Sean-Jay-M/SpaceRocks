@@ -7,10 +7,27 @@ public class Ship extends GameObject {
     private boolean thrusting;
     // save bullets in ship object
     private ArrayList<Bullet> bullets;
+    private double maxSpeed = 1.5;
+    private double accelearation = 0.01;
+
+    public int getTurnSpeedLeft() {
+        return turnSpeedLeft;
+    }
+
+    public int getTurnSpeedRight() {
+        return turnSpeedRight;
+    }
+
+    private int turnSpeedLeft = -2;
+    private int turnSpeedRight = 2;
+    private double swiftX = 0;
+    private double swiftY = 0;
 
     public Ship() {
-        super(new Polygon(-10, -10, 20, 0, -10, 10), 2);
+        super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
         this.thrusting = false;
+
+        angle = 2;
 
         //Half screen later
         spawnX = 250;
@@ -30,8 +47,8 @@ public class Ship extends GameObject {
     }
 
     public void accelerate(){
-        if (this.getSpeed() < 6){
-            this.setSpeed(this.getSpeed() + 1);
+        if (this.getSpeed() < maxSpeed){
+            this.setSpeed(this.getSpeed() + accelearation);
         }
     }
 
@@ -65,7 +82,6 @@ public class Ship extends GameObject {
             accelerate();
             return;
         }
-        slowDown();
     }
 
     public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
@@ -78,6 +94,35 @@ public class Ship extends GameObject {
         this.getPolygon().setTranslateX(spawnX);
         this.getPolygon().setTranslateY(spawnY);
         this.getPolygon().setRotate(270);
+    }
+
+    @Override
+    public void move(){
+        System.out.println(getRotateX());
+        System.out.println(getRotateY());
+        if (isThrusting()) {
+            swiftX = getRotateX();
+            swiftY = getRotateY();
+        }
+
+
+        // X 0 = South
+        // X 0.5 = South East
+        // X -1 = South West
+
+        this.polygon.setTranslateX(this.polygon.getTranslateX() + swiftX * this.getSpeed());
+        this.polygon.setTranslateY(this.polygon.getTranslateY() + swiftY * this.getSpeed());
+
+        // stay in the window
+        super.checkInRange();
+    }
+
+    public double getRotateX() {
+        return Math.cos(Math.toRadians(this.polygon.getRotate()));
+    }
+
+    public double getRotateY() {
+        return Math.sin(Math.toRadians(this.polygon.getRotate()));
     }
 
 }

@@ -1,21 +1,17 @@
 package com.spacerocks;
 
-import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 public class Bullet extends GameObject{
+    private final double decayValue = 1;
     private double distance;
     private boolean used = false;
 
-    public Bullet(int xposition, int yposition){
-        super(new Polygon(2, -2, 2, 2, -2, 2, -2, -2),1);
+    public Bullet(int xposition, int yposition, double speed){
+        super(new Polygon(2, -2, 2, 2, -2, 2, -2, -2),speed);
         distance = 0.0;
         spawnX = xposition;
         spawnY = yposition;
-    }
-
-    public double getDistance() {
-        return distance;
     }
 
     public void setUsed() { used = true; }
@@ -27,7 +23,7 @@ public class Bullet extends GameObject{
     }
 
     public boolean isDecayed() {
-        return distance > 10;
+        return distance > decayValue;
     }
 
     @Override

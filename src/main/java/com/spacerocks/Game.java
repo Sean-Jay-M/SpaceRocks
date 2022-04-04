@@ -9,17 +9,12 @@ import java.util.Random;
 public class Game {
     // TODO: Delete bullets after the ship is destroyed.
 
-    // Create the screen object and generate the main window
     Screen screen;
-    Ship ship;
-    // Creating the ship controller, passing in the Ship that we have created and the Scene property of the Screen.
+    Ship ship = new Ship();
     Controller shipController;
-    // Random
-    Random random;
-    // Asteroids
-    ArrayList<Asteroid> asteroids;
-    // Lives
-    int lives;
+    Random random = new Random();
+    ArrayList<Asteroid> asteroids = new ArrayList<>();
+    int lives = 3;
 
     Spawner spawner;
     LevelManager levelManager;
@@ -27,16 +22,12 @@ public class Game {
     public Game(Screen screen) {
         this.screen = screen;
         spawner = screen.getSpawner();
-        ship = new Ship();
         shipController = new Controller(ship, screen);
-        random = new Random();
-        asteroids = new ArrayList<>();
-        lives = 3;
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
 
         Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
-//        bigAsteroid.rotate(random.nextDouble(10, 60));
+        bigAsteroid.rotate(random.nextDouble(10, 60));
         asteroids.add(bigAsteroid);
         spawner.spawnGameObject(bigAsteroid);
 
@@ -71,73 +62,67 @@ public class Game {
                 ship.thrust();
                 ship.shoot();
 
-                // move each asteroid
-                for (Asteroid asteroid: asteroids){
-                    asteroid.move();
-                }
+                Asteroid.moveAsteroids(asteroids);
 
-                // detect ship collision with asteroid
-                for (Asteroid asteroid: asteroids){
-                    if (ship.hasCollided(asteroid)){
-                        // respawn the ship
-                        spawner.despawn(ship);
-                        spawner.spawnGameObject(ship);
-                        shipController.resetShip(ship);
-
-                        // lives minus 1
-                        if (lives > 0) {
-                            screen.getUI().removeLife();
-                            lives = lives - 1;
-                        }
-
-                        // break the loop. otherwise, it will crash
-                        break;
-                    }
-                }
-
-                // if life is equal to 0, terminate the game
-//                if(lives == 0){
-//                    stop();
-//                }
-
-                // detect bullet collision with asteroid
-                for (Bullet bullet: ship.getBullets()){
-                    for (Asteroid asteroid: asteroids){
-                        if (bullet.hasCollided(asteroid)){
-                            bullet.setUsed();
-                            spawner.despawn(bullet);
-                            System.out.println("There has been a collision");
-                            // add the score
-                            if (asteroid.getSize() == AsteroidSize.BIG){
-                                screen.getUI().addScoreValue(300);
-                            }
-                            if (asteroid.getSize() == AsteroidSize.MEDIUM){
-                                screen.getUI().addScoreValue(200);
-                            }
-                            if (asteroid.getSize() == AsteroidSize.SMALL){
-                                screen.getUI().addScoreValue(100);
-                            }
-                            if (asteroid.getSize() != AsteroidSize.SMALL) {
-                                System.out.println("Making new asteroids");
-
-                                Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
-                                Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
-
-                                asteroids.add(newAsteroid1);
-                                screen.getSpawner().spawnGameObject(newAsteroid1);
-
-                                asteroids.add(newAsteroid2);
-                                screen.getSpawner().spawnGameObject(newAsteroid2);
-                                System.out.println("End of loop");
-                            }
-                            asteroids.remove(asteroid);
-                            screen.getSpawner().despawn(asteroid);
-                            System.out.println("Destroying asteroid");
-                            break;
-                        }
-                    }
-                }
+                checkForAsteroidCollisions();
+                checkForBulletCollisions();
             }
         }.start();
+    }
+
+    private void checkForAsteroidCollisions() {
+        // detect ship collision with asteroid
+        for (Asteroid asteroid: asteroids){
+            if (ship.hasCollided(asteroid)){
+                // respawn the ship
+                spawner.despawn(ship);
+                spawner.spawnGameObject(ship);
+                shipController.resetShip(ship);
+
+                // lives minus 1
+                if (lives > 0) {
+                    screen.getUI().removeLife();
+                    lives = lives - 1;
+                }
+
+                // break the loop. otherwise, it will crash
+                break;
+            }
+        }
+    }
+
+    private void checkForBulletCollisions() {
+        // detect bullet collision with asteroid
+        for (Bullet bullet: ship.getBullets()){
+            for (Asteroid asteroid: asteroids){
+                if (bullet.hasCollided(asteroid)){
+                    bullet.setUsed();
+                    spawner.despawn(bullet);
+                    // add the score
+                    if (asteroid.getSize() == AsteroidSize.BIG){
+                        screen.getUI().addScoreValue(300);
+                    }
+                    if (asteroid.getSize() == AsteroidSize.MEDIUM){
+                        screen.getUI().addScoreValue(200);
+                    }
+                    if (asteroid.getSize() == AsteroidSize.SMALL){
+                        screen.getUI().addScoreValue(100);
+                    }
+                    if (asteroid.getSize() != AsteroidSize.SMALL) {
+                        Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
+                        Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
+
+                        asteroids.add(newAsteroid1);
+                        screen.getSpawner().spawnGameObject(newAsteroid1);
+
+                        asteroids.add(newAsteroid2);
+                        screen.getSpawner().spawnGameObject(newAsteroid2);
+                    }
+                    asteroids.remove(asteroid);
+                    screen.getSpawner().despawn(asteroid);
+                    break;
+                }
+            }
+        }
     }
 }

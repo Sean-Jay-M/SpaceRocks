@@ -8,11 +8,12 @@ import javafx.scene.shape.Polygon;
 //Import the relevant packages
 public abstract class GameObject{
 
-    private final Polygon polygon;
+    protected final Polygon polygon;
     private double speed;
     //initial spawning place
     protected double spawnX;
     protected double spawnY;
+    protected int angle;
     static SpawnListener spawnListener;
 
     //sets the variables for the game object
@@ -48,14 +49,16 @@ public abstract class GameObject{
     }
 
     //Turn the object
-    public void turn(int angle){
-        this.polygon.setRotate(this.polygon.getRotate() + angle);
-    }
+//    public void turn(){
+//        this.polygon.setRotate(this.polygon.getRotate() + angle);
+//    }
+    public void turn(int angle) { this.polygon.setRotate(this.polygon.getRotate() + angle); }
 
     //Move the object
     public void move(){
         double swiftX = Math.cos(Math.toRadians(this.polygon.getRotate()));
         double swiftY = Math.sin(Math.toRadians(this.polygon.getRotate()));
+
         this.polygon.setTranslateX(this.polygon.getTranslateX() + swiftX * this.speed);
         this.polygon.setTranslateY(this.polygon.getTranslateY() + swiftY * this.speed);
 
@@ -64,7 +67,7 @@ public abstract class GameObject{
     }
 
     //Check if object is in range
-    private void checkInRange(){
+    protected void checkInRange(){
         if (this.polygon.getBoundsInParent().getCenterX() < 0) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() + Screen.getScreenWidth());
         }
@@ -89,12 +92,4 @@ public abstract class GameObject{
 
     public void setSpawnListener(SpawnListener spawnListener) { this.spawnListener = spawnListener; }
 
-    //check if it has crashed.
-//    public boolean crash(GameObject obj){
-//        Area areaObj1 = new Area(this.getPath());
-//        Area areaObj2 = new Area(obj.getPath());
-//        areaObj1.intersect(areaObj2);
-//        return !areaObj1.isEmpty();
-//
-//    }
 }

@@ -2,6 +2,8 @@ package com.spacerocks;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Asteroid extends GameObject {
@@ -9,6 +11,12 @@ public class Asteroid extends GameObject {
     Random random = new Random();
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
+
+    public static void moveAsteroids(ArrayList<Asteroid> asteroids) {
+        for (Asteroid asteroid: asteroids)
+            asteroid.move();
+    }
+
     public Asteroid(AsteroidSize size) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
         this.size = size;
@@ -16,7 +24,6 @@ public class Asteroid extends GameObject {
         spawnX = getSpawnX();
         spawnY = getSpawnY();
     }
-
 
     public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);

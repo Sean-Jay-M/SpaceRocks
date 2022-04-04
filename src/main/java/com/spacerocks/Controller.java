@@ -63,7 +63,7 @@ public class Controller {
     }
 
     private void readShootKey() {
-        if (tempPressedKeys.contains("SPACE")) {
+        if (tempPressedKeys.contains(space)) {
             // Potentially refactor this using listeners
             showBulletOnScreen();
         }
@@ -73,7 +73,7 @@ public class Controller {
 
     private void showBulletOnScreen() {
         // create new bullet
-        Bullet bullet = new Bullet((int)ship.getCurrentXPosition(),(int)ship.getCurrentYPosition());
+        Bullet bullet = new Bullet((int)ship.getCurrentXPosition(),(int)ship.getCurrentYPosition(), ship.getSpeed() + 2.0);
         bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
 
         // add bullet to the arraylist in ship class
@@ -84,11 +84,11 @@ public class Controller {
 
     private void readMovementKeys() {
         if(this.pressedKeys.contains(left)) {
-            ship.turn(-10);
+            ship.turn(ship.getTurnSpeedLeft());
         }
 
         if(this.pressedKeys.contains(right)) {
-            ship.turn(10);
+            ship.turn(ship.getTurnSpeedRight());
         }
 
         ship.setThrusting(this.pressedKeys.contains(up));
