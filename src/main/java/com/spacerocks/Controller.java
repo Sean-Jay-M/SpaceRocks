@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    // I have decided to keep the object to be controlled broad (i.e. not just ship). We may wish to introduce another
-    // controllable object later to which these controls might apply.
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
     Ship ship;
 
     // Controls are run from the "Scene" object in JavaFX, so we will need to include this in this class.
@@ -15,9 +17,14 @@ public class Controller {
     Screen screen;
 
     ArrayList<String> pressedKeys;
-
-    // avoid the bullets to be consecutive.
     ArrayList<String> tempPressedKeys;
+
+    // Added immutable strings to avoid typos.
+    final String up = "UP";
+    final String left = "LEFT";
+    final String right = "RIGHT";
+    final String space = "SPACE";
+
 
     public Controller(Ship ship, Screen screen) {
         this.ship = ship;
@@ -26,7 +33,13 @@ public class Controller {
         this.tempPressedKeys = new ArrayList<>();
     }
 
-    public void initControls() {
+    public void readUserInput(){
+        initControls();
+        readMovementKeys();
+        readShootKey();
+    }
+
+    private void initControls() {
         // Sets up an event that will continuously read user input with the help of AnimationTimer.
         // source: https://www.youtube.com/watch?v=7Vb9StpxFtw&t=637s&ab_channel=LeeStemkoski
         // use arraylist rather than hashmap
@@ -49,33 +62,39 @@ public class Controller {
         });
     }
 
-    public void control(){
-        if(this.pressedKeys.contains("LEFT")) {
-            ship.turn(-10);
+    private void readShootKey() {
+        if (tempPressedKeys.contains(space)) {
+            // Potentially refactor this using listeners
+            showBulletOnScreen();
         }
-
-        if(this.pressedKeys.contains("RIGHT")) {
-            ship.turn(10);
-        }
-
-        if(this.pressedKeys.contains("UP")) {
-            ship.setThrusting(true);
-        }else{
-            ship.setThrusting(false);
-        }
-
-        // use tempPressedKeys
-        if (tempPressedKeys.contains("SPACE")) {
-            // create new bullet
-            Bullet bullet = new Bullet((int)ship.getPolygon().getTranslateX(),(int)ship.getPolygon().getTranslateY());
-            bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
-            // add bullet to the arraylist in ship class
-            ship.shoot(bullet);
-            // draw the bullet
-            screen.drawGameObject(bullet);
-        }
-
         // to avoid the continuous bullets
         tempPressedKeys.clear();
+    }
+
+    private void showBulletOnScreen() {
+        // create new bullet
+        Bullet bullet = new Bullet((int)ship.getCurrentXPosition(),(int)ship.getCurrentYPosition(), ship.getSpeed() + 2.0);
+        bullet.getPolygon().setRotate(ship.getPolygon().getRotate());
+
+        // add bullet to the arraylist in ship class
+        ship.addBullet(bullet);
+        // draw the bullet
+        screen.getSpawner().spawnGameObject(bullet);
+    }
+
+    private void readMovementKeys() {
+        if(this.pressedKeys.contains(left)) {
+            ship.turn(ship.getTurnSpeedLeft());
+        }
+
+        if(this.pressedKeys.contains(right)) {
+            ship.turn(ship.getTurnSpeedRight());
+        }
+
+        ship.setThrusting(this.pressedKeys.contains(up));
+    }
+
+    public void resetShip(Ship ship) {
+        this.ship = ship;
     }
 }

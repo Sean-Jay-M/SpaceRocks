@@ -16,6 +16,9 @@ public class UI {
     private final Text livesText = new Text(400, 30, "Lives:");
     private Text livesValue = new Text(460, 30, "3");
 
+    private final Text crashText = new Text(170, 30, "YOU CRASHED!");
+    private final Text nextLevelText = new Text(170, 30, "WELL DONE!");
+
     public UI(Pane gamePane) {
         this.gamePane = gamePane;
         initScoreUI();
@@ -24,6 +27,10 @@ public class UI {
     public void addScoreValue(int score) {
         int newScore = getTextValue(scoreValue) + score;
         scoreValue.setText(Integer.toString(newScore));
+    }
+
+    public int getCurrentScoreValue() {
+        return Integer.parseInt(scoreValue.getText());
     }
 
     public void removeLife() {
@@ -36,6 +43,10 @@ public class UI {
         livesValue.setText("3");
     }
 
+    public void setScoreValue(int scoreValue) {
+        this.scoreValue.setText(Integer.toString(scoreValue));
+    }
+
     private int getTextValue(Text text) {
         return Integer.parseInt(text.getText());
     }
@@ -45,10 +56,24 @@ public class UI {
         setDefaultTextProperties(scoreValue);
         setDefaultTextProperties(livesText);
         setDefaultTextProperties(livesValue);
+        setDefaultTextProperties(crashText);
+        setDefaultTextProperties(nextLevelText);
         gamePane.getChildren().add(scoreText);
         gamePane.getChildren().add(scoreValue);
         gamePane.getChildren().add(livesText);
         gamePane.getChildren().add(livesValue);
+        gamePane.getChildren().add(crashText);
+        gamePane.getChildren().add(nextLevelText);
+        crashText.setVisible(false);
+        nextLevelText.setVisible(false);
+    }
+
+    public void toggleCrashText(boolean on) {
+        crashText.setVisible(on);
+    }
+
+    public void toggleNextLevelText(boolean on) {
+        nextLevelText.setVisible(on);
     }
 
     private void setDefaultTextProperties(Text text) {

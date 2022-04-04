@@ -1,40 +1,42 @@
 package com.spacerocks;
 
-//Import the relvent packages
+//Import the relevant packages
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
-//Import the relevent packages
-public class GameObject{
-    // replace xpoints, ypoints, rotation by polygon, so we can remove AffineTransform
-    private Polygon polygon;
+//Import the relevant packages
+public abstract class GameObject{
+
+    protected final Polygon polygon;
     private double speed;
     //initial spawning place
-    protected double spawn_x;
-    protected double spawn_y;
+    protected double spawnX;
+    protected double spawnY;
+    protected int angle;
+    static SpawnListener spawnListener;
 
-    //sets the variables for the game object 
-    public GameObject(Polygon polygon, double speed, double xposition, double yposition) {
+    //sets the variables for the game object
+    public GameObject(Polygon polygon, double speed) {
         this.polygon = polygon;
         this.speed = speed;
 
         // set game object white
         this.polygon.setFill(Color.WHITE);
-
-        // set initial location
-        polygon.setTranslateX(xposition);
-        polygon.setTranslateY(yposition);
     }
 
     public Polygon getPolygon() {
         return polygon;
     }
 
-    //Getter for the spaawn_x
-    public double getSpawn_x(){return spawn_x ;}
+    //Getter for the spawn_x
+    public double getSpawnX(){return spawnX;}
 
     //Getter for the spawn_y
-    public double getSpawn_y() {return spawn_y;}
+    public double getSpawnY() {return spawnY;}
+
+    public double getCurrentXPosition() { return polygon.getTranslateX(); }
+    public double getCurrentYPosition() { return polygon.getTranslateY(); }
 
     //Getter for the speed
     public double getSpeed() {
@@ -47,14 +49,16 @@ public class GameObject{
     }
 
     //Turn the object
-    public void turn(int angle){
-        this.polygon.setRotate(this.polygon.getRotate() + angle);
-    }
+//    public void turn(){
+//        this.polygon.setRotate(this.polygon.getRotate() + angle);
+//    }
+    public void turn(int angle) { this.polygon.setRotate(this.polygon.getRotate() + angle); }
 
     //Move the object
     public void move(){
         double swiftX = Math.cos(Math.toRadians(this.polygon.getRotate()));
         double swiftY = Math.sin(Math.toRadians(this.polygon.getRotate()));
+
         this.polygon.setTranslateX(this.polygon.getTranslateX() + swiftX * this.speed);
         this.polygon.setTranslateY(this.polygon.getTranslateY() + swiftY * this.speed);
 
@@ -63,35 +67,29 @@ public class GameObject{
     }
 
     //Check if object is in range
-    private void checkInRange(){
-        if (this.polygon.getTranslateX() < 0) {
+    protected void checkInRange(){
+        if (this.polygon.getBoundsInParent().getCenterX() < 0) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() + Screen.getScreenWidth());
         }
 
-        if (this.polygon.getTranslateX() > Screen.getScreenWidth()) {
+        if (this.polygon.getBoundsInParent().getCenterX() > Screen.getScreenWidth()) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() % Screen.getScreenWidth());
         }
 
-        if (this.polygon.getTranslateY() < 0) {
+        if (this.polygon.getBoundsInParent().getCenterY() < 0) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() + Screen.getScreenHeight());
         }
 
-        if (this.polygon.getTranslateY() > Screen.getScreenHeight()) {
+        if (this.polygon.getBoundsInParent().getCenterY() > Screen.getScreenHeight()) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() % Screen.getScreenHeight());
         }
     }
 
-    private boolean collisionCheck(Polygon object1, Polygon object2){
-                //checks coordinates bounded by both objects and if there is overlap returns true
-        return object1.getBoundsInParent().intersects(object2.getBoundsInParent());
+    public boolean hasCollided(GameObject object){
+        //checks coordinates bounded by both objects and if there is overlap returns true
+        return this.getPolygon().getBoundsInParent().intersects(object.getPolygon().getBoundsInParent());
     }
 
-    //check if it has crashed.
-//    public boolean crash(GameObject obj){
-//        Area areaObj1 = new Area(this.getPath());
-//        Area areaObj2 = new Area(obj.getPath());
-//        areaObj1.intersect(areaObj2);
-//        return !areaObj1.isEmpty();
-//
-//    }
+    public void setSpawnListener(SpawnListener spawnListener) { this.spawnListener = spawnListener; }
+
 }

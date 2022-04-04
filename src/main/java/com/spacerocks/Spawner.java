@@ -1,10 +1,14 @@
 package com.spacerocks;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 
+import java.util.ArrayList;
 
-public class Spawner {
+
+public class Spawner implements SpawnListener {
     //This class is responsible for handling the spawning of new objects
     Pane gamePane;
     public Spawner(Pane gamePane){
@@ -18,12 +22,8 @@ public class Spawner {
 
     //sets the spawning coordinates
     private void setSpawnCords(GameObject gameObject){
-        Polygon polygon = gameObject.getPolygon();
-        double spawn_x = gameObject.getSpawn_x();
-        double spawn_y = gameObject.getSpawn_y();
-
-        polygon.setTranslateX(spawn_x);
-        polygon.setTranslateY(spawn_y);
+        gameObject.getPolygon().setTranslateX(gameObject.getSpawnX());
+        gameObject.getPolygon().setTranslateY(gameObject.getSpawnY());
     }
 
     //This draws the object
@@ -31,8 +31,15 @@ public class Spawner {
         gamePane.getChildren().add(gameObject.getPolygon());
     }
 
+    @Override
+    public void onDespawn(GameObject gameObject) {
+        despawn(gameObject);
+    }
+
+
     //this removes the game object
-    private void removeGameObject(GameObject gameObject){
+    public void despawn(GameObject gameObject){
         gamePane.getChildren().remove(gameObject.getPolygon());
     }
+
 }
