@@ -1,5 +1,5 @@
 package com.spacerocks;
 
-interface DespawnListener {
+interface SpawnListener {
     void onDespawn(GameObject gameObject);
 }

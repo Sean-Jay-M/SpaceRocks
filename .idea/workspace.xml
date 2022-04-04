@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Despawn Listener has been implemented">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with next level text not showing up.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +43,19 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27IX0VXdyYkShJ0pHNb1WNaWjxX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
@@ -63,6 +78,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="created Level class and some associated methods">
       <created>1648737800331</created>
@@ -92,8 +108,75 @@
       <option name="project" value="LOCAL" />
       <updated>1648836540626</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed bug with bullets appearing in the wrong place.">
+      <created>1648983441316</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648983441316</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Conforming with Java Google standard, removing redundant coordinates.">
+      <created>1648984044382</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648984044382</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Null error has been fixed.">
+      <created>1648992918224</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648992918224</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed minor bug with number of lives dropping to negative number.">
+      <created>1648993103229</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1648993103229</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed minor bug with number of lives dropping to negative number." />
+      <created>1649008355347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649008355347</updated>
+      <workItem from="1649008356701" duration="20886000" />
+    </task>
+    <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
+      <created>1649063189010</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1649063189010</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed bug with multiple bullet collisions.">
+      <created>1649065561960</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1649065561960</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed movement and matched bullet speed to relative velocity of ship.">
+      <created>1649069668620</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1649069668620</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed positioning of the text">
+      <created>1649074578320</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649074578320</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -123,6 +206,15 @@
     <MESSAGE value="Fixed bug with continuous bullets with one ArrayList" />
     <MESSAGE value="Decoupling Controller, bug in bullet to be fixed" />
     <MESSAGE value="Despawn Listener has been implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Despawn Listener has been implemented" />
+    <MESSAGE value="Fixed bug with bullets appearing in the wrong place." />
+    <MESSAGE value="Conforming with Java Google standard, removing redundant coordinates." />
+    <MESSAGE value="Null error has been fixed." />
+    <MESSAGE value="Fixed minor bug with number of lives dropping to negative number." />
+    <MESSAGE value="Fixed issue with asteroid wrapping." />
+    <MESSAGE value="Fixed bug with multiple bullet collisions." />
+    <MESSAGE value="Fixed movement and matched bullet speed to relative velocity of ship." />
+    <MESSAGE value="Fixed positioning of the text" />
+    <MESSAGE value="Fixed issue with next level text not showing up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with next level text not showing up." />
   </component>
 </project>

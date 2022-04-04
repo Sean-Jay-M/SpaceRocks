@@ -3,39 +3,39 @@ package com.spacerocks;
 // Enum containing all the constant variables relating to a particular asteroid size.
 public enum AsteroidSize {
     // Constant variables containing x coordinates, y coordinates and speed.
-    SMALL(200.0, 50.0,
-            400.0, 50.0,
-            450.0, 150.0,
-            400.0, 250.0,
-            200.0, 250.0,
-            150.0, 150.0, 3),
-    MEDIUM(120.0, 30.0,
-            240.0, 30.0,
-            270.0, 90.0,
-            240.0, 150.0,
-            120.0, 150.0,
-            90.0, 90.0, 2),
-    BIG(50.0, 12.5,
+    BIG(200.0/3.0, 50.0/3.0,
+            400.0/3.0, 50.0/3.0,
+            450.0/3.0, 150.0/3.0,
+            400.0/3.0, 250.0/3.0,
+            200.0/3.0, 250.0/3.0,
+            150.0/3.0, 150.0/3.0, 0.2),
+    MEDIUM(120.0/2.0, 30.0/2.0,
+            240.0/2.0, 30.0/2.0,
+            270.0/2.0, 90.0/2.0,
+            240.0/2.0, 150.0/2.0,
+            120.0/2.0, 150.0/2.0,
+            90.0/2.0, 90.0/2.0, 0.5),
+    SMALL(50.0, 12.5,
             100.0, 12.5,
             112.5, 37.5,
             100.0, 62.5,
             50.0, 62.5,
-            37.5, 37.5, 1);
+            37.5, 37.5, 0.8);
 
-    double x1;
-    double y1;
-    double x2;
-    double y2;
-    double x3;
-    double y3;
-    double x4;
-    double y4;
-    double x5;
-    double y5;
-    double x6;
-    double y6;
+    final double x1;
+    final double y1;
+    final double x2;
+    final double y2;
+    final double x3;
+    final double y3;
+    final double x4;
+    final double y4;
+    final double x5;
+    final double y5;
+    final double x6;
+    final double y6;
 
-    double speed;
+    final double speed;
 
 
     AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double speed) {
