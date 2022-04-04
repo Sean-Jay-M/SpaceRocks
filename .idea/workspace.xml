@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed movement and matched bullet speed to relative velocity of ship.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with next level text not showing up.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Asteroid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/AsteroidSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Bullet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
-      <workItem from="1649008356701" duration="18524000" />
+      <workItem from="1649008356701" duration="20886000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -167,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649069668620</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed positioning of the text">
+      <created>1649074578320</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1649074578320</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +213,8 @@
     <MESSAGE value="Fixed issue with asteroid wrapping." />
     <MESSAGE value="Fixed bug with multiple bullet collisions." />
     <MESSAGE value="Fixed movement and matched bullet speed to relative velocity of ship." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed movement and matched bullet speed to relative velocity of ship." />
+    <MESSAGE value="Fixed positioning of the text" />
+    <MESSAGE value="Fixed issue with next level text not showing up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with next level text not showing up." />
   </component>
 </project>

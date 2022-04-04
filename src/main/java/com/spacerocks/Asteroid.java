@@ -1,8 +1,6 @@
 package com.spacerocks;
-import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,8 +22,8 @@ public class Asteroid extends GameObject {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6), size.speed);
         this.size = size;
         rotate(random.nextDouble(1, 360));
-        spawnX = getSpawnX();
-        spawnY = getSpawnY();
+        spawnX = calculateRandomSpawnX();
+        spawnY = calculateRandomSpawnY();
         asteroids.add(this);
     }
 
@@ -46,7 +44,7 @@ public class Asteroid extends GameObject {
     // Get a random number, if the random number is in a range, generate another random number.
     // If that second random number is 1, move the first random number out of the range by addition
     //Otherwise do it by subtraction
-    private double spawnX(){
+    private double calculateRandomSpawnX(){
         Random r = new Random();
         double rangeMin = 0.0;
         double rangeMax = Screen.getScreenWidth();
@@ -57,7 +55,7 @@ public class Asteroid extends GameObject {
         return randomDouble;
     }
 
-    private double spawnY(){
+    private double calculateRandomSpawnY(){
         Random r = new Random();
         double rangeMin = 0.0;
         double rangeMax = Screen.getScreenHeight();
@@ -85,10 +83,8 @@ public class Asteroid extends GameObject {
     }
     public static Asteroid getAsteroidPieces(Asteroid asteroid) {
         if (asteroid.getSize() == AsteroidSize.BIG) {
-            System.out.println("Making medium asteroid");
             return new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
         }
-        System.out.println("Making small asteroid");
         return new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());}
 
 }

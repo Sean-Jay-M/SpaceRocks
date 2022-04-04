@@ -4,6 +4,7 @@ import javafx.scene.shape.Polygon;
 
 public class Bullet extends GameObject{
     private double distance;
+    private final double decayValue = 1.5;
     private boolean used = false;
 
     public Bullet(int xPosition, int yPosition, double speed){
@@ -22,7 +23,6 @@ public class Bullet extends GameObject{
     }
 
     public boolean isDecayed() {
-        double decayValue = 1;
         return distance > decayValue;
     }
 

@@ -11,6 +11,7 @@ public class Game {
     // TODO: Delete bullets after the ship is destroyed.
 
     Screen screen;
+    UI ui;
     Ship ship = new Ship();
     Controller shipController;
     Random random = new Random();
@@ -25,32 +26,12 @@ public class Game {
 
     public Game(Screen screen) {
         this.screen = screen;
+        ui = screen.getUI();
         spawner = screen.getSpawner();
         shipController = new Controller(ship, screen);
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
-
         initNewAsteroids();
-    }
-
-    public void resetLevel(AnimationTimer timer) {
-        screen.getUI().toggleCrashText(false);
-        pauseTimerForDuration(timer, pauseBetweenLevels);
-        pauseGame();
-        screen.getUI().setScoreValue(levelManager.getHighestScore());
-        if (lives > 0) { reduceLife(); }
-        removeCurrentAsteroids();
-        initNewAsteroids();
-        ship.respawn();
-//        screen.getUI().toggleCrashText(false);
-    }
-
-    public void pauseGame() {
-        try {
-            Thread.sleep(1000);
-        } catch(InterruptedException e) {
-            System.out.println("Something has gone wrong");
-        }
     }
 
     public void play(){
@@ -63,6 +44,8 @@ public class Game {
             public void handle(long l) {
                 if (shipHasCollidedWithAsteroid()) {
                     resetLevel(this);
+                } else if (asteroids.isEmpty()) {
+                    nextLevel(this);
                 }
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
@@ -72,10 +55,13 @@ public class Game {
                 ship.shoot();
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
-                if (shipHasCollidedWithAsteroid()) {
-                    screen.getUI().toggleCrashText(true);
-                }
 
+                // Note: UI manipulation and pausing have to be done and separate parts of the frame
+                if (shipHasCollidedWithAsteroid()) {
+                    ui.toggleCrashText(true);
+                } else if (asteroids.isEmpty()) {
+                    ui.toggleNextLevelText(true);
+                }
             }
         }.start();
     }
@@ -101,22 +87,18 @@ public class Game {
                     spawner.despawn(bullet);
                     // add the score
                     if (asteroid.getSize() == AsteroidSize.BIG){
-                        screen.getUI().addScoreValue(300);
+                        ui.addScoreValue(300);
                     }
                     if (asteroid.getSize() == AsteroidSize.MEDIUM){
-                        screen.getUI().addScoreValue(200);
+                        ui.addScoreValue(200);
                     }
                     if (asteroid.getSize() == AsteroidSize.SMALL){
-                        screen.getUI().addScoreValue(100);
+                        ui.addScoreValue(100);
                     }
                     if (asteroid.getSize() != AsteroidSize.SMALL) {
                         Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
                         Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
-
-                        asteroids.add(newAsteroid1);
                         screen.getSpawner().spawnGameObject(newAsteroid1);
-
-                        asteroids.add(newAsteroid2);
                         screen.getSpawner().spawnGameObject(newAsteroid2);
                     }
                     asteroids.remove(asteroid);
@@ -124,6 +106,35 @@ public class Game {
                     break;
                 }
             }
+        }
+    }
+
+    public void resetLevel(AnimationTimer timer) {
+        pauseTimerForDuration(timer, pauseBetweenLevels);
+        pauseGame();
+        ui.setScoreValue(levelManager.getHighestScore());
+        if (lives > 0) { reduceLife(); }
+        removeCurrentAsteroids();
+        initNewAsteroids();
+        ship.respawn();
+        ui.toggleCrashText(false);
+    }
+
+    public void nextLevel(AnimationTimer timer) {
+        pauseTimerForDuration(timer, pauseBetweenLevels);
+        pauseGame();
+        levelManager.updateHighestScore(ui.getCurrentScoreValue());
+        levelManager.increaseLevel();
+        initNewAsteroids();
+        ship.respawn();
+        ui.toggleNextLevelText(false);
+    }
+
+    public void pauseGame() {
+        try {
+            Thread.sleep(1000);
+        } catch(InterruptedException e) {
+            System.out.println("Something has gone wrong");
         }
     }
 
