@@ -7,14 +7,11 @@ import static com.spacerocks.Screen.getScreenWidth;
 
 public class AlienShip extends GameObject {
 
-    public AlienShip(double speed, double xposition, double yposition) {
-        super(new Polygon(-15, -15,
-                15, -15,
-                15, 15,
-                -15, 15), 2, xposition, yposition);
-
-        spawn_x = spawnCoord(getScreenWidth());
-        spawn_x = spawnCoord(getScreenHeight());
+    public AlienShip() {
+        super(new Polygon(-15, -15, 15, -15, 15, 15, -15, 15), 2);
+            //AlienShip is a square for now
+        spawnX = spawnCoord(getScreenWidth());
+        spawnY = spawnCoord(getScreenHeight());
     }
 
     private int spawnCoord(int upperBound){

@@ -13,6 +13,7 @@ public class Game {
     Screen screen;
     UI ui;
     Ship ship = new Ship();
+    AlienShip alienShip = new AlienShip();
     Controller shipController;
     Random random = new Random();
     private final Duration pauseBetweenLevels = new Duration(1000);
@@ -31,6 +32,7 @@ public class Game {
         shipController = new Controller(ship, screen);
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
+        spawner.spawnGameObject(alienShip);
         initNewAsteroids();
     }
 
@@ -55,6 +57,7 @@ public class Game {
                 ship.shoot();
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
+                alienShip.move();
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
                 if (shipHasCollidedWithAsteroid()) {
