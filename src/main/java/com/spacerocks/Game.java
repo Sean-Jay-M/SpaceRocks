@@ -21,6 +21,8 @@ public class Game {
     ArrayList<Asteroid> asteroids = Asteroid.asteroids;
 
     int lives = 3;
+    boolean isAlienSpawned = false;
+    int alienSpawnCooldown = 1000;
 
     Spawner spawner;
     LevelManager levelManager = new LevelManager();
@@ -32,7 +34,7 @@ public class Game {
         shipController = new Controller(ship, screen);
         this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
-        spawner.spawnGameObject(alienShip);
+        //spawner.spawnGameObject(alienShip);
         initNewAsteroids();
     }
 
@@ -57,10 +59,26 @@ public class Game {
                 ship.shoot();
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
-                alienShip.move();
-                alienShip.changeDirection();
-                showAlienBulletOnScreen();
-                alienShip.shoot();
+
+                if (isAlienSpawned) {
+                    alienShip.move();
+                    alienShip.changeDirection(); //every 100 calls this will change the angle of travel of the alien
+                    showAlienBulletOnScreen(); //shoots bullet every 20 calls
+                    alienShip.shoot();
+                    if (alienHAsCollidedWithAsteroid()){
+                        spawner.despawn(alienShip);
+                        isAlienSpawned = false;
+                        alienSpawnCooldown = 500;
+                    }
+                } else {
+                    alienShip.shoot();
+                    alienSpawnCooldown--;
+                    if (alienSpawnCooldown == 0){
+                        spawner.spawnGameObject(alienShip);
+                        isAlienSpawned = true;
+                        alienSpawnCooldown = 1000;
+                    }
+                }
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
                 if (shipHasCollidedWithAsteroid()) {
@@ -77,6 +95,15 @@ public class Game {
         // detect ship collision with asteroid
         for (Asteroid asteroid: asteroids){
             if (ship.hasCollided(asteroid)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean alienHAsCollidedWithAsteroid(){
+        for (Asteroid asteroid: asteroids){
+            if (alienShip.hasCollided(asteroid)){
                 return true;
             }
         }
@@ -113,6 +140,26 @@ public class Game {
                 }
             }
         }
+
+        for (Bullet bullet: alienShip.getBullets()){
+            for (Asteroid asteroid: asteroids){
+                if (bullet.hasCollided(asteroid)){
+                    bullet.setUsed();
+                    spawner.despawn(bullet);
+                    //removed getting points for alien ship shooting an asteroid
+                    if (asteroid.getSize() != AsteroidSize.SMALL) {
+                        Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
+                        Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
+                        screen.getSpawner().spawnGameObject(newAsteroid1);
+                        screen.getSpawner().spawnGameObject(newAsteroid2);
+                    }
+                    asteroids.remove(asteroid);
+                    screen.getSpawner().despawn(asteroid);
+                    break;
+                }
+            }
+        }
+
     }
 
     public void resetLevel(AnimationTimer timer) {
