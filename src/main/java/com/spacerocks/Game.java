@@ -58,6 +58,7 @@ public class Game {
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
                 alienShip.move();
+                alienShip.changeDirection();
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
                 if (shipHasCollidedWithAsteroid()) {
