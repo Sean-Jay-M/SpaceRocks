@@ -59,6 +59,8 @@ public class Game {
                 checkForBulletCollisionWithAsteroid();
                 alienShip.move();
                 alienShip.changeDirection();
+                showAlienBulletOnScreen();
+                alienShip.shoot();
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
                 if (shipHasCollidedWithAsteroid()) {
@@ -167,6 +169,18 @@ public class Game {
         pt.setOnFinished(event -> timer.start());
         timer.stop();
         pt.play();
+    }
+
+    public void showAlienBulletOnScreen() {
+        if (alienShip.checkBulletCooldown()){// create new bullet
+            Bullet bullet = new Bullet((int) alienShip.getCurrentXPosition(), (int) alienShip.getCurrentYPosition(), alienShip.getSpeed() + 1.0);
+            bullet.getPolygon().setRotate(alienShip.getPolygon().getRotate());
+
+            // add bullet to the arraylist in ship class
+            alienShip.addBullet(bullet);
+            // draw the bullet
+            screen.getSpawner().spawnGameObject(bullet);
+        }
     }
 
 }
