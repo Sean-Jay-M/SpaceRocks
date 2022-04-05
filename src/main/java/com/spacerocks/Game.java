@@ -130,14 +130,6 @@ public class Game {
         return false;
     }
 
-    private void checkforAlienBulletCollisionWithShip(){
-        for (Bullet bullet: alienShip.getBullets()){
-            if (bullet.hasCollided(ship)){
-                bullet.setUsed();
-
-            }
-        }
-    }
 
     // TODO: Potentially figure out a way to move this to bullet class
     private void checkForBulletCollisionWithAsteroid() {
@@ -169,7 +161,7 @@ public class Game {
                 }
             }
         }
-
+        // check alien bullet collision with asteroid
         for (Bullet bullet: alienShip.getBullets()){
             for (Asteroid asteroid: asteroids){
                 if (bullet.hasCollided(asteroid)){
@@ -247,8 +239,9 @@ public class Game {
         pt.play();
     }
 
+    // TODO: Potentially figure out a better class for this method
     public void showAlienBulletOnScreen() {
-        if (alienShip.checkBulletCooldown()){// create new bullet
+        if (alienShip.checkBulletCooldown()){ //every 20 calls to the checkBulletCooldown creates a bullet
             Bullet bullet = new Bullet((int) alienShip.getCurrentXPosition(), (int) alienShip.getCurrentYPosition(), alienShip.getSpeed() + 1.0);
             bullet.getPolygon().setRotate(alienShip.getPolygon().getRotate());
 
