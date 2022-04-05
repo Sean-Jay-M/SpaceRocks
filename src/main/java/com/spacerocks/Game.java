@@ -22,7 +22,7 @@ public class Game {
 
     int lives = 3;
     boolean isAlienSpawned = false;
-    int alienSpawnCooldown = 1000;
+    int alienSpawnCooldown = 500;
 
     Spawner spawner;
     LevelManager levelManager = new LevelManager();
@@ -46,9 +46,9 @@ public class Game {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if (shipHasCollidedWithAsteroid()) {
+                if (shipHasCollided()) {
                     resetLevel(this);
-                } else if (asteroids.isEmpty()) {
+                } else if (asteroids.isEmpty() && !isAlienSpawned) {
                     nextLevel(this);
                 }
                 // Read keyboard keys from the user.
@@ -65,23 +65,23 @@ public class Game {
                     alienShip.changeDirection(); //every 100 calls this will change the angle of travel of the alien
                     showAlienBulletOnScreen(); //shoots bullet every 20 calls
                     alienShip.shoot();
-                    if (alienHAsCollidedWithAsteroid()){
+                    if (alienHasCollided()){
                         spawner.despawn(alienShip);
                         isAlienSpawned = false;
                         alienSpawnCooldown = 500;
                     }
                 } else {
-                    alienShip.shoot();
+                    alienShip.shoot(); //repeated here in case any of the alien bullets still exist
                     alienSpawnCooldown--;
                     if (alienSpawnCooldown == 0){
                         spawner.spawnGameObject(alienShip);
                         isAlienSpawned = true;
-                        alienSpawnCooldown = 1000;
+                        alienSpawnCooldown = 500;
                     }
                 }
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
-                if (shipHasCollidedWithAsteroid()) {
+                if (shipHasCollided()) {
                     ui.toggleCrashText(true);
                 } else if (asteroids.isEmpty()) {
                     ui.toggleNextLevelText(true);
@@ -91,23 +91,52 @@ public class Game {
     }
 
     // TODO: Potentially figure out a way to move this to ship class
-    private boolean shipHasCollidedWithAsteroid() {
+    private boolean shipHasCollided() {
         // detect ship collision with asteroid
         for (Asteroid asteroid: asteroids){
             if (ship.hasCollided(asteroid)){
                 return true;
             }
         }
+        // detect ship collision with alien bullet
+        for (Bullet bullet: alienShip.getBullets()){
+            if (bullet.hasCollided(ship)){
+                bullet.setUsed();
+                return true;
+            }
+        }
+        //detect ship collision with alien ship
+        if (ship.hasCollided(alienShip)){
+            return true;
+        }
         return false;
     }
 
-    private boolean alienHAsCollidedWithAsteroid(){
+    private boolean alienHasCollided(){
         for (Asteroid asteroid: asteroids){
             if (alienShip.hasCollided(asteroid)){
                 return true;
             }
         }
+        for (Bullet bullet: ship.getBullets()){
+            if (bullet.hasCollided(alienShip)){
+                bullet.setUsed();
+                return true;
+            }
+        }
+        if (alienShip.hasCollided(ship)){
+            return true;
+        }
         return false;
+    }
+
+    private void checkforAlienBulletCollisionWithShip(){
+        for (Bullet bullet: alienShip.getBullets()){
+            if (bullet.hasCollided(ship)){
+                bullet.setUsed();
+
+            }
+        }
     }
 
     // TODO: Potentially figure out a way to move this to bullet class
