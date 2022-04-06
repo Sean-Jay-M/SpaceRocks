@@ -3,24 +3,33 @@ package com.spacerocks;
 // Enum containing all the constant variables relating to a particular asteroid size.
 public enum AsteroidSize {
     // Constant variables containing x coordinates, y coordinates and speed.
-    BIG(200.0/3.0, 50.0/3.0,
-            400.0/3.0, 50.0/3.0,
-            450.0/3.0, 150.0/3.0,
-            400.0/3.0, 250.0/3.0,
-            200.0/3.0, 250.0/3.0,
-            150.0/3.0, 150.0/3.0, 0.2),
-    MEDIUM(120.0/2.0, 30.0/2.0,
-            240.0/2.0, 30.0/2.0,
-            270.0/2.0, 90.0/2.0,
-            240.0/2.0, 150.0/2.0,
-            120.0/2.0, 150.0/2.0,
-            90.0/2.0, 90.0/2.0, 0.5),
-    SMALL(50.0, 12.5,
-            100.0, 12.5,
-            112.5, 37.5,
-            100.0, 62.5,
-            50.0, 62.5,
-            37.5, 37.5, 0.8);
+    BIG(    69/1.5, 25/1.5,
+            131/1.5, 25/1.5,
+            175/1.5, 69/1.5,
+            175/1.5, 131/1.5,
+            131/1.5, 175/1.5,
+            69/1.5, 175/1.5,
+            25/1.5, 131/1.5,
+            25/1.5, 69/1.5,
+            0.2),
+    MEDIUM(69/2.5, 25/2.5,
+            131/2.5, 25/2.5,
+            175/2.5, 69/2.5,
+            175/2.5, 131/2.5,
+            131/2.5, 175/2.5,
+            69/2.5, 175/2.5,
+            25/2.5, 131/2.5,
+            25/2.5, 69/2.5,
+            0.2),
+    SMALL(  69/3.5, 25/3.5,
+            131/3.5, 25/3.5,
+            175/3.5, 69/3.5,
+            175/3.5, 131/3.5,
+            131/3.5, 175/3.5,
+            69/3.5, 175/3.5,
+            25/3.5, 131/3.5,
+            25/3.5, 69/3.5,
+            0.2);
 
     final double x1;
     final double y1;
@@ -34,11 +43,21 @@ public enum AsteroidSize {
     final double y5;
     final double x6;
     final double y6;
+    final double x7;
+    final double y7;
+    final double x8;
+    final double y8;
+
 
     final double speed;
 
+    //Get the centers
+    void AsteroidCenter(double x4, double x8, double y5, double y2){
+         double xcenter = x4 - x8;
+         double ycenter = y5 - y2;
+    }
 
-    AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double speed) {
+    AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double x7, double y7, double x8, double y8, double speed) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -51,6 +70,10 @@ public enum AsteroidSize {
         this.y5 = y5;
         this.x6 = x6;
         this.y6 = y6;
+        this.x7 = x7;
+        this.y7=y7;
+        this.x8 = x8;
+        this.y8 = y8;
         this.speed = speed;
     }
 }
