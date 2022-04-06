@@ -14,7 +14,6 @@ public class Main extends Application {
     // Start method is the method that will launch the JavaFX application
     public void start(Stage gameStage) {
         Screen screen = new Screen(gameStage);
-        Game game = new Game(screen);
-        game.play();
+        screen.setMenuScreen();
     }
 }

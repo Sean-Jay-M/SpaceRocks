@@ -1,5 +1,6 @@
 package com.spacerocks;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -8,7 +9,7 @@ import javafx.scene.text.Text;
 
 
 public class UI {
-    private final Pane gamePane;
+    private Screen screen;
 
     private final Text scoreText = new Text(10, 30, "Score:");
     private Text scoreValue = new Text (75, 31, "0");
@@ -19,9 +20,10 @@ public class UI {
     private final Text crashText = new Text(170, 30, "YOU CRASHED!");
     private final Text nextLevelText = new Text(170, 30, "WELL DONE!");
 
-    public UI(Pane gamePane) {
-        this.gamePane = gamePane;
-        initScoreUI();
+    private final Text mainTitle = new Text(110, 110, "SPACEROCKS");
+
+    public UI(Screen screen) {
+        this.screen = screen;
     }
 
     public void addScoreValue(int score) {
@@ -32,6 +34,8 @@ public class UI {
     public int getCurrentScoreValue() {
         return Integer.parseInt(scoreValue.getText());
     }
+
+
 
     public void removeLife() {
         int newLives = getTextValue(livesValue) - 1;
@@ -51,21 +55,26 @@ public class UI {
         return Integer.parseInt(text.getText());
     }
 
-    private void initScoreUI() {
+    public void initScoreUI() {
+        clearScreen();
         setDefaultTextProperties(scoreText);
         setDefaultTextProperties(scoreValue);
         setDefaultTextProperties(livesText);
         setDefaultTextProperties(livesValue);
         setDefaultTextProperties(crashText);
         setDefaultTextProperties(nextLevelText);
-        gamePane.getChildren().add(scoreText);
-        gamePane.getChildren().add(scoreValue);
-        gamePane.getChildren().add(livesText);
-        gamePane.getChildren().add(livesValue);
-        gamePane.getChildren().add(crashText);
-        gamePane.getChildren().add(nextLevelText);
+        screen.getPane().getChildren().add(scoreText);
+        screen.getPane().getChildren().add(scoreValue);
+        screen.getPane().getChildren().add(livesText);
+        screen.getPane().getChildren().add(livesValue);
+        screen.getPane().getChildren().add(crashText);
+        screen.getPane().getChildren().add(nextLevelText);
         crashText.setVisible(false);
         nextLevelText.setVisible(false);
+    }
+
+    public void clearScreen() {
+        screen.getPane().getChildren().clear();
     }
 
     public void toggleCrashText(boolean on) {
@@ -79,6 +88,38 @@ public class UI {
     private void setDefaultTextProperties(Text text) {
         text.setFill(Color.WHITE);
         text.setFont(Font.font("arial", FontWeight.BOLD, 20));
+    }
+
+    public void initButtons() {
+        Button playButton = initPlayButton();
+        Button exitButton = initExitButton();
+
+        screen.getPane().getChildren().add(playButton);
+        screen.getPane().getChildren().add(exitButton);
+    }
+
+    private Button initExitButton() {
+        Button exitButton = new Button("Exit");
+        exitButton.setTranslateX(235);
+        exitButton.setTranslateY(290);
+        exitButton.setOnAction(e -> System.exit(0));
+        return exitButton;
+    }
+
+    private Button initPlayButton() {
+        Button playButton = new Button("Play Game");
+        playButton.setTranslateX(215);
+        playButton.setTranslateY(250);
+        playButton.setOnAction(e -> screen.setGameScreen());
+        return playButton;
+    }
+
+    public void initMenuUI() {
+        clearScreen();
+        mainTitle.setFill(Color.WHITE);
+        mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
+        initButtons();
+        screen.getPane().getChildren().add(mainTitle);
     }
 
 }

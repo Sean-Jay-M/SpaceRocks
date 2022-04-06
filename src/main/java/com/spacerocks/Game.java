@@ -11,7 +11,6 @@ public class Game {
     // TODO: Delete bullets after the ship is destroyed.
 
     Screen screen;
-    UI ui;
     Ship ship = new Ship();
     AlienShip alienShip = new AlienShip();
     Controller shipController;
@@ -29,10 +28,8 @@ public class Game {
 
     public Game(Screen screen) {
         this.screen = screen;
-        ui = screen.getUI();
         spawner = screen.getSpawner();
         shipController = new Controller(ship, screen);
-        this.screen.createMainWindow();
         spawner.spawnGameObject(ship);
         //spawner.spawnGameObject(alienShip);
         initNewAsteroids();
@@ -80,9 +77,9 @@ public class Game {
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
                 if (shipHasCollided()) {
-                    ui.toggleCrashText(true);
+                    screen.getUI().toggleCrashText(true);
                 } else if (asteroids.isEmpty()) {
-                    ui.toggleNextLevelText(true);
+                    screen.getUI().toggleNextLevelText(true);
                 }
             }
         }.start();
@@ -139,13 +136,13 @@ public class Game {
                     spawner.despawn(bullet);
                     // add the score
                     if (asteroid.getSize() == AsteroidSize.BIG){
-                        ui.addScoreValue(300);
+                        screen.getUI().addScoreValue(300);
                     }
                     if (asteroid.getSize() == AsteroidSize.MEDIUM){
-                        ui.addScoreValue(200);
+                        screen.getUI().addScoreValue(200);
                     }
                     if (asteroid.getSize() == AsteroidSize.SMALL){
-                        ui.addScoreValue(100);
+                        screen.getUI().addScoreValue(100);
                     }
                     if (asteroid.getSize() != AsteroidSize.SMALL) {
                         Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
@@ -182,24 +179,25 @@ public class Game {
     }
 
     public void resetLevel(AnimationTimer timer) {
+        System.out.println("Resetting level");
         pauseTimerForDuration(timer, pauseBetweenLevels);
         pauseGame();
-        ui.setScoreValue(levelManager.getHighestScore());
+        screen.getUI().setScoreValue(levelManager.getHighestScore());
         if (lives > 0) { reduceLife(); }
         removeCurrentAsteroids();
         initNewAsteroids();
         ship.respawn();
-        ui.toggleCrashText(false);
+        screen.getUI().toggleCrashText(false);
     }
 
     public void nextLevel(AnimationTimer timer) {
         pauseTimerForDuration(timer, pauseBetweenLevels);
         pauseGame();
-        levelManager.updateHighestScore(ui.getCurrentScoreValue());
+        levelManager.updateHighestScore(screen.getUI().getCurrentScoreValue());
         levelManager.increaseLevel();
         initNewAsteroids();
         ship.respawn();
-        ui.toggleNextLevelText(false);
+        screen.getUI().toggleNextLevelText(false);
     }
 
     public void pauseGame() {
@@ -249,5 +247,4 @@ public class Game {
             screen.getSpawner().spawnGameObject(bullet);
         }
     }
-
 }
