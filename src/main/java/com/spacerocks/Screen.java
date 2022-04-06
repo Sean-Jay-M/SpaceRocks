@@ -14,10 +14,10 @@ public class Screen {
     // using more JavaFX elements we can remove this.
     private final Stage gameStage;
     //Pane Creation
-    private final Pane gamePane;
-    private final Scene gameScene;
-    private final UI ui;
-    private final Spawner spawner;
+    private Pane pane;
+    private Scene scene;
+    private UI ui;
+    private Spawner spawner;
     //Getter for the screen Width
     public static int getScreenWidth(){
         return SCREEN_WIDTH;
@@ -27,18 +27,17 @@ public class Screen {
         return SCREEN_HEIGHT;
     }
 
-    public Scene getScene() { return gameScene; }
+    public Pane getPane() { return pane; }
+    public Scene getScene() { return scene; }
 
     public Screen(Stage gameStage) {
-        // Constructor creates new instances of these objects. The reason why we need
-        // the Stage as an argument is because the Main class automatically creates a
-        // Stage as part of the JavaFX "Start" method, so to avoid doubling up we can
-        // just use the Stage that that method created.
         this.gameStage = gameStage;
-        gamePane = new Pane();
-        gameScene = new Scene(gamePane);
-        ui = new UI(gamePane);
-        spawner = new Spawner(gamePane);
+        resetScreen();
+        spawner = new Spawner(this);
+        ui = new UI(this);
+        gameStage.setTitle("SpaceRocks");
+        setDefaultScreenProperties();
+        loadNewContent();
     }
 
     //Getter for the spawner
@@ -46,17 +45,34 @@ public class Screen {
 
     public UI getUI() { return ui; }
 
-    public void createMainWindow() {
-        // Set title of the game window
-        gameStage.setTitle("SpaceRocks");
-        // Setting the size of the game pane
-        gamePane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
-        // Setting background color to black
-        gameScene.setFill(Color.BLACK);
-        // Activating the scene on the stage when the application launches
-        gameStage.setScene(gameScene);
+    public void setDefaultScreenProperties() {
+        pane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
+        pane.setStyle("-fx-background-color: transparent;");
+        scene.setFill(Color.BLACK);
+    }
 
-        // Displaying the application
+    public void setMenuScreen() {
+        resetScreen();
+        ui.initMenuUI();
+        loadNewContent();
+    }
+
+    public void setGameScreen() {
+        resetScreen();
+        ui.initScoreUI();
+        loadNewContent();
+        Game game = new Game(this);
+        game.play();
+    }
+
+    public void resetScreen() {
+        pane = new Pane();
+        scene = new Scene(pane);
+        setDefaultScreenProperties();
+    }
+
+    public void loadNewContent() {
+        gameStage.setScene(scene);
         gameStage.show();
     }
 

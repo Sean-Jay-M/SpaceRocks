@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with spawn points not showing up.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Initial menu is done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/GameObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +170,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649074578320</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Ship movement now matches exactly the specification in the marking scheme.">
+      <created>1649262487131</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1649262487131</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Initial menu is done">
+      <created>1649268591475</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1649268591475</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +227,8 @@
     <MESSAGE value="Fixed movement and matched bullet speed to relative velocity of ship." />
     <MESSAGE value="Fixed positioning of the text" />
     <MESSAGE value="Fixed issue with next level text not showing up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with next level text not showing up." />
+    <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
+    <MESSAGE value="Initial menu is done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial menu is done" />
   </component>
 </project>

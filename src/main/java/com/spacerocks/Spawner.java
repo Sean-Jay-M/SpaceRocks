@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class Spawner implements SpawnListener {
     //This class is responsible for handling the spawning of new objects
-    Pane gamePane;
-    public Spawner(Pane gamePane){
-        this.gamePane = gamePane;
+    Screen screen;
+    public Spawner(Screen screen){
+        this.screen = screen;
     }
 
     public void spawnGameObject(GameObject gameObject){
@@ -28,7 +28,7 @@ public class Spawner implements SpawnListener {
 
     //This draws the object
     private void drawGameObject(GameObject gameObject) {
-        gamePane.getChildren().add(gameObject.getPolygon());
+        screen.getPane().getChildren().add(gameObject.getPolygon());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Spawner implements SpawnListener {
 
     //this removes the game object
     public void despawn(GameObject gameObject){
-        gamePane.getChildren().remove(gameObject.getPolygon());
+        screen.getPane().getChildren().remove(gameObject.getPolygon());
     }
 
 }
