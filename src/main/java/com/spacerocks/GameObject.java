@@ -5,6 +5,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
+import java.awt.*;
+
 //Import the relevant packages
 public abstract class GameObject{
 
@@ -14,6 +16,7 @@ public abstract class GameObject{
     protected double spawnX;
     protected double spawnY;
     protected int angle;
+    protected Point2D anchor;
     static SpawnListener spawnListener;
 
     //sets the variables for the game object

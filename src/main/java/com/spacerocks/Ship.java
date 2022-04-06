@@ -1,4 +1,5 @@
 package com.spacerocks;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ public class Ship extends GameObject {
     private ArrayList<Bullet> bullets;
     private final double maxSpeed = 1.5;
     private final double acceleration = 0.01;
+    private double swiftX;
+    private double swiftY;
 
     public int getTurnSpeedLeft() {
         return turnSpeedLeft;
@@ -20,14 +23,13 @@ public class Ship extends GameObject {
 
     private final int turnSpeedLeft = -2;
     private final int turnSpeedRight = 2;
-    private double swiftX = 0;
-    private double swiftY = 0;
 
     public Ship() {
         super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
         this.thrusting = false;
 
         angle = 2;
+        anchor = new Point2D(0, 0);
 
         //Half screen later
         spawnX = 250;
@@ -47,18 +49,23 @@ public class Ship extends GameObject {
     }
 
     public void accelerate(){
-        if (this.getSpeed() < maxSpeed){
-            this.setSpeed(this.getSpeed() + acceleration);
+        swiftX = getRotateX() * 0.01;
+        swiftY = getRotateY() * 0.01;
+        Point2D speedPosition = new Point2D(swiftX, swiftY);
+
+        if (getCurrentSpeed() <= maxSpeed) {
+            anchor = anchor.add(speedPosition);
+        } else {
+            anchor = anchor.subtract(speedPosition).normalize().multiply(1.5);
         }
     }
 
-    public void slowDown(){
-        if (this.getSpeed() > 0){
-            this.setSpeed(this.getSpeed() - 0.1);
-        } else if (this.getSpeed() < 0) {
-            this.setSpeed(0);
-        }
+    private double getCurrentSpeed() {
+        Point2D currentPosition = new Point2D(this.polygon.getTranslateX(), this.polygon.getTranslateY());
+        Point2D projectedPosition = new Point2D(this.polygon.getTranslateX() + anchor.getX(), this.polygon.getTranslateY() + anchor.getY());
+        return currentPosition.distance(projectedPosition);
     }
+
 
     public void addBullet(Bullet bullet){
         bullets.add(bullet);
@@ -76,13 +83,6 @@ public class Ship extends GameObject {
         }
     }
 
-    // if the ship is thrusting, the ship will accelerate. otherwise, it will slow down.
-    public void thrust() {
-        if (isThrusting()) {
-            accelerate();
-        }
-    }
-
     public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
 
     public ArrayList<Bullet> getBullets() {
@@ -90,21 +90,17 @@ public class Ship extends GameObject {
     }
 
     public void respawn(){
-        super.setSpeed(0);
+        anchor = new Point2D(0, 0);
         this.getPolygon().setTranslateX(spawnX);
         this.getPolygon().setTranslateY(spawnY);
         this.getPolygon().setRotate(270);
     }
 
+
     @Override
     public void move(){
-        if (isThrusting()) {
-            swiftX = getRotateX();
-            swiftY = getRotateY();
-        }
-
-        this.polygon.setTranslateX(this.polygon.getTranslateX() + swiftX * this.getSpeed());
-        this.polygon.setTranslateY(this.polygon.getTranslateY() + swiftY * this.getSpeed());
+        this.polygon.setTranslateX(this.polygon.getTranslateX() + anchor.getX());
+        this.polygon.setTranslateY(this.polygon.getTranslateY() + anchor.getY());
 
         // stay in the window
         super.checkInRange();

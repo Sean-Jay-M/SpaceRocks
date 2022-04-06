@@ -91,7 +91,11 @@ public class Controller {
             ship.turn(ship.getTurnSpeedRight());
         }
 
-        ship.setThrusting(this.pressedKeys.contains(up));
+        if (this.pressedKeys.contains(up)) {
+            ship.accelerate();
+        }
+
+        ship.move();
     }
 
     public void resetShip(Ship ship) {
