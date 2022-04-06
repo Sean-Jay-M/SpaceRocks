@@ -53,8 +53,8 @@ public enum AsteroidSize {
 
     //Get the centers
     void AsteroidCenter(double x4, double x8, double y5, double y2){
-         double xcenter = x4 - x8;
-         double ycenter = y5 - y2;
+         double xcenter = (x4 - x8) / 2;
+         double ycenter = (y5 - y2) - 2;
     }
 
     AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double x7, double y7, double x8, double y8, double speed) {
