@@ -81,6 +81,12 @@ public class Game {
                 } else if (asteroids.isEmpty()) {
                     screen.getUI().toggleNextLevelText(true);
                 }
+                if (lives == 0) {
+                    this.stop();
+                    screen.getUI().resetUIValues();
+                    levelManager.resetGame();
+                    screen.setMenuScreen();
+                }
             }
         }.start();
     }
@@ -175,7 +181,6 @@ public class Game {
                 }
             }
         }
-
     }
 
     public void resetLevel(AnimationTimer timer) {
@@ -183,7 +188,9 @@ public class Game {
         pauseTimerForDuration(timer, pauseBetweenLevels);
         pauseGame();
         screen.getUI().setScoreValue(levelManager.getHighestScore());
-        if (lives > 0) { reduceLife(); }
+        if (lives > 0) {
+            reduceLife();
+        }
         removeCurrentAsteroids();
         initNewAsteroids();
         ship.respawn();

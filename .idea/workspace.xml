@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Ship movement now matches exactly the specification in the marking scheme.">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Initial menu is done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/LevelManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Spawner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Asteroid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649262487131</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Initial menu is done">
+      <created>1649268591475</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1649268591475</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +228,7 @@
     <MESSAGE value="Fixed positioning of the text" />
     <MESSAGE value="Fixed issue with next level text not showing up." />
     <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ship movement now matches exactly the specification in the marking scheme." />
+    <MESSAGE value="Initial menu is done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial menu is done" />
   </component>
 </project>

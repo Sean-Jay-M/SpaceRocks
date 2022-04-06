@@ -75,4 +75,5 @@ public class Screen {
         gameStage.setScene(scene);
         gameStage.show();
     }
+
 }

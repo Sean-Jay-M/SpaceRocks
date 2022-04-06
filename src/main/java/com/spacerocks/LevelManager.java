@@ -24,7 +24,14 @@ public class LevelManager {
     public int getLevel(){
         return level;
     }
-    public void resetToFirstLevel(){
+
+    public void resetGame() {
+        resetScore();
+        resetToFirstLevel();
+    }
+
+    private void resetScore() { highestScore = 0; }
+    private void resetToFirstLevel(){
         level = 1;
     }
     public void updateHighestScore(int highestScore) { this.highestScore += highestScore; }
