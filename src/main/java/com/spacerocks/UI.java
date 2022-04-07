@@ -1,7 +1,6 @@
 package com.spacerocks;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -10,6 +9,13 @@ import javafx.scene.text.Text;
 
 public class UI {
     private Screen screen;
+
+    public ScoreBoardHandler getScoreBoardHandler() {
+        return scoreBoardHandler;
+    }
+
+    private ScoreBoardHandler scoreBoardHandler = new ScoreBoardHandler();
+
 
     private final Text scoreText = new Text(10, 30, "Score:");
     private Text scoreValue = new Text (75, 31, "0");
@@ -22,8 +28,21 @@ public class UI {
 
     private final Text mainTitle = new Text(110, 110, "SPACEROCKS");
 
+    private Text scoreTitle = new Text(180, 100, "HALL OF FAME");
+    private Text score1 = new Text(180, 130, "0");
+    private Text score2 = new Text(180, 160, "0");
+    private Text score3 = new Text(180, 190, "0");
+    private Text score4 = new Text(180, 220, "0");
+    private Text score5 = new Text(180, 250, "0");
+
+    Text[] allUIElements = {scoreText, scoreValue, livesText, livesValue, crashText, nextLevelText, mainTitle,
+                            scoreTitle, score1, score2, score3, score4, score5};
+
     public UI(Screen screen) {
         this.screen = screen;
+        for (Text text: allUIElements) {
+            setDefaultTextProperties(text);
+        }
     }
 
     public void addScoreValue(int score) {
@@ -34,8 +53,6 @@ public class UI {
     public int getCurrentScoreValue() {
         return Integer.parseInt(scoreValue.getText());
     }
-
-
 
     public void removeLife() {
         int newLives = getTextValue(livesValue) - 1;
@@ -57,12 +74,6 @@ public class UI {
 
     public void initScoreUI() {
         clearScreen();
-        setDefaultTextProperties(scoreText);
-        setDefaultTextProperties(scoreValue);
-        setDefaultTextProperties(livesText);
-        setDefaultTextProperties(livesValue);
-        setDefaultTextProperties(crashText);
-        setDefaultTextProperties(nextLevelText);
         screen.getPane().getChildren().add(scoreText);
         screen.getPane().getChildren().add(scoreValue);
         screen.getPane().getChildren().add(livesText);
@@ -71,6 +82,16 @@ public class UI {
         screen.getPane().getChildren().add(nextLevelText);
         crashText.setVisible(false);
         nextLevelText.setVisible(false);
+    }
+
+    public void initHighScoreUI() {
+        clearScreen();
+        screen.getPane().getChildren().add(scoreTitle);
+        screen.getPane().getChildren().add(score1);
+        screen.getPane().getChildren().add(score2);
+        screen.getPane().getChildren().add(score3);
+        screen.getPane().getChildren().add(score4);
+        screen.getPane().getChildren().add(score5);
     }
 
     public void clearScreen() {
@@ -90,35 +111,45 @@ public class UI {
         text.setFont(Font.font("arial", FontWeight.BOLD, 20));
     }
 
-    public void initButtons() {
-        Button playButton = initPlayButton();
-        Button exitButton = initExitButton();
+    public void initMenuButtons() {
+        Button playButton = initMenuPlayButton();
+        Button exitButton = initMenuExitButton();
+        Button highScoreButton = initMenuHighScoreButton();
 
         screen.getPane().getChildren().add(playButton);
         screen.getPane().getChildren().add(exitButton);
+        screen.getPane().getChildren().add(highScoreButton);
     }
 
-    private Button initExitButton() {
+    private Button initMenuExitButton() {
         Button exitButton = new Button("Exit");
         exitButton.setTranslateX(235);
-        exitButton.setTranslateY(290);
+        exitButton.setTranslateY(320);
         exitButton.setOnAction(e -> System.exit(0));
         return exitButton;
     }
 
-    private Button initPlayButton() {
+    private Button initMenuPlayButton() {
         Button playButton = new Button("Play Game");
         playButton.setTranslateX(215);
-        playButton.setTranslateY(250);
+        playButton.setTranslateY(260);
         playButton.setOnAction(e -> screen.setGameScreen());
         return playButton;
+    }
+
+    private Button initMenuHighScoreButton() {
+        Button highScoreButton = new Button("High Score");
+        highScoreButton.setTranslateX(214);
+        highScoreButton.setTranslateY(290);
+        highScoreButton.setOnAction(e -> screen.setHighScoreScreen());
+        return highScoreButton;
     }
 
     public void initMenuUI() {
         clearScreen();
         mainTitle.setFill(Color.WHITE);
         mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
-        initButtons();
+        initMenuButtons();
         screen.getPane().getChildren().add(mainTitle);
     }
 

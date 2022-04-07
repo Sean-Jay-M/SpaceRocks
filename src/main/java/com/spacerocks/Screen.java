@@ -65,6 +65,12 @@ public class Screen {
         game.play();
     }
 
+    public void setHighScoreScreen() {
+        resetScreen();
+        ui.initHighScoreUI();
+        loadNewContent();
+    }
+
     public void resetScreen() {
         pane = new Pane();
         scene = new Scene(pane);
