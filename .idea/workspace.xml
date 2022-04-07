@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Initial menu is done">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Successfully writing to the file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ScoreBoardHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649268591475</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Successfully writing to the file">
+      <created>1649357558703</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1649357558703</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +232,7 @@
     <MESSAGE value="Fixed issue with next level text not showing up." />
     <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
     <MESSAGE value="Initial menu is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial menu is done" />
+    <MESSAGE value="Successfully writing to the file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Successfully writing to the file" />
   </component>
 </project>
