@@ -1,5 +1,7 @@
 package com.spacerocks;
 
+import javafx.scene.text.Text;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -9,8 +11,19 @@ public class ScoreBoardHandler {
     private static final File scoreBoardEntries = new File("./resources/score.txt");
 
     public void refreshScoreBoard(String newScore) throws IOException {
+        System.out.println("Refreshing scoreboard");
         StringBuilder buffer = getRefreshedScoreBoard(newScore);
         writeRefreshedScoreBoardToFile(buffer);
+    }
+
+    public void setHigHScoreFromText(Text[] textEntries) throws FileNotFoundException {
+        Scanner scanner = new Scanner(scoreBoardEntries);
+        int entryCounter = 0;
+
+        while (scanner.hasNextLine()) {
+            textEntries[entryCounter].setText(scanner.nextLine());
+            entryCounter++;
+        }
     }
 
     private void writeRefreshedScoreBoardToFile(StringBuilder buffer) throws IOException {

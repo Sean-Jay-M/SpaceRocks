@@ -27,6 +27,8 @@ public class Screen {
         return SCREEN_HEIGHT;
     }
 
+    private Game game;
+
     public Pane getPane() { return pane; }
     public Scene getScene() { return scene; }
 
@@ -52,6 +54,7 @@ public class Screen {
     }
 
     public void setMenuScreen() {
+        if (game != null) { game = null; };
         resetScreen();
         ui.initMenuUI();
         loadNewContent();
@@ -61,7 +64,7 @@ public class Screen {
         resetScreen();
         ui.initScoreUI();
         loadNewContent();
-        Game game = new Game(this);
+        game = new Game(this);
         game.play();
     }
 

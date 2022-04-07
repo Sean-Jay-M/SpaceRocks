@@ -6,6 +6,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.io.FileNotFoundException;
+
 
 public class UI {
     private Screen screen;
@@ -34,6 +36,12 @@ public class UI {
     private Text score3 = new Text(180, 190, "0");
     private Text score4 = new Text(180, 220, "0");
     private Text score5 = new Text(180, 250, "0");
+
+    public Text[] getScoreEntries() {
+        return scoreEntries;
+    }
+
+    private Text[] scoreEntries = {score1, score2, score3, score4, score5};
 
     Text[] allUIElements = {scoreText, scoreValue, livesText, livesValue, crashText, nextLevelText, mainTitle,
                             scoreTitle, score1, score2, score3, score4, score5};
@@ -87,7 +95,11 @@ public class UI {
     public void initHighScoreUI() {
         clearScreen();
         Button highScoreExitButton = initHighScoreExitButton();
-
+        try {
+            scoreBoardHandler.setHigHScoreFromText(scoreEntries);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         screen.getPane().getChildren().add(scoreTitle);
         screen.getPane().getChildren().add(score1);
         screen.getPane().getChildren().add(score2);
@@ -164,5 +176,6 @@ public class UI {
         initMenuButtons();
         screen.getPane().getChildren().add(mainTitle);
     }
+
 
 }
