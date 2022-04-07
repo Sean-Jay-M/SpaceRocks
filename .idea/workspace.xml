@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Resetting to main menu after dying is done.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added highscorehandler class, can currently read txt file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +54,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vlad\github\SpaceRocks\resources" />
       <recent name="C:\Users\Vlad\github\SpaceRocks\src" />
     </key>
   </component>
@@ -143,7 +143,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
       <workItem from="1649008356701" duration="20886000" />
-      <workItem from="1649311369299" duration="1731000" />
+      <workItem from="1649311369299" duration="1827000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649268591475</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added highscorehandler class, can currently read txt file.">
+      <created>1649313135957</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1649313135957</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +239,7 @@
     <MESSAGE value="Fixed issue with next level text not showing up." />
     <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
     <MESSAGE value="Initial menu is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial menu is done" />
+    <MESSAGE value="Added highscorehandler class, can currently read txt file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added highscorehandler class, can currently read txt file." />
   </component>
 </project>
