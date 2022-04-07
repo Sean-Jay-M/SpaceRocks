@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added highscorehandler class, can currently read txt file.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added neater directory for high score handler">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ASTEROIDS-31" />
+        <entry key="$PROJECT_DIR$" value="ASTEROIDS-26" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -74,6 +72,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -143,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
       <workItem from="1649008356701" duration="20886000" />
-      <workItem from="1649311369299" duration="1827000" />
+      <workItem from="1649311369299" duration="1990000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -194,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649313135957</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added neater directory for high score handler">
+      <created>1649313220511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1649313220511</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +246,7 @@
     <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
     <MESSAGE value="Initial menu is done" />
     <MESSAGE value="Added highscorehandler class, can currently read txt file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added highscorehandler class, can currently read txt file." />
+    <MESSAGE value="Added neater directory for high score handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added neater directory for high score handler" />
   </component>
 </project>
