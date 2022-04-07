@@ -86,12 +86,16 @@ public class UI {
 
     public void initHighScoreUI() {
         clearScreen();
+        Button highScoreExitButton = initHighScoreExitButton();
+
         screen.getPane().getChildren().add(scoreTitle);
         screen.getPane().getChildren().add(score1);
         screen.getPane().getChildren().add(score2);
         screen.getPane().getChildren().add(score3);
         screen.getPane().getChildren().add(score4);
         screen.getPane().getChildren().add(score5);
+        screen.getPane().getChildren().add(highScoreExitButton);
+
     }
 
     public void clearScreen() {
@@ -127,6 +131,14 @@ public class UI {
         exitButton.setTranslateY(320);
         exitButton.setOnAction(e -> System.exit(0));
         return exitButton;
+    }
+
+    private Button initHighScoreExitButton() {
+        Button highScoreExitButton = new Button("Back");
+        highScoreExitButton.setTranslateX(235);
+        highScoreExitButton.setTranslateY(320);
+        highScoreExitButton.setOnAction(e -> screen.setMenuScreen());
+        return highScoreExitButton;
     }
 
     private Button initMenuPlayButton() {
