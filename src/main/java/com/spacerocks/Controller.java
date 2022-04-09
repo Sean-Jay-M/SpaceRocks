@@ -65,7 +65,7 @@ public class Controller {
     private void readShootKey() {
         if (tempPressedKeys.contains(space)) {
             // Potentially refactor this using listeners
-            showBulletOnScreen();
+            ship.shoot();
         }
         // to avoid the continuous bullets
         tempPressedKeys.clear();
@@ -96,6 +96,7 @@ public class Controller {
         }
 
         ship.move();
+        ship.moveBullets();
     }
 
     public void resetShip(Ship ship) {

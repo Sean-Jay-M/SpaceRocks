@@ -4,8 +4,7 @@ package com.spacerocks;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-
-import java.awt.*;
+import javafx.scene.shape.Shape;
 
 //Import the relevant packages
 public abstract class GameObject{
@@ -90,7 +89,9 @@ public abstract class GameObject{
 
     public boolean hasCollided(GameObject object){
         //checks coordinates bounded by both objects and if there is overlap returns true
-        return this.getPolygon().getBoundsInParent().intersects(object.getPolygon().getBoundsInParent());
+        // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
+        Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
+        return hitBox.getBoundsInLocal().getWidth() != -1;
     }
 
     public void setSpawnListener(SpawnListener spawnListener) { this.spawnListener = spawnListener; }

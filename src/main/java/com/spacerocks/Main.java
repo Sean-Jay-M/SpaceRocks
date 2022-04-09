@@ -15,9 +15,8 @@ public class Main extends Application {
 
     // Start method is the method that will launch the JavaFX application
     public void start(Stage gameStage) throws IOException {
-        HighScoreHandler scores = new HighScoreHandler();
-        scores.readScore();
-        Screen screen = new Screen(gameStage);
+        Screen screen = Screen.getScreenInstance();
+        screen.initScreen(gameStage);
         screen.setMenuScreen();
     }
 }

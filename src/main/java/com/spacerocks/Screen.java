@@ -12,7 +12,7 @@ public class Screen {
 
     // I added "final" to these because IntelliJ suggested it. If we ended up
     // using more JavaFX elements we can remove this.
-    private final Stage gameStage;
+    private Stage gameStage;
     //Pane Creation
     private Pane pane;
     private Scene scene;
@@ -27,10 +27,24 @@ public class Screen {
         return SCREEN_HEIGHT;
     }
 
+    private Game game;
+
     public Pane getPane() { return pane; }
     public Scene getScene() { return scene; }
 
-    public Screen(Stage gameStage) {
+    private static Screen screenInstance = null;
+
+    private Screen() {}
+
+    public static Screen getScreenInstance() {
+        if (screenInstance == null) {
+            screenInstance = new Screen();
+        }
+        return screenInstance;
+    }
+
+
+    public void initScreen(Stage gameStage) {
         this.gameStage = gameStage;
         resetScreen();
         spawner = new Spawner(this);
@@ -52,6 +66,7 @@ public class Screen {
     }
 
     public void setMenuScreen() {
+        if (game != null) { game = null; };
         resetScreen();
         ui.initMenuUI();
         loadNewContent();
@@ -61,8 +76,14 @@ public class Screen {
         resetScreen();
         ui.initScoreUI();
         loadNewContent();
-        Game game = new Game(this);
+        game = new Game(this);
         game.play();
+    }
+
+    public void setHighScoreScreen() {
+        resetScreen();
+        ui.initHighScoreUI();
+        loadNewContent();
     }
 
     public void resetScreen() {

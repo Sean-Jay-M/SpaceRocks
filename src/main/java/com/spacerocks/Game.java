@@ -4,6 +4,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,19 +17,25 @@ public class Game {
     AlienShip alienShip = new AlienShip();
     Controller shipController;
     Random random = new Random();
+    boolean writtenToFile = false;
     private final Duration pauseBetweenLevels = new Duration(1000);
+
 
     ArrayList<Asteroid> asteroids = Asteroid.asteroids;
 
-    int lives = 3;
+    int lives;
     boolean isAlienSpawned = false;
     int alienSpawnCooldown = 500;
 
     Spawner spawner;
     LevelManager levelManager = new LevelManager();
+    ScoreBoardHandler scoreBoardHandler = new ScoreBoardHandler();
 
     public Game(Screen screen) {
+        System.out.println("Starting new game");
         this.screen = screen;
+        lives = 3;
+        screen.getUI().resetUIValues();
         spawner = screen.getSpawner();
         shipController = new Controller(ship, screen);
         spawner.spawnGameObject(ship);
@@ -45,13 +53,13 @@ public class Game {
             public void handle(long l) {
                 if (shipHasCollided()) {
                     resetLevel(this);
-                } else if (asteroids.isEmpty() && !isAlienSpawned) {
+                } else if (asteroids.isEmpty()) {
                     nextLevel(this);
                 }
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
                 // default speed of ship is 0, so the ship is moving all the time.
-                ship.shoot();
+                ship.moveBullets();
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
 
@@ -82,13 +90,25 @@ public class Game {
                     screen.getUI().toggleNextLevelText(true);
                 }
                 if (lives == 0) {
+                    if (!writtenToFile) {
+                        addScoreToScoreboard();
+                    }
                     this.stop();
-                    screen.getUI().resetUIValues();
                     levelManager.resetGame();
                     screen.setMenuScreen();
                 }
             }
         }.start();
+    }
+
+    private void addScoreToScoreboard() {
+        String currentScore = Integer.toString(screen.getUI().getCurrentScoreValue());
+        try {
+            scoreBoardHandler.refreshScoreBoard(currentScore);
+            writtenToFile = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // TODO: Potentially figure out a way to move this to ship class
@@ -184,7 +204,6 @@ public class Game {
     }
 
     public void resetLevel(AnimationTimer timer) {
-        System.out.println("Resetting level");
         pauseTimerForDuration(timer, pauseBetweenLevels);
         pauseGame();
         screen.getUI().setScoreValue(levelManager.getHighestScore());

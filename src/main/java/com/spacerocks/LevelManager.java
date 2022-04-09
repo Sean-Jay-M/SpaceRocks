@@ -8,6 +8,7 @@ get level at start of new level gives number of asteroids to spawn
 */
 public class LevelManager {
     private int level = 1;
+    private int lives = 3;
 
     public int getHighestScore() {
         return highestScore;
@@ -24,12 +25,17 @@ public class LevelManager {
     public int getLevel(){
         return level;
     }
+    public int getLives() { return lives; }
 
     public void resetGame() {
         resetScore();
         resetToFirstLevel();
+        resetLives();
     }
 
+    public void reduceLife() { lives -= 1; }
+
+    private void resetLives() { lives = 3; }
     private void resetScore() { highestScore = 0; }
     private void resetToFirstLevel(){
         level = 1;

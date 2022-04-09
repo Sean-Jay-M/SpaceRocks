@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Reverted to gameplay">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with scores being written to file twice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ScoreBoardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ScoreBoardHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ASTEROIDS-26" />
+        <entry key="$PROJECT_DIR$" value="ASTEROIDS-31" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,12 +56,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vlad\github\SpaceRocks\resources" />
-      <recent name="C:\Users\Vlad\github\SpaceRocks\src" />
-    </key>
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -75,7 +74,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -145,7 +143,6 @@
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
       <workItem from="1649008356701" duration="20886000" />
-      <workItem from="1649311369299" duration="3392000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -189,28 +186,56 @@
       <option name="project" value="LOCAL" />
       <updated>1649268591475</updated>
     </task>
-    <task id="LOCAL-00015" summary="Added highscorehandler class, can currently read txt file.">
-      <created>1649313135957</created>
+    <task id="LOCAL-00015" summary="Successfully writing to the file">
+      <created>1649357558703</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1649313135957</updated>
+      <updated>1649357558703</updated>
     </task>
-    <task id="LOCAL-00016" summary="Added neater directory for high score handler">
-      <created>1649313220511</created>
+    <task id="LOCAL-00016" summary="Refactoring for scoreboard handler">
+      <created>1649360203333</created>
       <option name="number" value="00016" />
       <option name="presentableId" value="LOCAL-00016" />
       <option name="project" value="LOCAL" />
-      <updated>1649313220511</updated>
+      <updated>1649360203333</updated>
     </task>
-    <task id="LOCAL-00017" summary="Reverted to gameplay">
-      <created>1649313392162</created>
+    <task id="LOCAL-00017" summary="UI added to the score board">
+      <created>1649361181539</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1649313392162</updated>
+      <updated>1649361181539</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Back button works">
+      <created>1649361608357</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1649361608357</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fixed issue with hitboxes">
+      <created>1649489490239</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1649489490239</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed issue with hitboxes">
+      <created>1649489529129</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1649489529129</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixed issue with scores being written to file twice">
+      <created>1649490944810</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1649490944810</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,9 +280,12 @@
     <MESSAGE value="Fixed issue with next level text not showing up." />
     <MESSAGE value="Ship movement now matches exactly the specification in the marking scheme." />
     <MESSAGE value="Initial menu is done" />
-    <MESSAGE value="Added highscorehandler class, can currently read txt file." />
-    <MESSAGE value="Added neater directory for high score handler" />
-    <MESSAGE value="Reverted to gameplay" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reverted to gameplay" />
+    <MESSAGE value="Successfully writing to the file" />
+    <MESSAGE value="Refactoring for scoreboard handler" />
+    <MESSAGE value="UI added to the score board" />
+    <MESSAGE value="Back button works" />
+    <MESSAGE value="Fixed issue with hitboxes" />
+    <MESSAGE value="Fixed issue with scores being written to file twice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with scores being written to file twice" />
   </component>
 </project>

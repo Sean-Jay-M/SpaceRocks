@@ -71,8 +71,18 @@ public class Ship extends GameObject {
         bullets.add(bullet);
     }
 
-    // move all the bullets
     public void shoot() {
+        // create new bullet
+        Bullet bullet = new Bullet((int)getCurrentXPosition(),(int)getCurrentYPosition(), getSpeed() + 2.0);
+        bullet.getPolygon().setRotate(getPolygon().getRotate());
+
+        // add bullet to the arraylist in ship class
+        addBullet(bullet);
+        Screen.getScreenInstance().getSpawner().spawnGameObject(bullet);
+    }
+
+    // move all the bullets
+    public void moveBullets() {
         for (Bullet bullet: bullets) {
             bullet.move();
             if (bullet.isDecayed()) {
