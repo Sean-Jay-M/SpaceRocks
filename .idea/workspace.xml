@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with scores being written to file twice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ScoreBoardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ScoreBoardHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
