@@ -59,7 +59,7 @@ public class Game {
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
                 // default speed of ship is 0, so the ship is moving all the time.
-                ship.shoot();
+                ship.moveBullets();
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
 

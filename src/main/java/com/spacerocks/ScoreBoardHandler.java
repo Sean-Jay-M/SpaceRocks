@@ -36,15 +36,13 @@ public class ScoreBoardHandler {
     private StringBuilder getRefreshedScoreBoard(String newScore) throws FileNotFoundException {
         StringBuilder buffer = new StringBuilder();
         Scanner scanner = new Scanner(scoreBoardEntries);
-        boolean scoreInserted = false;
 
-        while (scanner.hasNextLine()) {
+        for (int i = 0; i < 5; i++) {
             String currentScore = scanner.nextLine();
             System.out.println("The current score is " + currentScore);
-            if (Integer.parseInt(newScore) > Integer.parseInt(currentScore) && !scoreInserted) {
+            if (Integer.parseInt(newScore) > Integer.parseInt(currentScore)) {
                 System.out.println("Adding new score " + currentScore);
                 buffer.append(newScore).append(System.lineSeparator());
-                scoreInserted = true;
             }
             addExistingScore(buffer, scanner, currentScore);
         }

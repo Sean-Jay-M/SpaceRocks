@@ -12,7 +12,7 @@ public class Screen {
 
     // I added "final" to these because IntelliJ suggested it. If we ended up
     // using more JavaFX elements we can remove this.
-    private final Stage gameStage;
+    private Stage gameStage;
     //Pane Creation
     private Pane pane;
     private Scene scene;
@@ -32,7 +32,19 @@ public class Screen {
     public Pane getPane() { return pane; }
     public Scene getScene() { return scene; }
 
-    public Screen(Stage gameStage) {
+    private static Screen screenInstance = null;
+
+    private Screen() {}
+
+    public static Screen getScreenInstance() {
+        if (screenInstance == null) {
+            screenInstance = new Screen();
+        }
+        return screenInstance;
+    }
+
+
+    public void initScreen(Stage gameStage) {
         this.gameStage = gameStage;
         resetScreen();
         spawner = new Spawner(this);
