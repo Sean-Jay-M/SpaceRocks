@@ -17,13 +17,13 @@ public class Game {
     AlienShip alienShip = new AlienShip();
     Controller shipController;
     Random random = new Random();
-    boolean gameOver = false;
+    boolean writtenToFile = false;
     private final Duration pauseBetweenLevels = new Duration(1000);
 
 
     ArrayList<Asteroid> asteroids = Asteroid.asteroids;
 
-    int lives = 3;
+    int lives;
     boolean isAlienSpawned = false;
     int alienSpawnCooldown = 500;
 
@@ -34,6 +34,8 @@ public class Game {
     public Game(Screen screen) {
         System.out.println("Starting new game");
         this.screen = screen;
+        lives = 3;
+        screen.getUI().resetUIValues();
         spawner = screen.getSpawner();
         shipController = new Controller(ship, screen);
         spawner.spawnGameObject(ship);
@@ -88,7 +90,9 @@ public class Game {
                     screen.getUI().toggleNextLevelText(true);
                 }
                 if (lives == 0) {
-                    addScoreToScoreboard();
+                    if (!writtenToFile) {
+                        addScoreToScoreboard();
+                    }
                     this.stop();
                     levelManager.resetGame();
                     screen.setMenuScreen();
@@ -101,6 +105,7 @@ public class Game {
         String currentScore = Integer.toString(screen.getUI().getCurrentScoreValue());
         try {
             scoreBoardHandler.refreshScoreBoard(currentScore);
+            writtenToFile = true;
         } catch (IOException e) {
             e.printStackTrace();
         }

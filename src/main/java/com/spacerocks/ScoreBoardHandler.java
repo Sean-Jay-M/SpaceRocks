@@ -40,7 +40,9 @@ public class ScoreBoardHandler {
 
         while (scanner.hasNextLine()) {
             String currentScore = scanner.nextLine();
+            System.out.println("The current score is " + currentScore);
             if (Integer.parseInt(newScore) > Integer.parseInt(currentScore) && !scoreInserted) {
+                System.out.println("Adding new score " + currentScore);
                 buffer.append(newScore).append(System.lineSeparator());
                 scoreInserted = true;
             }
@@ -51,6 +53,7 @@ public class ScoreBoardHandler {
 
     private void addExistingScore(StringBuilder buffer, Scanner scanner, String currentScore) {
         if (scanner.hasNextLine()) {
+            System.out.println("Adding existing line " + currentScore);
             buffer.append(currentScore).append(System.lineSeparator());
         }
     }

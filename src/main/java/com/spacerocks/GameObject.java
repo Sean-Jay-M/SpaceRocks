@@ -50,7 +50,6 @@ public abstract class GameObject{
         this.speed = speed;
     }
 
-    //Trying again
     //Turn the object
 //    public void turn(){
 //        this.polygon.setRotate(this.polygon.getRotate() + angle);
@@ -90,6 +89,7 @@ public abstract class GameObject{
 
     public boolean hasCollided(GameObject object){
         //checks coordinates bounded by both objects and if there is overlap returns true
+        // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
         Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
         return hitBox.getBoundsInLocal().getWidth() != -1;
     }
