@@ -50,6 +50,7 @@ public abstract class GameObject{
         this.speed = speed;
     }
 
+    //Trying again
     //Turn the object
 //    public void turn(){
 //        this.polygon.setRotate(this.polygon.getRotate() + angle);
