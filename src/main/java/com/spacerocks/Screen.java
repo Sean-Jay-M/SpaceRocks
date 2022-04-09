@@ -1,5 +1,7 @@
 package com.spacerocks;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -47,8 +49,13 @@ public class Screen {
 
     public void setDefaultScreenProperties() {
         pane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
+        System.out.println("Setting");
+        Image image = new Image("file:resources/img.jpg");
+        System.out.println("Setting2");
+        ImagePattern pattern = new ImagePattern(image);
         pane.setStyle("-fx-background-color: transparent;");
-        scene.setFill(Color.BLACK);
+        scene.setFill(pattern);
+        System.out.println("Setting3");
     }
 
     public void setMenuScreen() {
