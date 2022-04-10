@@ -92,9 +92,7 @@ public class Game {
                     if (!writtenToFile) {
                         addScoreToScoreboard();
                     }
-                    this.stop();
-                    levelManager.resetGame();
-                    screen.setMenuScreen();
+                    System.exit(0);
                 }
             }
         }.start();

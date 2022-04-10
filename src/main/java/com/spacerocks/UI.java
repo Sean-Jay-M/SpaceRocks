@@ -46,6 +46,17 @@ public class UI {
     Text[] allUIElements = {scoreText, scoreValue, livesText, livesValue, crashText, nextLevelText, mainTitle,
                             scoreTitle, score1, score2, score3, score4, score5};
 
+
+    private Text[] allScoreTextElements = {scoreText, scoreValue, livesText, livesValue, crashText, nextLevelText};
+    private Text[] allHighScoreTextElements = {scoreTitle, score1, score2, score3, score4, score5};
+    private Text[] allMenuTextElements = {mainTitle};
+
+    private void setTextElement(Text[] textElements) {
+        for (Text textElement: textElements) {
+            screen.getPane().getChildren().add(textElement);
+        }
+    }
+
     public UI(Screen screen) {
         this.screen = screen;
         for (Text text: allUIElements) {
@@ -82,12 +93,7 @@ public class UI {
 
     public void initScoreUI() {
         clearScreen();
-        screen.getPane().getChildren().add(scoreText);
-        screen.getPane().getChildren().add(scoreValue);
-        screen.getPane().getChildren().add(livesText);
-        screen.getPane().getChildren().add(livesValue);
-        screen.getPane().getChildren().add(crashText);
-        screen.getPane().getChildren().add(nextLevelText);
+        setTextElement(allScoreTextElements);
         crashText.setVisible(false);
         nextLevelText.setVisible(false);
     }
@@ -100,12 +106,7 @@ public class UI {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        screen.getPane().getChildren().add(scoreTitle);
-        screen.getPane().getChildren().add(score1);
-        screen.getPane().getChildren().add(score2);
-        screen.getPane().getChildren().add(score3);
-        screen.getPane().getChildren().add(score4);
-        screen.getPane().getChildren().add(score5);
+        setTextElement(allHighScoreTextElements);
         screen.getPane().getChildren().add(highScoreExitButton);
 
     }
@@ -174,7 +175,7 @@ public class UI {
         mainTitle.setFill(Color.WHITE);
         mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
         initMenuButtons();
-        screen.getPane().getChildren().add(mainTitle);
+        setTextElement(allMenuTextElements);
     }
 
 
