@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.ui.presets;
 
 import javafx.scene.text.Text;
 

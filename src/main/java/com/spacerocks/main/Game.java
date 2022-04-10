@@ -1,5 +1,7 @@
-package com.spacerocks;
+package com.spacerocks.main;
 
+import com.spacerocks.gameobjects.*;
+import com.spacerocks.ui.ScoreBoardHandler;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 

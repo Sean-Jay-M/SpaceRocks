@@ -1,4 +1,5 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
+import com.spacerocks.main.Screen;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;

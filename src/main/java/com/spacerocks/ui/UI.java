@@ -1,5 +1,8 @@
-package com.spacerocks;
+package com.spacerocks.ui;
 
+import com.spacerocks.ui.presets.GameUIPreset;
+import com.spacerocks.ui.presets.HighScoreUIPreset;
+import com.spacerocks.ui.presets.MenuUIPreset;
 import javafx.scene.text.Text;
 
 public class UI {

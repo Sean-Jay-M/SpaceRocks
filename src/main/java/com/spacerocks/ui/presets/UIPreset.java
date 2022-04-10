@@ -1,5 +1,6 @@
-package com.spacerocks;
+package com.spacerocks.ui.presets;
 
+import com.spacerocks.main.Screen;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;

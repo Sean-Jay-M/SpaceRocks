@@ -4,6 +4,12 @@ module com.spacerocks.spacerocks {
     requires java.desktop;
 
 
-    opens com.spacerocks to javafx.fxml;
-    exports com.spacerocks;
+    exports com.spacerocks.ui;
+    opens com.spacerocks.ui to javafx.fxml;
+    exports com.spacerocks.ui.presets;
+    opens com.spacerocks.ui.presets to javafx.fxml;
+    exports com.spacerocks.main;
+    opens com.spacerocks.main to javafx.fxml;
+    exports com.spacerocks.gameobjects;
+    opens com.spacerocks.gameobjects to javafx.fxml;
 }

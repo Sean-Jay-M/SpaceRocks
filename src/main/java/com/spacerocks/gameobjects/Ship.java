@@ -1,10 +1,11 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
+import com.spacerocks.main.Screen;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
 
-import static com.spacerocks.Screen.getScreenWidth;
+import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class Ship extends GameObject {
     private boolean thrusting;

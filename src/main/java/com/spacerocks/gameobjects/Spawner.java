@@ -1,11 +1,6 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
-
-import java.util.ArrayList;
+import com.spacerocks.main.Screen;
 
 
 public class Spawner implements SpawnListener {

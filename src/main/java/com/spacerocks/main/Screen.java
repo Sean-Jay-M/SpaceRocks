@@ -1,8 +1,9 @@
-package com.spacerocks;
+package com.spacerocks.main;
+import com.spacerocks.gameobjects.Spawner;
+import com.spacerocks.ui.UI;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 

@@ -1,5 +1,6 @@
-package com.spacerocks;
+package com.spacerocks.ui.presets;
 
+import com.spacerocks.ui.ScoreBoardHandler;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 

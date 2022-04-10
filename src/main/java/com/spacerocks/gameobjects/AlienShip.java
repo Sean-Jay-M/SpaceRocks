@@ -1,11 +1,11 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
 
-import static com.spacerocks.Screen.getScreenHeight;
-import static com.spacerocks.Screen.getScreenWidth;
+import static com.spacerocks.main.Screen.getScreenHeight;
+import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class AlienShip extends GameObject {
     private int calls = 0;

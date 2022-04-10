@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.ui.presets;
 
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
