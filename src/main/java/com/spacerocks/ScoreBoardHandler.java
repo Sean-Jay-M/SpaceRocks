@@ -37,12 +37,15 @@ public class ScoreBoardHandler {
         StringBuilder buffer = new StringBuilder();
         Scanner scanner = new Scanner(scoreBoardEntries);
 
+        boolean newScoreInserted = false;
+
         for (int i = 0; i < 5; i++) {
             String currentScore = scanner.nextLine();
             System.out.println("The current score is " + currentScore);
-            if (Integer.parseInt(newScore) > Integer.parseInt(currentScore)) {
+            if (Integer.parseInt(newScore) > Integer.parseInt(currentScore) && !newScoreInserted) {
                 System.out.println("Adding new score " + currentScore);
                 buffer.append(newScore).append(System.lineSeparator());
+                newScoreInserted = true;
             }
             addExistingScore(buffer, scanner, currentScore);
         }
