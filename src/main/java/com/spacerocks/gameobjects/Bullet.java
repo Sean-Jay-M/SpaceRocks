@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
 import javafx.scene.shape.Polygon;
 

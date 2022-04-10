@@ -1,8 +1,9 @@
-package com.spacerocks;
+package com.spacerocks.main;
+import com.spacerocks.gameobjects.Spawner;
+import com.spacerocks.ui.UI;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
@@ -45,12 +46,11 @@ public class Screen {
         return screenInstance;
     }
 
-
     public void initScreen(Stage gameStage) {
         this.gameStage = gameStage;
         resetScreen();
         spawner = new Spawner(this);
-        ui = new UI(this);
+        ui = new UI();
         gameStage.setTitle("SpaceRocks");
         setDefaultScreenProperties();
         loadNewContent();
@@ -74,15 +74,15 @@ public class Screen {
     }
 
     public void setMenuScreen() {
-        if (game != null) { game = null; };
+        if (game != null) { game = null; }
         resetScreen();
-        ui.initMenuUI();
+        ui.getMenuUIPreset().setScreen();
         loadNewContent();
     }
 
     public void setGameScreen() {
         resetScreen();
-        ui.initScoreUI();
+        ui.getGameUIPreset().setScreen();
         loadNewContent();
         game = new Game(this);
         game.play();
@@ -90,7 +90,7 @@ public class Screen {
 
     public void setHighScoreScreen() {
         resetScreen();
-        ui.initHighScoreUI();
+        ui.getHighScoreUIPreset().setScreen();
         loadNewContent();
     }
 

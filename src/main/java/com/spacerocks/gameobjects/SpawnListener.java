@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
 interface SpawnListener {
     void onDespawn(GameObject gameObject);

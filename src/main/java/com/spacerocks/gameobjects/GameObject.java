@@ -1,6 +1,7 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
 //Import the relevant packages
+import com.spacerocks.main.Screen;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;

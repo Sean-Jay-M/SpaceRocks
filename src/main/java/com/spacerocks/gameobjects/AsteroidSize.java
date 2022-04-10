@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.gameobjects;
 
 // Enum containing all the constant variables relating to a particular asteroid size.
 public enum AsteroidSize {

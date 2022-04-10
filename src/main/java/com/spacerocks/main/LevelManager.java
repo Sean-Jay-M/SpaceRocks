@@ -1,4 +1,4 @@
-package com.spacerocks;
+package com.spacerocks.main;
 
 /*
 a Level object would be created when the game is started

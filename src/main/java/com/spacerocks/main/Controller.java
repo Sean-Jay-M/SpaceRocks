@@ -1,5 +1,7 @@
-package com.spacerocks;
+package com.spacerocks.main;
 
+import com.spacerocks.gameobjects.Bullet;
+import com.spacerocks.gameobjects.Ship;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import java.util.ArrayList;
