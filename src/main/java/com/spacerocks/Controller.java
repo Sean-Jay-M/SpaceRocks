@@ -38,6 +38,7 @@ public class Controller {
         initControls();
         readMovementKeys();
         readShootKey();
+        readHyperspaceKey();
     }
 
     private void initControls() {
@@ -101,9 +102,8 @@ public class Controller {
     }
     private void readHyperspaceKey(){
         if(tempPressedKeys.contains(shift)){
-            //add method that I'm gonna make
+            ship.hyperspaceJump();
         }
-
         tempPressedKeys.remove(shift);
     }
 
