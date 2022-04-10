@@ -29,7 +29,7 @@ public class Game {
 
     Spawner spawner;
     LevelManager levelManager = new LevelManager();
-    ScoreBoardHandler scoreBoardHandler = new ScoreBoardHandler();
+    ScoreBoardHandler scoreBoardHandler;
 
     public Game(Screen screen) {
         System.out.println("Starting new game");
@@ -39,6 +39,7 @@ public class Game {
         spawner = screen.getSpawner();
         shipController = new Controller(ship, screen);
         spawner.spawnGameObject(ship);
+        scoreBoardHandler = screen.getUI().getHighScoreUIPreset().getScoreBoardHandler();
         //spawner.spawnGameObject(alienShip);
         initNewAsteroids();
     }

@@ -11,6 +11,15 @@ public class MenuUIPreset extends UIPreset{
     private final Text mainTitle = new Text(110, 110, "SPACEROCKS");
     private final Text[] allTextElements = {mainTitle};
 
+    @Override
+    public void setScreen() {
+        clearScreen();
+        mainTitle.setFill(Color.WHITE);
+        mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
+        initMenuButtons();
+        setTextElement(allTextElements);
+    }
+
     public void initMenuButtons() {
         Button playButton = initMenuPlayButton();
         Button exitButton = initMenuExitButton();
@@ -43,14 +52,5 @@ public class MenuUIPreset extends UIPreset{
         highScoreButton.setTranslateY(290);
         highScoreButton.setOnAction(e -> screen.setHighScoreScreen());
         return highScoreButton;
-    }
-
-    @Override
-    public void setScreen() {
-        clearScreen();
-        mainTitle.setFill(Color.WHITE);
-        mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
-        initMenuButtons();
-        setTextElement(allTextElements);
     }
 }

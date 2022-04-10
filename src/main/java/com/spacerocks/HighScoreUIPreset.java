@@ -19,14 +19,9 @@ public class HighScoreUIPreset extends UIPreset {
     private final Text[] allTextElements = {scoreTitle, score1, score2, score3, score4, score5};
     private final Text[] scoreEntries = {score1, score2, score3, score4, score5};
 
-    private Button initHighScoreExitButton() {
-        Button highScoreExitButton = new Button("Back");
-        highScoreExitButton.setTranslateX(235);
-        highScoreExitButton.setTranslateY(320);
-        highScoreExitButton.setOnAction(e -> screen.setMenuScreen());
-        return highScoreExitButton;
+    public ScoreBoardHandler getScoreBoardHandler() {
+        return scoreBoardHandler;
     }
-
 
     @Override
     public void setScreen() {
@@ -39,5 +34,13 @@ public class HighScoreUIPreset extends UIPreset {
         }
         setTextElement(allTextElements);
         screen.getPane().getChildren().add(highScoreExitButton);
+    }
+
+    private Button initHighScoreExitButton() {
+        Button highScoreExitButton = new Button("Back");
+        highScoreExitButton.setTranslateX(235);
+        highScoreExitButton.setTranslateY(320);
+        highScoreExitButton.setOnAction(e -> screen.setMenuScreen());
+        return highScoreExitButton;
     }
 }
