@@ -4,6 +4,8 @@ import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
 
+import static com.spacerocks.Screen.getScreenWidth;
+
 public class Ship extends GameObject {
     private boolean thrusting;
     // save bullets in ship object
@@ -122,5 +124,10 @@ public class Ship extends GameObject {
 
     public double getRotateY() {
         return Math.sin(Math.toRadians(this.polygon.getRotate()));
+    }
+
+    public void hyperspaceJump(){
+        this.polygon.setTranslateX((int)(Math.random() * getScreenWidth()));
+        this.polygon.setTranslateY((int)(Math.random() * getScreenWidth()));
     }
 }
