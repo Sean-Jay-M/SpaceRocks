@@ -45,12 +45,11 @@ public class Screen {
         return screenInstance;
     }
 
-
     public void initScreen(Stage gameStage) {
         this.gameStage = gameStage;
         resetScreen();
         spawner = new Spawner(this);
-        ui = new UI(this);
+        ui = new UI();
         gameStage.setTitle("SpaceRocks");
         setDefaultScreenProperties();
         loadNewContent();
@@ -74,15 +73,15 @@ public class Screen {
     }
 
     public void setMenuScreen() {
-        if (game != null) { game = null; };
+        if (game != null) { game = null; }
         resetScreen();
-        ui.initMenuUI();
+        ui.getMenuUIPreset().setScreen();
         loadNewContent();
     }
 
     public void setGameScreen() {
         resetScreen();
-        ui.initScoreUI();
+        ui.getGameUIPreset().setScreen();
         loadNewContent();
         game = new Game(this);
         game.play();
@@ -90,7 +89,7 @@ public class Screen {
 
     public void setHighScoreScreen() {
         resetScreen();
-        ui.initHighScoreUI();
+        ui.getHighScoreUIPreset().setScreen();
         loadNewContent();
     }
 

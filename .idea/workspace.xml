@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Fixed issue with scores being written to file twice">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Refactored UI class to be modular">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/GameUIPreset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreUIPreset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/MenuUIPreset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UIPreset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UISetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/HighScoreHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/Screen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/Screen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/spacerocks/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +26,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -232,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649490944810</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Tweaks to UI class, generalised text inclusion">
+      <created>1649610798745</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1649610798745</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +298,8 @@
     <MESSAGE value="Back button works" />
     <MESSAGE value="Fixed issue with hitboxes" />
     <MESSAGE value="Fixed issue with scores being written to file twice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with scores being written to file twice" />
+    <MESSAGE value="Tweaks to UI class, generalised text inclusion" />
+    <MESSAGE value="Refactored UI class to be modular" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored UI class to be modular" />
   </component>
 </project>
