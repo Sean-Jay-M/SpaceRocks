@@ -24,7 +24,6 @@ public class Controller {
     final String left = "LEFT";
     final String right = "RIGHT";
     final String space = "SPACE";
-    final String shift = "SHIFT";
 
 
     public Controller(Ship ship, Screen screen) {
@@ -69,7 +68,7 @@ public class Controller {
             ship.shoot();
         }
         // to avoid the continuous bullets
-        tempPressedKeys.remove(space);
+        tempPressedKeys.clear();
     }
 
     private void showBulletOnScreen() {
@@ -98,14 +97,6 @@ public class Controller {
 
         ship.move();
         ship.moveBullets();
-    }
-
-    private void readHyperspaceKey(){
-        if(tempPressedKeys.contains(shift)){
-            //add method that I'm gonna make
-        }
-
-        tempPressedKeys.remove(shift);
     }
 
     public void resetShip(Ship ship) {
