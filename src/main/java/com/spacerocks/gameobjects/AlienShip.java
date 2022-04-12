@@ -1,5 +1,7 @@
 package com.spacerocks.gameobjects;
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -11,13 +13,15 @@ public class AlienShip extends GameObject {
     private int calls = 0;
     private final ArrayList<Bullet> bullets;
     private int bulletCalls = 0;
+    Image image = new Image("file:images/alienship.jpg");
+    ImagePattern pattern = new ImagePattern(image);
 
     public AlienShip() {
         super(new Polygon(-15, -15, 15, -15, 15, 15, -15, 15), 1);
             //AlienShip is a square for now with constant speed 2
         spawnX = (int)(Math.random() * getScreenWidth());
         spawnY = (int)(Math.random() * getScreenHeight());
-
+        polygon.setFill(pattern);
         bullets = new ArrayList<>();
     }
 

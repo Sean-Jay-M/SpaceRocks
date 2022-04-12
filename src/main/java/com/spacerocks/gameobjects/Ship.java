@@ -1,6 +1,8 @@
 package com.spacerocks.gameobjects;
 import com.spacerocks.main.Screen;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class Ship extends GameObject {
     private double swiftY;
     private boolean isInvincible = false;
     private int invincibilityTimer = 100;
+    Image image = new Image("file:images/spaceship.jpg");
+    ImagePattern pattern = new ImagePattern(image);
 
 
 
@@ -35,6 +39,7 @@ public class Ship extends GameObject {
         super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
         this.thrusting = false;
 
+        polygon.setFill(pattern);
         angle = 2;
         anchor = new Point2D(0, 0);
 

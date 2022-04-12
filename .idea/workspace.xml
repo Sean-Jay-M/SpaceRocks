@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added invincibility animation">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added rotating backgrounds">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Screen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/AlienShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/AlienShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +51,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.3954023" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -142,7 +150,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
       <workItem from="1649008356701" duration="20886000" />
-      <workItem from="1649779192631" duration="2973000" />
+      <workItem from="1649779192631" duration="5136000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -277,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649781142725</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added rotating backgrounds">
+      <created>1649782201770</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1649782201770</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +322,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Decoupling Controller, bug in bullet to be fixed" />
     <MESSAGE value="Despawn Listener has been implemented" />
     <MESSAGE value="Fixed bug with bullets appearing in the wrong place." />
     <MESSAGE value="Conforming with Java Google standard, removing redundant coordinates." />
@@ -332,6 +346,11 @@
     <MESSAGE value="Fixed high score bug" />
     <MESSAGE value="Transferred everything into packages" />
     <MESSAGE value="Added invincibility animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added invincibility animation" />
+    <MESSAGE value="Added rotating backgrounds" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added rotating backgrounds" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
