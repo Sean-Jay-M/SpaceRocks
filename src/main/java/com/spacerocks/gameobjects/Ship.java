@@ -15,6 +15,10 @@ public class Ship extends GameObject {
     private final double acceleration = 0.01;
     private double swiftX;
     private double swiftY;
+    private boolean isInvincible = false;
+    private int invincibilityTimer = 100;
+
+
 
     public int getTurnSpeedLeft() {
         return turnSpeedLeft;
@@ -69,6 +73,13 @@ public class Ship extends GameObject {
         return currentPosition.distance(projectedPosition);
     }
 
+    public void toggleInvincibility() {
+        isInvincible = !isInvincible;
+    }
+
+    public boolean getIsInvincible() {
+        return isInvincible;
+    }
 
     public void addBullet(Bullet bullet){
         bullets.add(bullet);
@@ -95,6 +106,31 @@ public class Ship extends GameObject {
             }
         }
     }
+
+    public void resetInvincibility() {
+        invincibilityTimer = 500;
+        isInvincible = false;
+    }
+
+    public void toggleVisibility() {
+        if (polygon.isVisible()) {
+            polygon.setVisible(false);
+        } else {
+            polygon.setVisible(true);
+        }
+    }
+
+    public void playInvincibilityAnimation() {
+        invincibilityTimer--;
+        if (invincibilityTimer % 10 == 0) {
+            toggleVisibility();
+        }
+
+        if (invincibilityTimer <= 0) {
+            resetInvincibility();
+        }
+    }
+
 
     public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
 
