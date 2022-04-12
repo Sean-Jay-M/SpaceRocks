@@ -3,17 +3,39 @@ package com.spacerocks.ui;
 import com.spacerocks.ui.presets.GameUIPreset;
 import com.spacerocks.ui.presets.HighScoreUIPreset;
 import com.spacerocks.ui.presets.MenuUIPreset;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 
 public class UI {
     private final GameUIPreset gameUIPreset;
     private final MenuUIPreset menuUIPreset;
     private final HighScoreUIPreset highScoreUIPreset;
+    private ImagePattern[] backgrounds;
+    private int currentBackground = 0;
+
 
     public UI() {
         gameUIPreset = new GameUIPreset();
         menuUIPreset = new MenuUIPreset();
         highScoreUIPreset = new HighScoreUIPreset();
+        initSpaceBackgrounds();
+    }
+
+    public ImagePattern getNextBackground() {
+        currentBackground++;
+        if (currentBackground == backgrounds.length) {
+            currentBackground = 0;
+        }
+        return backgrounds[currentBackground];
+    }
+
+    private void initSpaceBackgrounds() {
+        backgrounds = new ImagePattern[]{new ImagePattern(new Image("file:images/space1.jpg")),
+                                        new ImagePattern(new Image("file:images/space2.jpg")),
+                                        new ImagePattern(new Image("file:images/space3.jpg")),
+                                        new ImagePattern(new Image("file:images/space4.jpg")),
+                                        new ImagePattern(new Image("file:images/space5.jpg"))};
     }
 
     public GameUIPreset getGameUIPreset() {

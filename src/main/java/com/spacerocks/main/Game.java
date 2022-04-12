@@ -249,6 +249,7 @@ public class Game {
         removeCurrentBullets();
         ship.respawn();
         screen.getUI().toggleNextLevelText(false);
+        screen.setNextBackground();
     }
 
     public void pauseGame() {

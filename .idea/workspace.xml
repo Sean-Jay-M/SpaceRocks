@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Transferred everything into packages">
+    <list default="true" id="17cb191a-6e45-4301-87f1-472375c4f901" name="Changes" comment="Added invincibility animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/img.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/presets/MenuUIPreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/presets/MenuUIPreset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Screen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1649008355347</updated>
       <workItem from="1649008356701" duration="20886000" />
-      <workItem from="1649779192631" duration="1873000" />
+      <workItem from="1649779192631" duration="2973000" />
     </task>
     <task id="LOCAL-00009" summary="Fixed issue with asteroid wrapping.">
       <created>1649063189010</created>
@@ -269,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649618396463</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added invincibility animation">
+      <created>1649781142725</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1649781142725</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +307,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bug with continuous bullets with one ArrayList" />
     <MESSAGE value="Decoupling Controller, bug in bullet to be fixed" />
     <MESSAGE value="Despawn Listener has been implemented" />
     <MESSAGE value="Fixed bug with bullets appearing in the wrong place." />
@@ -324,6 +331,7 @@
     <MESSAGE value="Additional tweaks to make layout of UI nicer" />
     <MESSAGE value="Fixed high score bug" />
     <MESSAGE value="Transferred everything into packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transferred everything into packages" />
+    <MESSAGE value="Added invincibility animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added invincibility animation" />
   </component>
 </project>
