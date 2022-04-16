@@ -1,5 +1,7 @@
 package com.spacerocks.gameobjects;
 import com.spacerocks.main.Screen;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -14,6 +16,9 @@ public class Asteroid extends GameObject {
     // Constructor for asteroid. The first parameter is the size of the asteroid, which will then automatically
     // populate the super class' constructor with the appropriate x points, y points and speed values.
 
+    Image image = new Image("file:images/asteroid.jpg");
+    ImagePattern pattern = new ImagePattern(image);
+
     public static void moveAsteroids() {
         for (Asteroid asteroid: asteroids)
             asteroid.move();
@@ -25,6 +30,7 @@ public class Asteroid extends GameObject {
         rotate(random.nextDouble(1, 360));
         spawnX = calculateRandomSpawnX();
         spawnY = calculateRandomSpawnY();
+        polygon.setFill(pattern);
         asteroids.add(this);
     }
 
@@ -33,6 +39,7 @@ public class Asteroid extends GameObject {
         this.size = size;
         spawnX = currentAsteroidPosX;
         spawnY = currentAsteroidPosY;
+        polygon.setFill(pattern);
         rotate(random.nextDouble(1, 360));
         asteroids.add(this);
     }

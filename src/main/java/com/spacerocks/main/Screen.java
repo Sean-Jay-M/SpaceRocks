@@ -65,12 +65,16 @@ public class Screen {
         pane.setPrefSize(SCREEN_HEIGHT, SCREEN_WIDTH);
         //Use the fill function to set the background image. Set the image as a shape first.
         //System.out.println("Setting");
-        Image image = new Image("file:images/img.jpg");
+        Image image = new Image("file:images/space1.jpg");
         //System.out.println("Setting2");
         ImagePattern pattern = new ImagePattern(image);
         pane.setStyle("-fx-background-color: transparent;");
         scene.setFill(pattern);
         //System.out.println("Setting3");
+    }
+
+    public void setNextBackground() {
+        scene.setFill(ui.getNextBackground());
     }
 
     public void setMenuScreen() {

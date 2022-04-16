@@ -2,7 +2,6 @@ package com.spacerocks.main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Main extends Application {
@@ -15,6 +14,8 @@ public class Main extends Application {
 
     // Start method is the method that will launch the JavaFX application
     public void start(Stage gameStage) throws IOException {
+//        Media media = new Media("file:music/ost.mp3");
+//        MediaPlayer mediaPlayer
         Screen screen = Screen.getScreenInstance();
         screen.initScreen(gameStage);
         screen.setMenuScreen();

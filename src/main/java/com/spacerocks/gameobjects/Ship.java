@@ -1,6 +1,8 @@
 package com.spacerocks.gameobjects;
 import com.spacerocks.main.Screen;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
@@ -15,6 +17,12 @@ public class Ship extends GameObject {
     private final double acceleration = 0.01;
     private double swiftX;
     private double swiftY;
+    private boolean isInvincible = false;
+    private int invincibilityTimer = 100;
+    Image image = new Image("file:images/spaceship.jpg");
+    ImagePattern pattern = new ImagePattern(image);
+
+
 
     public int getTurnSpeedLeft() {
         return turnSpeedLeft;
@@ -31,6 +39,7 @@ public class Ship extends GameObject {
         super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
         this.thrusting = false;
 
+        polygon.setFill(pattern);
         angle = 2;
         anchor = new Point2D(0, 0);
 
@@ -69,6 +78,13 @@ public class Ship extends GameObject {
         return currentPosition.distance(projectedPosition);
     }
 
+    public void toggleInvincibility() {
+        isInvincible = !isInvincible;
+    }
+
+    public boolean getIsInvincible() {
+        return isInvincible;
+    }
 
     public void addBullet(Bullet bullet){
         bullets.add(bullet);
@@ -95,6 +111,31 @@ public class Ship extends GameObject {
             }
         }
     }
+
+    public void resetInvincibility() {
+        invincibilityTimer = 500;
+        isInvincible = false;
+    }
+
+    public void toggleVisibility() {
+        if (polygon.isVisible()) {
+            polygon.setVisible(false);
+        } else {
+            polygon.setVisible(true);
+        }
+    }
+
+    public void playInvincibilityAnimation() {
+        invincibilityTimer--;
+        if (invincibilityTimer % 10 == 0) {
+            toggleVisibility();
+        }
+
+        if (invincibilityTimer <= 0) {
+            resetInvincibility();
+        }
+    }
+
 
     public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
 

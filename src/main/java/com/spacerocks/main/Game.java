@@ -67,6 +67,11 @@ public class Game {
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
 
+                if (ship.getIsInvincible()) {
+                    ship.playInvincibilityAnimation();
+                }
+
+
                 if (isAlienSpawned) {
                     alienShip.move();
                     alienShip.changeDirection(); //every 100 calls this will change the angle of travel of the alien
@@ -86,9 +91,7 @@ public class Game {
                 }
 
                 // Note: UI manipulation and pausing have to be done and separate parts of the frame
-                if (shipHasCollided()) {
-                    screen.getUI().toggleCrashText(true);
-                } else if (asteroids.isEmpty()) {
+                if (asteroids.isEmpty()) {
                     screen.getUI().toggleNextLevelText(true);
                 }
                 if (lives == 0) {
@@ -120,6 +123,8 @@ public class Game {
 
     // TODO: Potentially figure out a way to move this to ship class
     private boolean shipHasCollided() {
+        if (ship.getIsInvincible()) return false;
+
         // detect ship collision with asteroid
         for (Asteroid asteroid: asteroids){
             if (ship.hasCollided(asteroid)){
@@ -211,20 +216,28 @@ public class Game {
     }
 
     public void resetLevel(AnimationTimer timer) {
-        pauseTimerForDuration(timer, pauseBetweenLevels);
-        pauseGame();
-        screen.getUI().setScoreValue(levelManager.getHighestScore());
+        ship.respawn();
+        if (ship.getIsInvincible()) {
+            ship.resetInvincibility();
+        }
+        ship.toggleInvincibility();
         if (lives > 0) {
             reduceLife();
         }
-        removeCurrentAsteroids();
-        removeCurrentBullets();
-        if (alienShip != null) {
-            despawnAlienShip();
-        }
-        initNewAsteroids();
-        ship.respawn();
-        screen.getUI().toggleCrashText(false);
+//        pauseTimerForDuration(timer, pauseBetweenLevels);
+//        pauseGame();
+//        screen.getUI().setScoreValue(levelManager.getHighestScore());
+//        if (lives > 0) {
+//            reduceLife();
+//        }
+//        removeCurrentAsteroids();
+//        removeCurrentBullets();
+//        if (alienShip != null) {
+//            despawnAlienShip();
+//        }
+//        initNewAsteroids();
+//        ship.respawn();
+//        screen.getUI().toggleCrashText(false);
     }
 
     public void nextLevel(AnimationTimer timer) {
@@ -236,6 +249,7 @@ public class Game {
         removeCurrentBullets();
         ship.respawn();
         screen.getUI().toggleNextLevelText(false);
+        screen.setNextBackground();
     }
 
     public void pauseGame() {

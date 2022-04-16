@@ -15,7 +15,7 @@ public class MenuUIPreset extends UIPreset{
     public void setScreen() {
         clearScreen();
         mainTitle.setFill(Color.WHITE);
-        mainTitle.setFont(Font.font("arial", FontWeight.BOLD, 40));
+        mainTitle.setFont(Font.font("ubuntu", FontWeight.BOLD, 40));
         initMenuButtons();
         setTextElement(allTextElements);
     }
