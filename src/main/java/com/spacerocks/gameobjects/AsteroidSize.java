@@ -59,13 +59,6 @@ public enum AsteroidSize {
          double ycenter = (y5 - y2) / 2;
     }
 
-    //return a speed
-
-    private double asteroidSpeed(double min, double max){
-        double shipSpeed = Math.random() * (max - min) + min;
-        return shipSpeed;
-    }
-
     AsteroidSize(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, double x5, double y5, double x6, double y6, double x7, double y7, double x8, double y8, double min, double max) {
         this.x1 = x1;
         this.y1 = y1;

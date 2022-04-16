@@ -24,6 +24,12 @@ public class Asteroid extends GameObject {
             asteroid.move();
     }
 
+    //return a speed
+    public double asteroidSpeed(double min, double max){
+        double shipSpeed = Math.random() * (max - min) + min;
+        return shipSpeed;
+    }
+
     public Asteroid(AsteroidSize size) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,size.y6, size.x7,size.y7,size.x8,size.y8), size.speed);
         this.size = size;
