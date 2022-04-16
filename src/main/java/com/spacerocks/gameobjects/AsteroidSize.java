@@ -2,7 +2,7 @@ package com.spacerocks.gameobjects;
 
 // Enum containing all the constant variables relating to a particular asteroid size.
 public enum AsteroidSize {
-    // Constant variables containing x coordinates, y coordinates and speed.
+    // Constant variables containing x coordinates, y coordinates. Also containing Max and Min Speed.
     BIG(    69/1.5, 25/1.5,
             131/1.5, 25/1.5,
             175/1.5, 69/1.5,
@@ -49,7 +49,8 @@ public enum AsteroidSize {
     final double y8;
 
 
-    final double speed;
+    final double min;
+    final double max;
 
     //Get the centers
     void AsteroidCenter(double x4, double x8, double y5, double y2){
