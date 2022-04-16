@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 
 public class MenuUIPreset extends UIPreset{
 
-    private final Text mainTitle = new Text(110, 110, "SPACEROCKS");
+    private final Text mainTitle = new Text(180, 110, "SPACEROCKS");
     private final Text[] allTextElements = {mainTitle};
 
     @Override
@@ -24,10 +24,12 @@ public class MenuUIPreset extends UIPreset{
         Button playButton = initMenuPlayButton();
         Button exitButton = initMenuExitButton();
         Button highScoreButton = initMenuHighScoreButton();
+        Button controlButton = initMenuControlButton();
 
         screen.getPane().getChildren().add(playButton);
         screen.getPane().getChildren().add(exitButton);
         screen.getPane().getChildren().add(highScoreButton);
+        screen.getPane().getChildren().add(controlButton);
     }
 
     private Button initMenuExitButton() {
@@ -41,7 +43,7 @@ public class MenuUIPreset extends UIPreset{
     private Button initMenuPlayButton() {
         Button playButton = new Button("Play Game");
         playButton.setTranslateX(215);
-        playButton.setTranslateY(260);
+        playButton.setTranslateY(230);
         playButton.setOnAction(e -> screen.setGameScreen());
         return playButton;
     }
@@ -52,5 +54,13 @@ public class MenuUIPreset extends UIPreset{
         highScoreButton.setTranslateY(290);
         highScoreButton.setOnAction(e -> screen.setHighScoreScreen());
         return highScoreButton;
+    }
+
+    private Button initMenuControlButton() {
+        Button controlButton = new Button("Control");
+        controlButton.setTranslateX(224);
+        controlButton.setTranslateY(260);
+        controlButton.setOnAction(e -> screen.setControlScreen());
+        return controlButton;
     }
 }

@@ -98,6 +98,12 @@ public class Screen {
         loadNewContent();
     }
 
+    public void setControlScreen() {
+        resetScreen();
+        ui.getControlUIPreset().setScreen();
+        loadNewContent();
+    }
+
     public void resetScreen() {
         pane = new Pane();
         scene = new Scene(pane);

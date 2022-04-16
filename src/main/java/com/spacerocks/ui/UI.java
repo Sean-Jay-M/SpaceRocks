@@ -1,5 +1,6 @@
 package com.spacerocks.ui;
 
+import com.spacerocks.ui.presets.ControlUIPreset;
 import com.spacerocks.ui.presets.GameUIPreset;
 import com.spacerocks.ui.presets.HighScoreUIPreset;
 import com.spacerocks.ui.presets.MenuUIPreset;
@@ -11,6 +12,7 @@ public class UI {
     private final GameUIPreset gameUIPreset;
     private final MenuUIPreset menuUIPreset;
     private final HighScoreUIPreset highScoreUIPreset;
+    private final ControlUIPreset controlUIPreset;
     private ImagePattern[] backgrounds;
     private int currentBackground = 0;
 
@@ -19,6 +21,7 @@ public class UI {
         gameUIPreset = new GameUIPreset();
         menuUIPreset = new MenuUIPreset();
         highScoreUIPreset = new HighScoreUIPreset();
+        controlUIPreset = new ControlUIPreset();
         initSpaceBackgrounds();
     }
 
@@ -48,6 +51,10 @@ public class UI {
 
     public HighScoreUIPreset getHighScoreUIPreset() {
         return highScoreUIPreset;
+    }
+
+    public ControlUIPreset getControlUIPreset(){
+        return controlUIPreset;
     }
 
     public void addScoreValue(int score) {
