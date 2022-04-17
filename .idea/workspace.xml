@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="Added Spawner comments">
+    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="Added Controller comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650211307959</updated>
-      <workItem from="1650211313769" duration="4294000" />
+      <workItem from="1650211313769" duration="4423000" />
     </task>
     <task id="LOCAL-00002" summary="Merged Asteroids-42">
       <created>1650211612663</created>
@@ -109,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650214695739</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Controller comments">
+      <created>1650215660848</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650215660848</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +149,7 @@
     <MESSAGE value="Refactoring gameobject class" />
     <MESSAGE value="Added Screen comments" />
     <MESSAGE value="Added Spawner comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Spawner comments" />
+    <MESSAGE value="Added Controller comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Controller comments" />
   </component>
 </project>
