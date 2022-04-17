@@ -12,7 +12,6 @@ public abstract class GameObject{
 
     protected final Polygon polygon;
     private double speed;
-    //initial spawning place
     protected double spawnX;
     protected double spawnY;
     protected int angle;

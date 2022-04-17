@@ -16,7 +16,7 @@ public class Game {
 
     Screen screen = Screen.getScreenInstance();
     Ship ship = new Ship();
-    Controller shipController = new Controller(ship, screen);
+    Controller shipController = new Controller(ship);
 
     AlienShip alienShip = new AlienShip();
     boolean isAlienSpawned = false;
