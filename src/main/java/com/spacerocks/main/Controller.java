@@ -39,7 +39,6 @@ public class Controller {
         initControls();
         readMovementKeys();
         readShootKey();
-        readHyperspaceKey();
     }
 
 
@@ -88,10 +87,15 @@ public class Controller {
     }
 
     // Reading the hyperspace key and ensuring we can only press it discretely (i.e. not continuously).
-    private void readHyperspaceKey(){
-        if(tempPressedKeys.contains(shift)){
+    public void readHyperspaceKey(){
             ship.activateHyperSpaceJump();
-        }
+    }
+
+    public boolean isShiftPressed(){
+        return tempPressedKeys.contains(shift);
+    }
+
+    public void removeShiftPress(){
         tempPressedKeys.remove(shift);
     }
 
