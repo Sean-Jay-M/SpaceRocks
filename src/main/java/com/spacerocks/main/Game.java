@@ -49,6 +49,7 @@ public class Game {
                     despawnAlienShip();
                     resetLevelPosition(this);
                 } else if (asteroids.isEmpty()) {
+                    despawnAlienShip();
                     nextLevel(this);
                 }
 
