@@ -10,13 +10,16 @@ import java.util.ArrayList;
 import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class Ship extends GameObject {
-    private boolean thrusting;
-    // save bullets in ship object
-    private ArrayList<Bullet> bullets;
+    // Bullets that the ship has fired
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+
+    // Variables relating to position of ship
     private final double maxSpeed = 1.5;
-    private final double acceleration = 0.01;
-    private double swiftX;
-    private double swiftY;
+    private double angularVelocityX;
+    private double angularVelocityY;
+    Point2D anchor = new Point2D(0, 0);
+
+    // Variables relating to invincibility mode
     private boolean isInvincible = false;
     private int invincibilityTimer = 100;
     Image image = new Image("file:images/spaceship.jpg");
@@ -24,76 +27,91 @@ public class Ship extends GameObject {
 
 
 
-    public int getTurnSpeedLeft() {
-        return turnSpeedLeft;
-    }
+    public int getTurnSpeedLeft() { return turnSpeedLeft; }
+    public int getTurnSpeedRight() { return turnSpeedRight; }
 
-    public int getTurnSpeedRight() {
-        return turnSpeedRight;
-    }
-
+    // Setting turn speed. Should remain consistent throughout the game.
     private final int turnSpeedLeft = -2;
     private final int turnSpeedRight = 2;
 
     public Ship() {
         super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
-        this.thrusting = false;
+
 
         polygon.setFill(pattern);
         angle = 2;
-        anchor = new Point2D(0, 0);
 
-        // Set spawn point to the middle of the screen
-        spawnX = 250;
-        spawnY = 250;
-
-        // change initial angle
+        // Set default position of ship
+        setSpawnX(250);
+        setSpawnY(250);
         this.turn(270);
-        bullets = new ArrayList<>();
     }
 
-    public void accelerate(){
-        swiftX = getRotateX() * 0.01;
-        swiftY = getRotateY() * 0.01;
-        Point2D speedPosition = new Point2D(swiftX, swiftY);
+    // METHODS RELATING TO MOVEMENT
 
-        if (getCurrentSpeed() <= maxSpeed) {
+    // Accelerate the ship.
+    public void accelerate(){
+        Point2D speedPosition = calculateNewPosition();
+
+        // If not at max speed, move to next position. If at max speed, stay at speed 1.5.
+        if (getSpeed() <= maxSpeed) {
             anchor = anchor.add(speedPosition);
         } else {
-            anchor = anchor.subtract(speedPosition).normalize().multiply(1.5);
+            anchor = anchor.subtract(speedPosition).normalize().multiply(maxSpeed);
         }
     }
 
-    private double getCurrentSpeed() {
+    // Calculating where the ship will be in the next frame.
+    private Point2D calculateNewPosition() {
+        angularVelocityX = getRotateX() * 0.01;
+        angularVelocityY = getRotateY() * 0.01;
+        return new Point2D(angularVelocityX, angularVelocityY);
+    }
+
+    // Overriding speed getter because it is tied to the current movement vector in reference to the angular velocity.
+    @Override
+    public double getSpeed() {
         Point2D currentPosition = new Point2D(this.polygon.getTranslateX(), this.polygon.getTranslateY());
         Point2D projectedPosition = new Point2D(this.polygon.getTranslateX() + anchor.getX(), this.polygon.getTranslateY() + anchor.getY());
         return currentPosition.distance(projectedPosition);
     }
 
-    public void toggleInvincibility() {
-        isInvincible = !isInvincible;
+    // Movement method overridden so that we can tie speed to angular velocity.
+    @Override
+    public void move(){
+        this.polygon.setTranslateX(this.polygon.getTranslateX() + anchor.getX());
+        this.polygon.setTranslateY(this.polygon.getTranslateY() + anchor.getY());
+
+        // stay in the window
+        super.checkInRange();
     }
 
-    public boolean getIsInvincible() {
-        return isInvincible;
-    }
+    // Using trigonometry to get rotation value, to be used to calculate angular velocity
+    public double getRotateX() { return Math.cos(Math.toRadians(this.polygon.getRotate())); }
+    public double getRotateY() { return Math.sin(Math.toRadians(this.polygon.getRotate())); }
 
-    public void addBullet(Bullet bullet){
-        bullets.add(bullet);
-    }
 
+    // METHODS RELATING TO SHOOTING
+
+    // Getter for all bullets
+    public ArrayList<Bullet> getBullets() { return bullets; }
+
+    // Add and remove bullets from array.
+    public void addBullet(Bullet bullet){ bullets.add(bullet); }
+    public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
+
+    // Create new bullet at appropriate position and speed and spawn into the environment.
     public void shoot() {
-        // create new bullet
-        double bulletSpeed = getCurrentSpeed() + 1.5;
+        double bulletSpeed = getSpeed() + 1.5;
         Bullet bullet = new Bullet((int)getCurrentXPosition(),(int)getCurrentYPosition(), bulletSpeed);
         bullet.getPolygon().setRotate(getPolygon().getRotate());
 
-        // add bullet to the arraylist in ship class
+        // Add bullet to the array in ship class.
         addBullet(bullet);
         Screen.getScreenInstance().getSpawner().spawnGameObject(bullet);
     }
 
-    // move all the bullets
+    // Ensure that the bullets in the scene are moving.
     public void moveBullets() {
         for (Bullet bullet: bullets) {
             bullet.move();
@@ -105,11 +123,18 @@ public class Ship extends GameObject {
         }
     }
 
+    //  METHODS RELATING TO INVINCIBILITY
+
+    public void toggleInvincibility() { isInvincible = !isInvincible; }
+    public boolean getIsInvincible() { return isInvincible; }
+
+    // Set invincibility off
     public void resetInvincibility() {
-        invincibilityTimer = 500;
+        invincibilityTimer = 100;
         isInvincible = false;
     }
 
+    // Toggle visibility on the ship on screen, to be used with invincibility animation.
     public void toggleVisibility() {
         if (polygon.isVisible()) {
             polygon.setVisible(false);
@@ -118,6 +143,7 @@ public class Ship extends GameObject {
         }
     }
 
+    // Flash ship on and off while player is invincible
     public void playInvincibilityAnimation() {
         invincibilityTimer--;
         if (invincibilityTimer % 10 == 0) {
@@ -129,13 +155,7 @@ public class Ship extends GameObject {
         }
     }
 
-
-    public void removeBullet(Bullet bullet) { bullets.remove(bullet); }
-
-    public ArrayList<Bullet> getBullets() {
-        return bullets;
-    }
-
+    // Respawn method will bring the ship back to the center of the screen.
     public void respawn(){
         anchor = new Point2D(0, 0);
         this.getPolygon().setTranslateX(spawnX);
@@ -144,23 +164,9 @@ public class Ship extends GameObject {
     }
 
 
-    @Override
-    public void move(){
-        this.polygon.setTranslateX(this.polygon.getTranslateX() + anchor.getX());
-        this.polygon.setTranslateY(this.polygon.getTranslateY() + anchor.getY());
 
-        // stay in the window
-        super.checkInRange();
-    }
-
-    public double getRotateX() {
-        return Math.cos(Math.toRadians(this.polygon.getRotate()));
-    }
-    public double getRotateY() {
-        return Math.sin(Math.toRadians(this.polygon.getRotate()));
-    }
-
-    public void hyperspaceJump(){
+    //  Setting coordinates for hyperspace jump
+    public void activateHyperSpaceJump(){
         this.polygon.setTranslateX((int)(Math.random() * getScreenWidth()));
         this.polygon.setTranslateY((int)(Math.random() * getScreenWidth()));
     }

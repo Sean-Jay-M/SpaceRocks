@@ -17,7 +17,7 @@ public class ScoreBoardHandler {
         writeRefreshedScoreBoardToFile(buffer);
     }
 
-    public void setHigHScoreFromText(Label[] textEntries) throws FileNotFoundException {
+    public void setHighScoreFromText(Label[] textEntries) throws FileNotFoundException {
         Scanner scanner = new Scanner(scoreBoardEntries);
         int entryCounter = 0;
 

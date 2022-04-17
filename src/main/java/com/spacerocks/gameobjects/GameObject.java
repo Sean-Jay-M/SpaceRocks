@@ -2,7 +2,6 @@ package com.spacerocks.gameobjects;
 
 //Import the relevant packages
 import com.spacerocks.main.Screen;
-import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -15,7 +14,6 @@ public abstract class GameObject{
     protected double spawnX;
     protected double spawnY;
     protected int angle;
-    protected Point2D anchor;
 
     //sets the variables for the game object
     public GameObject(Polygon polygon, double speed) {
@@ -32,9 +30,12 @@ public abstract class GameObject{
 
     //Getter for the spawn_x
     public double getSpawnX(){return spawnX;}
+    public double getSpawnY() {return spawnY;}
+
+    public void setSpawnX(double spawnX) { this.spawnX = spawnX; }
+    public void setSpawnY(double spawnY) { this.spawnY = spawnY; }
 
     //Getter for the spawn_y
-    public double getSpawnY() {return spawnY;}
 
     public double getCurrentXPosition() { return polygon.getTranslateX(); }
     public double getCurrentYPosition() { return polygon.getTranslateY(); }
@@ -78,7 +79,7 @@ public abstract class GameObject{
     }
 
     public boolean hasCollided(GameObject object){
-        //checks coordinates bounded by both objects and if there is overlap returns true
+        // Checks coordinates bounded by both objects and if there is overlap returns true
         // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
         Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
         return hitBox.getBoundsInLocal().getWidth() != -1;

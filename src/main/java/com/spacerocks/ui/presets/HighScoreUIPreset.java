@@ -40,7 +40,7 @@ public class HighScoreUIPreset extends UIPreset {
         score5.relocate(220,270);
         Button highScoreExitButton = initHighScoreExitButton();
         try {
-            scoreBoardHandler.setHigHScoreFromText(scoreEntries);
+            scoreBoardHandler.setHighScoreFromText(scoreEntries);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

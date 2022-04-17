@@ -10,14 +10,6 @@ public class LevelManager {
     private int level = 1;
     private int lives = 3;
 
-    public int getHighestScore() {
-        return highestScore;
-    }
-
-    public void setHighestScore(int highestScore) {
-        this.highestScore = highestScore;
-    }
-
     private int highestScore = 0;
     public void increaseLevel(){ //level can only be increased by one at a time (or reset)
         level++;

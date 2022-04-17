@@ -44,15 +44,12 @@ public class UI {
     public GameUIPreset getGameUIPreset() {
         return gameUIPreset;
     }
-
     public MenuUIPreset getMenuUIPreset() {
         return menuUIPreset;
     }
-
     public HighScoreUIPreset getHighScoreUIPreset() {
         return highScoreUIPreset;
     }
-
     public ControlUIPreset getControlUIPreset(){
         return controlUIPreset;
     }

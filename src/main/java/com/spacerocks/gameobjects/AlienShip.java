@@ -12,7 +12,6 @@ import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class AlienShip extends GameObject {
 
-
     private int calls = 0;
     private final ArrayList<Bullet> bullets;
     private int bulletCalls = 0;
@@ -22,8 +21,8 @@ public class AlienShip extends GameObject {
     public AlienShip() {
         super(new Polygon(-15, -15, 15, -15, 15, 15, -15, 15), 1);
             //AlienShip is a square for now with constant speed 2
-        spawnX = (int)(Math.random() * getScreenWidth());
-        spawnY = (int)(Math.random() * getScreenHeight());
+        setSpawnX((int)(Math.random() * getScreenWidth()));
+        setSpawnY((int)(Math.random() * getScreenHeight()));
         polygon.setFill(pattern);
         bullets = new ArrayList<>();
     }
@@ -70,7 +69,4 @@ public class AlienShip extends GameObject {
             }
         }
     }
-
-
-
 }

@@ -90,7 +90,7 @@ public class Controller {
     // Reading the hyperspace key and ensuring we can only press it discretely (i.e. not continuously).
     private void readHyperspaceKey(){
         if(tempPressedKeys.contains(shift)){
-            ship.hyperspaceJump();
+            ship.activateHyperSpaceJump();
         }
         tempPressedKeys.remove(shift);
     }
