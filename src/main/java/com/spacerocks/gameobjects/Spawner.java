@@ -3,7 +3,7 @@ package com.spacerocks.gameobjects;
 import com.spacerocks.main.Screen;
 
 
-public class Spawner implements SpawnListener {
+public class Spawner {
     //This class is responsible for handling the spawning of new objects
     Screen screen;
     public Spawner(Screen screen){
@@ -25,12 +25,6 @@ public class Spawner implements SpawnListener {
     private void drawGameObject(GameObject gameObject) {
         screen.getPane().getChildren().add(gameObject.getPolygon());
     }
-
-    @Override
-    public void onDespawn(GameObject gameObject) {
-        despawn(gameObject);
-    }
-
 
     //this removes the game object
     public void despawn(GameObject gameObject){

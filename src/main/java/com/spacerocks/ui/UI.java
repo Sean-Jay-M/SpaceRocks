@@ -76,18 +76,9 @@ public class UI {
         gameUIPreset.getLivesValue().setText("3");
     }
 
-    public void setScoreValue(int scoreValue) {
-        gameUIPreset.getScoreValue() .setText(Integer.toString(scoreValue));
-    }
-
     private int getTextValue(Label text) {
         return Integer.parseInt(text.getText());
     }
-
-    public void toggleCrashText(boolean on) {
-        gameUIPreset.getCrashText().setVisible(on);
-    }
-
     public void toggleNextLevelText(boolean on) {
         gameUIPreset.getNextLevelText().setVisible(on);
     }
