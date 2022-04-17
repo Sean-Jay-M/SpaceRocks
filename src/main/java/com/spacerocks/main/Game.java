@@ -54,6 +54,8 @@ public class Game {
                 }
 
                 shipController.readUserInput();
+                readHyperspaceJump();
+
                 ship.moveBullets();
 
                 Asteroid.moveAsteroids();
@@ -95,6 +97,23 @@ public class Game {
     
 
     // METHODS RELATING TO COLLISIONS
+
+    public void readHyperspaceJump(){
+        if(shipController.isShiftPressed()){ //if shift not pressed nothing happens
+            int i = 0;
+            do {
+                shipController.readHyperspaceKey();
+                i++;
+            } while (shipHasCollided() && i < 10); //attempt to find safe location up to 10 times
+
+            if (shipHasCollided()){ //if it never found a safe location move it anyway but start invincibility
+                ship.resetInvincibility();
+                ship.toggleInvincibility();
+            }
+
+            shipController.removeShiftPress(); //now that hyperspace jump is complete remove from pressed buttons
+        }
+    }
 
     private boolean shipHasCollided() {
         if (ship.getIsInvincible()) return false;
