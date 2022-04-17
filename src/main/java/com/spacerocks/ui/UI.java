@@ -66,8 +66,7 @@ public class UI {
         return Integer.parseInt(gameUIPreset.getScoreValue().getText());
     }
 
-    public void removeLife() {
-        int newLives = getTextValue(gameUIPreset.getLivesValue()) - 1;
+    public void updateLives(int newLives) {
         gameUIPreset.getLivesValue().setText(Integer.toString(newLives));
     }
 

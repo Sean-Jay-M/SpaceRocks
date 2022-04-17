@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="Added Main comments">
+    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="Tied bullet speed to speed of ship">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/ScoreBoardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/ScoreBoardHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

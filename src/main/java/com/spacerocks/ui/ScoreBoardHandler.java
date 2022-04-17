@@ -12,6 +12,7 @@ public class ScoreBoardHandler {
 
     public void refreshScoreBoard(String newScore) throws IOException {
         System.out.println("Refreshing scoreboard");
+        if (newScore.equals("0")) return;
         StringBuilder buffer = getRefreshedScoreBoard(newScore);
         writeRefreshedScoreBoardToFile(buffer);
     }

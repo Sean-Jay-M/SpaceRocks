@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    // TODO: Delete bullets after the ship is destroyed.
 
     Screen screen = Screen.getScreenInstance();
     Ship ship = new Ship();
@@ -28,16 +27,12 @@ public class Game {
 
     ArrayList<Asteroid> asteroids = Asteroid.asteroids;
 
-    int lives;
-
-
     Spawner spawner = screen.getSpawner();
     LevelManager levelManager = new LevelManager();
     ScoreBoardHandler scoreBoardHandler;
+    int scoreToAdd = 0;
 
     public Game() {
-        System.out.println("Starting new game");
-        lives = 3;
         screen.getUI().resetUIValues();
         spawner.spawnGameObject(ship);
         scoreBoardHandler = screen.getUI().getHighScoreUIPreset().getScoreBoardHandler();
@@ -46,11 +41,11 @@ public class Game {
 
     public void play(){
         // Starting new animation timer and setting up the controls inside to read user input continuously.
-
         new AnimationTimer() {
             @Override
             public void handle(long l) {
                 if (shipHasCollided()) {
+                    scoreToAdd = screen.getUI().getCurrentScoreValue();
                     despawnAlienShip();
                     resetLevel(this);
                 } else if (asteroids.isEmpty()) {
@@ -58,15 +53,14 @@ public class Game {
                 }
                 // Read keyboard keys from the user.
                 shipController.readUserInput();
-                // default speed of ship is 0, so the ship is moving all the time.
                 ship.moveBullets();
+
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
 
                 if (ship.getIsInvincible()) {
                     ship.playInvincibilityAnimation();
                 }
-
 
                 if (isAlienSpawned) {
                     alienShip.move();
@@ -90,7 +84,8 @@ public class Game {
                 if (asteroids.isEmpty()) {
                     screen.getUI().toggleNextLevelText(true);
                 }
-                if (lives == 0) {
+
+                if (levelManager.getLives() == 0) {
                     if (!writtenToFile) {
                         addScoreToScoreboard();
                     }
@@ -106,9 +101,8 @@ public class Game {
         alienSpawnCooldown = 500;
     }
 
-
     private void addScoreToScoreboard() {
-        String currentScore = Integer.toString(screen.getUI().getCurrentScoreValue());
+        String currentScore = Integer.toString(scoreToAdd);
         try {
             scoreBoardHandler.refreshScoreBoard(currentScore);
             writtenToFile = true;
@@ -117,50 +111,69 @@ public class Game {
         }
     }
 
-    // TODO: Potentially figure out a way to move this to ship class
     private boolean shipHasCollided() {
         if (ship.getIsInvincible()) return false;
+        if (shipHasCollidedWithAsteroid()) return true;
+        if (shipHasCollidedWithAlienBullet()) return true;
+        if (ship.hasCollided(alienShip)) return true;
+        return false;
+    }
 
-        // detect ship collision with asteroid
-        for (Asteroid asteroid: asteroids){
-            if (ship.hasCollided(asteroid)){
-                return true;
-            }
-        }
-        // detect ship collision with alien bullet
+    private boolean shipHasCollidedWithAlienBullet() {
         for (Bullet bullet: alienShip.getBullets()){
             if (ship.hasCollided(bullet)){
                 bullet.setUsed();
                 return true;
             }
         }
-        //detect ship collision with alien ship
-        if (ship.hasCollided(alienShip)){
-            return true;
+        return false;
+    }
+
+    private boolean shipHasCollidedWithAsteroid() {
+        for (Asteroid asteroid: asteroids){
+            if (ship.hasCollided(asteroid)){
+                return true;
+            }
         }
         return false;
     }
 
     private boolean alienHasCollided(){
-//        for (Asteroid asteroid: asteroids){
-//            if (alienShip.hasCollided(asteroid)){
-//                return true;
-//            }
-//        }
+        if (alienShipHasCollidedWithShipBullet()) return true;
+        if (alienShip.hasCollided(ship)) return true;
+        return false;
+    }
+
+    private boolean alienShipHasCollidedWithShipBullet() {
         for (Bullet bullet: ship.getBullets()){
             if (bullet.hasCollided(alienShip)){
                 bullet.setUsed();
                 return true;
             }
         }
-        if (alienShip.hasCollided(ship)){
-            return true;
-        }
         return false;
     }
 
 
-    // TODO: Potentially figure out a way to move this to bullet class
+    private void createNewAsteroidPieces(Asteroid asteroid) {
+        Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
+        Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
+        screen.getSpawner().spawnGameObject(newAsteroid1);
+        screen.getSpawner().spawnGameObject(newAsteroid2);
+    }
+
+    private void addToScore(Asteroid asteroid) {
+        if (asteroid.getSize() == AsteroidSize.BIG){
+            screen.getUI().addScoreValue(300);
+        }
+        if (asteroid.getSize() == AsteroidSize.MEDIUM){
+            screen.getUI().addScoreValue(200);
+        }
+        if (asteroid.getSize() == AsteroidSize.SMALL){
+            screen.getUI().addScoreValue(100);
+        }
+    }
+
     private void checkForBulletCollisionWithAsteroid() {
         // detect bullet collision with asteroid
         for (Bullet bullet: ship.getBullets()){
@@ -168,21 +181,9 @@ public class Game {
                 if (bullet.hasCollided(asteroid)){
                     bullet.setUsed();
                     spawner.despawnGameObject(bullet);
-                    // add the score
-                    if (asteroid.getSize() == AsteroidSize.BIG){
-                        screen.getUI().addScoreValue(300);
-                    }
-                    if (asteroid.getSize() == AsteroidSize.MEDIUM){
-                        screen.getUI().addScoreValue(200);
-                    }
-                    if (asteroid.getSize() == AsteroidSize.SMALL){
-                        screen.getUI().addScoreValue(100);
-                    }
+                    addToScore(asteroid);
                     if (asteroid.getSize() != AsteroidSize.SMALL) {
-                        Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
-                        Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
-                        screen.getSpawner().spawnGameObject(newAsteroid1);
-                        screen.getSpawner().spawnGameObject(newAsteroid2);
+                        createNewAsteroidPieces(asteroid);
                     }
                     asteroids.remove(asteroid);
                     screen.getSpawner().despawnGameObject(asteroid);
@@ -190,26 +191,8 @@ public class Game {
                 }
             }
         }
-        // check alien bullet collision with asteroid
-//        for (Bullet bullet: alienShip.getBullets()){
-//            for (Asteroid asteroid: asteroids){
-//                if (bullet.hasCollided(asteroid)){
-//                    bullet.setUsed();
-//                    spawner.despawn(bullet);
-//                    //removed getting points for alien ship shooting an asteroid
-//                    if (asteroid.getSize() != AsteroidSize.SMALL) {
-//                        Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
-//                        Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
-//                        screen.getSpawner().spawnGameObject(newAsteroid1);
-//                        screen.getSpawner().spawnGameObject(newAsteroid2);
-//                    }
-//                    asteroids.remove(asteroid);
-//                    screen.getSpawner().despawn(asteroid);
-//                    break;
-//                }
-//            }
-//        }
     }
+
 
     public void resetLevel(AnimationTimer timer) {
         ship.respawn();
@@ -217,23 +200,9 @@ public class Game {
             ship.resetInvincibility();
         }
         ship.toggleInvincibility();
-        if (lives > 0) {
+        if (levelManager.getLives() > 0) {
             reduceLife();
         }
-//        pauseTimerForDuration(timer, pauseBetweenLevels);
-//        pauseGame();
-//        screen.getUI().setScoreValue(levelManager.getHighestScore());
-//        if (lives > 0) {
-//            reduceLife();
-//        }
-//        removeCurrentAsteroids();
-//        removeCurrentBullets();
-//        if (alienShip != null) {
-//            despawnAlienShip();
-//        }
-//        initNewAsteroids();
-//        ship.respawn();
-//        screen.getUI().toggleCrashText(false);
     }
 
     public void nextLevel(AnimationTimer timer) {
@@ -242,7 +211,7 @@ public class Game {
         levelManager.updateHighestScore(screen.getUI().getCurrentScoreValue());
         levelManager.increaseLevel();
         initNewAsteroids();
-        removeCurrentBullets();
+        removeAllBulletsFromScreen();
         ship.respawn();
         screen.getUI().toggleNextLevelText(false);
         screen.setNextBackground();
@@ -257,18 +226,12 @@ public class Game {
     }
 
     private void reduceLife() {
-        screen.getUI().removeLife();
-        lives = lives - 1;
+        levelManager.reduceLife();
+        screen.getUI().updateLives(levelManager.getLives());
     }
 
-    public void removeCurrentAsteroids() {
-        for (Asteroid asteroid: asteroids) {
-            spawner.despawnGameObject(asteroid);
-        }
-        asteroids.clear();
-    }
 
-    public void removeCurrentBullets() {
+    public void removeAllBulletsFromScreen() {
         for (Bullet bullet: ship.getBullets()) {
             spawner.despawnGameObject(bullet);
         }
@@ -281,19 +244,18 @@ public class Game {
     private void initNewAsteroids() {
         for (int i = 0; i < levelManager.getLevel(); i++) {
             Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
-            bigAsteroid.rotate(random.nextDouble(10, 60));
+            bigAsteroid.turn(random.nextInt(0, 360));
             spawner.spawnGameObject(bigAsteroid);
         }
     }
 
-    void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
+    private void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
         PauseTransition pt = new PauseTransition(duration);
         pt.setOnFinished(event -> timer.start());
         timer.stop();
         pt.play();
     }
 
-    // TODO: Potentially figure out a better class for this method
     public void showAlienBulletOnScreen() {
         if (alienShip.checkBulletCooldown()){ //every 20 calls to the checkBulletCooldown creates a bullet
             Bullet bullet = new Bullet((int) alienShip.getCurrentXPosition(), (int) alienShip.getCurrentYPosition(), alienShip.getSpeed() + 1.0);
