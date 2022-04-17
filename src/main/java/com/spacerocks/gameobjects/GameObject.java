@@ -17,7 +17,6 @@ public abstract class GameObject{
     protected double spawnY;
     protected int angle;
     protected Point2D anchor;
-    static SpawnListener spawnListener;
 
     //sets the variables for the game object
     public GameObject(Polygon polygon, double speed) {
@@ -46,15 +45,6 @@ public abstract class GameObject{
         return speed;
     }
 
-    //Setter for the speed
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    //Turn the object
-//    public void turn(){
-//        this.polygon.setRotate(this.polygon.getRotate() + angle);
-//    }
     public void turn(int angle) { this.polygon.setRotate(this.polygon.getRotate() + angle); }
 
     //Move the object
@@ -94,7 +84,5 @@ public abstract class GameObject{
         Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
         return hitBox.getBoundsInLocal().getWidth() != -1;
     }
-
-    public void setSpawnListener(SpawnListener spawnListener) { this.spawnListener = spawnListener; }
 
 }

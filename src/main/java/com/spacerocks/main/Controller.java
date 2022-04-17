@@ -68,7 +68,6 @@ public class Controller {
 
     private void readShootKey() {
         if (tempPressedKeys.contains(space)) {
-            // Potentially refactor this using listeners
             ship.shoot();
         }
         // to avoid the continuous bullets
@@ -107,9 +106,5 @@ public class Controller {
             ship.hyperspaceJump();
         }
         tempPressedKeys.remove(shift);
-    }
-
-    public void resetShip(Ship ship) {
-        this.ship = ship;
     }
 }

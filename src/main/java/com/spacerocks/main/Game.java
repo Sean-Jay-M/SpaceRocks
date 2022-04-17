@@ -14,41 +14,37 @@ import java.util.Random;
 public class Game {
     // TODO: Delete bullets after the ship is destroyed.
 
-    Screen screen;
+    Screen screen = Screen.getScreenInstance();
     Ship ship = new Ship();
+    Controller shipController = new Controller(ship, screen);
+
     AlienShip alienShip = new AlienShip();
-    Controller shipController;
+    boolean isAlienSpawned = false;
+    int alienSpawnCooldown = 500;
+
     Random random = new Random();
     boolean writtenToFile = false;
     private final Duration pauseBetweenLevels = new Duration(1000);
 
-
     ArrayList<Asteroid> asteroids = Asteroid.asteroids;
 
     int lives;
-    boolean isAlienSpawned = false;
-    int alienSpawnCooldown = 500;
 
-    Spawner spawner;
+
+    Spawner spawner = screen.getSpawner();
     LevelManager levelManager = new LevelManager();
     ScoreBoardHandler scoreBoardHandler;
 
-    public Game(Screen screen) {
+    public Game() {
         System.out.println("Starting new game");
-        this.screen = screen;
         lives = 3;
         screen.getUI().resetUIValues();
-        spawner = screen.getSpawner();
-        shipController = new Controller(ship, screen);
         spawner.spawnGameObject(ship);
         scoreBoardHandler = screen.getUI().getHighScoreUIPreset().getScoreBoardHandler();
-        //spawner.spawnGameObject(alienShip);
         initNewAsteroids();
     }
 
     public void play(){
-        // Set add listener to spawner to check if bullets need to be deleted
-        ship.setSpawnListener(screen.getSpawner());
         // Starting new animation timer and setting up the controls inside to read user input continuously.
 
         new AnimationTimer() {

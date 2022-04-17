@@ -13,16 +13,12 @@ public class Screen {
     private static final int SCREEN_WIDTH = 500;
     private static final int SCREEN_HEIGHT = 500;
 
-    // I added "final" to these because IntelliJ suggested it. If we ended up
-    // using more JavaFX elements we can remove this.
     private Stage gameStage;
     //Pane Creation
     private Pane pane;
     private Scene scene;
     private UI ui;
     private Spawner spawner;
-    // css
-    private String css;
     //Getter for the screen Width
     public static int getScreenWidth(){
         return SCREEN_WIDTH;
@@ -90,7 +86,7 @@ public class Screen {
         resetScreen();
         ui.getGameUIPreset().setScreen();
         loadNewContent();
-        game = new Game(this);
+        game = new Game();
         game.play();
     }
 

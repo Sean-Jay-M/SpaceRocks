@@ -106,7 +106,7 @@ public class Ship extends GameObject {
             bullet.move();
             if (bullet.isDecayed()) {
                 removeBullet(bullet);
-                if (spawnListener != null) spawnListener.onDespawn(bullet);
+                Screen.getScreenInstance().getSpawner().despawn(bullet);
                 break;
             }
         }
@@ -163,7 +163,6 @@ public class Ship extends GameObject {
     public double getRotateX() {
         return Math.cos(Math.toRadians(this.polygon.getRotate()));
     }
-
     public double getRotateY() {
         return Math.sin(Math.toRadians(this.polygon.getRotate()));
     }

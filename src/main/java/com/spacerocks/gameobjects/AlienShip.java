@@ -1,5 +1,6 @@
 package com.spacerocks.gameobjects;
 
+import com.spacerocks.main.Screen;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
@@ -10,6 +11,8 @@ import static com.spacerocks.main.Screen.getScreenHeight;
 import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class AlienShip extends GameObject {
+
+
     private int calls = 0;
     private final ArrayList<Bullet> bullets;
     private int bulletCalls = 0;
@@ -62,7 +65,7 @@ public class AlienShip extends GameObject {
             bullet.move();
             if (bullet.isDecayed()) {
                 removeBullet(bullet);
-                if (spawnListener != null) spawnListener.onDespawn(bullet);
+                Screen.getScreenInstance().getSpawner().despawn(bullet);
                 break;
             }
         }
