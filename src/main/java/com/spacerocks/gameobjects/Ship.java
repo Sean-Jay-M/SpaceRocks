@@ -43,21 +43,13 @@ public class Ship extends GameObject {
         angle = 2;
         anchor = new Point2D(0, 0);
 
-        //Half screen later
+        // Set spawn point to the middle of the screen
         spawnX = 250;
         spawnY = 250;
 
         // change initial angle
         this.turn(270);
         bullets = new ArrayList<>();
-    }
-
-    public boolean isThrusting() {
-        return thrusting;
-    }
-
-    public void setThrusting(boolean thrusting) {
-        this.thrusting = thrusting;
     }
 
     public void accelerate(){
@@ -92,7 +84,8 @@ public class Ship extends GameObject {
 
     public void shoot() {
         // create new bullet
-        Bullet bullet = new Bullet((int)getCurrentXPosition(),(int)getCurrentYPosition(), getSpeed() + 2.0);
+        double bulletSpeed = getCurrentSpeed() + 1.5;
+        Bullet bullet = new Bullet((int)getCurrentXPosition(),(int)getCurrentYPosition(), bulletSpeed);
         bullet.getPolygon().setRotate(getPolygon().getRotate());
 
         // add bullet to the arraylist in ship class
