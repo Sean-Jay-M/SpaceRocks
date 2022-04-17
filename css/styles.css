@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.root{
+    -fx-font-family: 'Permanent Marker', cursive;
+    -fx-text-background-color: #FFFFFF;
+}
+
+// modified from http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+.button {
+    -fx-pref-height: 14px;
+    -fx-pref-width: 100px;
+    -fx-background-color:
+            #B2B1B9,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+        -fx-background-radius: 5,4,3,5;
+        -fx-background-insets: 0,1,2,0;
+        -fx-text-fill: white;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-text-fill: linear-gradient(white, #d0d0d0);
+        -fx-font-size: 12px;
+}
+
+.button:hover {
+    -fx-background-color: #2C2E43;
+}
+
+#mainTitle{
+    -fx-font-size: 65px;
+}
+
+#sub-title{
+    -fx-font-size: 30px;
+}
+
+#menu_content{
+    -fx-font-size: 20px;
+}
+
+#game_content{
+    -fx-font-size: 30px;
+}
