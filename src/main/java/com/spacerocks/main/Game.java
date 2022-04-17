@@ -101,7 +101,7 @@ public class Game {
     }
 
     private void despawnAlienShip() {
-        spawner.despawn(alienShip);
+        spawner.despawnGameObject(alienShip);
         isAlienSpawned = false;
         alienSpawnCooldown = 500;
     }
@@ -167,7 +167,7 @@ public class Game {
             for (Asteroid asteroid: asteroids){
                 if (bullet.hasCollided(asteroid)){
                     bullet.setUsed();
-                    spawner.despawn(bullet);
+                    spawner.despawnGameObject(bullet);
                     // add the score
                     if (asteroid.getSize() == AsteroidSize.BIG){
                         screen.getUI().addScoreValue(300);
@@ -185,7 +185,7 @@ public class Game {
                         screen.getSpawner().spawnGameObject(newAsteroid2);
                     }
                     asteroids.remove(asteroid);
-                    screen.getSpawner().despawn(asteroid);
+                    screen.getSpawner().despawnGameObject(asteroid);
                     break;
                 }
             }
@@ -263,17 +263,17 @@ public class Game {
 
     public void removeCurrentAsteroids() {
         for (Asteroid asteroid: asteroids) {
-            spawner.despawn(asteroid);
+            spawner.despawnGameObject(asteroid);
         }
         asteroids.clear();
     }
 
     public void removeCurrentBullets() {
         for (Bullet bullet: ship.getBullets()) {
-            spawner.despawn(bullet);
+            spawner.despawnGameObject(bullet);
         }
         for (Bullet bullet: alienShip.getBullets()) {
-            spawner.despawn(bullet);
+            spawner.despawnGameObject(bullet);
         }
         ship.getBullets().clear();
     }

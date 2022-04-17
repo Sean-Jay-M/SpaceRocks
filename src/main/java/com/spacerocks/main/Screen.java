@@ -2,7 +2,6 @@
 package com.spacerocks.main;
 
 // Importing necessary local packages.
-import com.spacerocks.gameobjects.Spawner;
 import com.spacerocks.ui.UI;
 
 // Importing necessary JavaFX elements.
@@ -69,7 +68,7 @@ public class Screen {
     // Initiating local variables by creating, or assigning, the relevant components.
     private void initJavaFXElements(Stage gameStage) {
         this.gameStage = gameStage;
-        this.spawner = new Spawner(this);
+        this.spawner = new Spawner();
         this.ui = new UI();
     }
 

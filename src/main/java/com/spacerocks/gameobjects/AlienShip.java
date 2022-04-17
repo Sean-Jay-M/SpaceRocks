@@ -65,7 +65,7 @@ public class AlienShip extends GameObject {
             bullet.move();
             if (bullet.isDecayed()) {
                 removeBullet(bullet);
-                Screen.getScreenInstance().getSpawner().despawn(bullet);
+                Screen.getScreenInstance().getSpawner().despawnGameObject(bullet);
                 break;
             }
         }
