@@ -28,16 +28,22 @@ public abstract class GameObject{
         return polygon;
     }
 
-    //Getter for the spawn_x
+    //Getter for the spawnX
     public double getSpawnX(){return spawnX;}
+
+    //Getter for the spawnY
     public double getSpawnY() {return spawnY;}
 
+    //Setter for the spawnX
     public void setSpawnX(double spawnX) { this.spawnX = spawnX; }
+
+    //Setter for the spawnY
     public void setSpawnY(double spawnY) { this.spawnY = spawnY; }
 
-    //Getter for the spawn_y
-
+    //Getter for the currentX
     public double getCurrentXPosition() { return polygon.getTranslateX(); }
+
+    //Getter for the currentY
     public double getCurrentYPosition() { return polygon.getTranslateY(); }
 
     //Getter for the speed
@@ -45,10 +51,13 @@ public abstract class GameObject{
         return speed;
     }
 
+    //Rotate the object
     public void turn(int angle) { this.polygon.setRotate(this.polygon.getRotate() + angle); }
 
     //Move the object
     public void move(){
+        // Direction and movement is according to the angle and speed
+        // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
         double swiftX = Math.cos(Math.toRadians(this.polygon.getRotate()));
         double swiftY = Math.sin(Math.toRadians(this.polygon.getRotate()));
 
@@ -61,25 +70,29 @@ public abstract class GameObject{
 
     //Check if object is in range
     protected void checkInRange(){
+        // if the object's width is below 0, it will show up in the opposite.
         if (this.polygon.getBoundsInParent().getCenterX() < 0) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() + Screen.getScreenWidth());
         }
 
+        // if the object's width is above screen's width, it will show up in the opposite.
         if (this.polygon.getBoundsInParent().getCenterX() > Screen.getScreenWidth()) {
             this.polygon.setTranslateX(this.polygon.getTranslateX() % Screen.getScreenWidth());
         }
 
+        // if the object's height is below 0, it will show up in the opposite.
         if (this.polygon.getBoundsInParent().getCenterY() < 0) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() + Screen.getScreenHeight());
         }
 
+        // if the object's height is above screen's height, it will show up in the opposite.
         if (this.polygon.getBoundsInParent().getCenterY() > Screen.getScreenHeight()) {
             this.polygon.setTranslateY(this.polygon.getTranslateY() % Screen.getScreenHeight());
         }
     }
 
     public boolean hasCollided(GameObject object){
-        // Checks coordinates bounded by both objects and if there is overlap returns true
+        // Check coordinates bounded by both objects and if there is overlap returns true
         // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
         Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
         return hitBox.getBoundsInLocal().getWidth() != -1;

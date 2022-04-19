@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-
+    // initialize game objects
     Screen screen = Screen.getScreenInstance();
     Ship ship = new Ship();
     Controller shipController = new Controller(ship);
@@ -46,9 +46,11 @@ public class Game {
             public void handle(long l) {
                 // Check if ship has collided, in which case
                 if (shipHasCollided()) {
+                    // remove the alien ship
                     despawnAlienShip();
                     resetLevelPosition(this);
                 } else if (asteroids.isEmpty()) {
+                    // remove the alien ship
                     despawnAlienShip();
                     nextLevel(this);
                 }
@@ -56,12 +58,16 @@ public class Game {
                 shipController.readUserInput();
                 readHyperspaceJump();
 
+                // keep all bullets moving
                 ship.moveBullets();
 
+                // keep all asteroids moving
                 Asteroid.moveAsteroids();
                 checkForBulletCollisionWithAsteroid();
 
+                // check whether the ship is invincible
                 if (ship.getIsInvincible()) {
+                    // show the animation
                     ship.playInvincibilityAnimation();
                 }
 
@@ -97,7 +103,6 @@ public class Game {
     
 
     // METHODS RELATING TO COLLISIONS
-
     public void readHyperspaceJump(){
         if(shipController.isShiftPressed()){ //if shift not pressed nothing happens
             int i = 0;
@@ -190,7 +195,6 @@ public class Game {
 
 
     // METHODS RELATING TO ADDING / REMOVING OBJECTS TO SCREEN
-
     public void removeAllBulletsFromScreen() {
         for (Bullet bullet: ship.getBullets()) {
             spawner.despawnGameObject(bullet);
@@ -201,6 +205,7 @@ public class Game {
         ship.getBullets().clear();
     }
 
+    // initialize new asteroids
     private void initNewAsteroids() {
         for (int i = 0; i < levelManager.getLevel(); i++) {
             Asteroid bigAsteroid = new Asteroid(AsteroidSize.BIG);
@@ -227,9 +232,7 @@ public class Game {
         }
     }
 
-
     // METHODS RELATING TO UI
-
     private void addToScore(Asteroid asteroid) {
         if (asteroid.getSize() == AsteroidSize.BIG){
             screen.getUI().addScoreValue(300);
@@ -254,7 +257,6 @@ public class Game {
 
 
     // METHODS RELATING TO LEVEL MANAGEMENT
-
     public void resetLevelPosition(AnimationTimer timer) {
         ship.respawn();
         if (ship.getIsInvincible()) {
@@ -278,6 +280,7 @@ public class Game {
         screen.setNextBackground();
     }
 
+    // reduce life
     private void reduceLife() {
         levelManager.reduceLife();
         screen.getUI().updateLives(levelManager.getLives());
