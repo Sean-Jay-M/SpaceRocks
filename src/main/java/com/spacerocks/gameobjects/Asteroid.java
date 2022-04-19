@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Asteroid extends GameObject {
 
-    public static ArrayList<Asteroid> asteroids = new ArrayList<>(); //create list to contain the asteroids
+    public static ArrayList<Asteroid> asteroids = new ArrayList<>(); //create list to keep track of the asteroids
 
     AsteroidSize size;
     Random random = new Random(); //random object to be used for choosing asteroid spawn coordinates
@@ -26,14 +26,15 @@ public class Asteroid extends GameObject {
                             size.x4,size.y4,size.x5,size.y5,size.x6,
                             size.y6, size.x7,size.y7,size.x8,size.y8), (Math.random() * (size.max - size.min) + size.min));
         this.size = size;
-        super.turn(random.nextInt(1, 360));
+        super.turn(random.nextInt(1, 360)); //turns in a random direction
         spawnX = calculateRandomSpawnX();
         spawnY = calculateRandomSpawnY();
         polygon.setFill(pattern);
-        asteroids.add(this);
+        asteroids.add(this); //add this asteroid to list of asteroids
     }
 
     public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
+        //this constructor is to be used when a previous asteroid is destroyed and needs to split into 2 other asteroids
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,
                             size.y6, size.x7,size.y7,size.x8,size.y8), (Math.random() * (size.max - size.min) + size.min));
         this.size = size;
@@ -58,7 +59,7 @@ public class Asteroid extends GameObject {
         double rangeMax = Screen.getScreenWidth();
         double randomDouble = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
         if ((randomDouble > ((Screen.getScreenWidth() /2) - 120)) && (randomDouble < ((Screen.getScreenWidth() /2) + 120))){
-            randomDouble = setInRange(randomDouble);
+            randomDouble = setInRange(randomDouble); //to prevent an asteroid spawning on top of the ship
       }
         return randomDouble;
     }
@@ -74,12 +75,12 @@ public class Asteroid extends GameObject {
         return randomDouble;
     }
 
-    // Sets the random double into a specified range
+    // Sets the random double into a specified range when it would have spawned on the ship
     private double setInRange(double randomDouble) {
         int max = 1;
         int min = 0;
         int randomInt = (int)Math.floor(Math.random()*(max-min+1)+min);
-        if(randomInt == 1){
+        if(randomInt == 1){ //change previously generated spawn coord by +150 or -150 pixels
             randomDouble += 150;
         } else if (randomInt == 0) {
             randomDouble -= 150;
@@ -88,9 +89,9 @@ public class Asteroid extends GameObject {
     }
 
     public static Asteroid getAsteroidPieces(Asteroid asteroid) {
-        if (asteroid.getSize() == AsteroidSize.BIG) {
+        if (asteroid.getSize() == AsteroidSize.BIG) { // if asteroid that split is big then turn into 2 medium
             return new Asteroid(AsteroidSize.MEDIUM, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
-        }
+        } // if asteroid that split is medium then turn into 2 small
         return new Asteroid(AsteroidSize.SMALL, asteroid.getCurrentXPosition(), asteroid.getCurrentYPosition());
     }
 
