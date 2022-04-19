@@ -2,6 +2,9 @@ package com.spacerocks.ui.presets;
 
 import javafx.scene.control.Label;
 
+// Note: this is a UI present. Its structure is identical to the others, and its
+// responsibility is to generate the UI text and buttons and package them
+// in a "setScreen" method that needs to be implemented via an interface.
 public class GameUIPreset extends UIPreset {
 
     private final Label scoreText = new Label("Score:");

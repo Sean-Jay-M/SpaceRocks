@@ -21,6 +21,10 @@ public class Asteroid extends GameObject {
             asteroid.move();
     }
 
+    // Note: We use overloaded constructors depending on whether the asteroid is new, or spawned as a result of an
+    // existing asteroid being destroyed.
+
+    // Constructor for creating asteroid based on size exclusively
     public Asteroid(AsteroidSize size) {
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3, //creates GameObject with random speed within a range
                             size.x4,size.y4,size.x5,size.y5,size.x6,
@@ -33,6 +37,7 @@ public class Asteroid extends GameObject {
         asteroids.add(this); //add this asteroid to list of asteroids
     }
 
+    // Constructor for creating asteroid in a particular position
     public Asteroid(AsteroidSize size, double currentAsteroidPosX, double currentAsteroidPosY) {
         //this constructor is to be used when a previous asteroid is destroyed and needs to split into 2 other asteroids
         super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,size.x4,size.y4,size.x5,size.y5,size.x6,

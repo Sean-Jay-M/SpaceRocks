@@ -3,6 +3,9 @@ package com.spacerocks.ui.presets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+// Note: this is a UI present. Its structure is identical to the others, and its
+// responsibility is to generate the UI text and buttons and package them
+// in a "setScreen" method that needs to be implemented via an interface.
 public class MenuUIPreset extends UIPreset{
 
     private final Label mainTitle = new Label("SPACEROCKS");

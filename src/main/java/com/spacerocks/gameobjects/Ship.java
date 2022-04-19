@@ -37,7 +37,6 @@ public class Ship extends GameObject {
     public Ship() {
         super(new Polygon(-10, -10, 20, 0, -10, 10), 0);
 
-
         polygon.setFill(pattern);
         angle = 2;
 
@@ -77,6 +76,8 @@ public class Ship extends GameObject {
     }
 
     // Movement method overridden so that we can tie speed to angular velocity.
+    // Movement working via 2D anchor point source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
+    // The above source allowed us to more easily tie the movement to angular velocity than if we were just using getTranslate.
     @Override
     public void move(){
         this.polygon.setTranslateX(this.polygon.getTranslateX() + anchor.getX());

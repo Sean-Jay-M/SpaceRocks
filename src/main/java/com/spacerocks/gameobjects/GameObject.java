@@ -68,7 +68,8 @@ public abstract class GameObject{
         checkInRange();
     }
 
-    //Check if object is in range
+    // Check if object is in range
+    // Source for Implementation of Looping Objects:  https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
     protected void checkInRange(){
         // if the object's width is below 0, it will show up in the opposite.
         if (this.polygon.getBoundsInParent().getCenterX() < 0) {
@@ -95,6 +96,9 @@ public abstract class GameObject{
         // Check coordinates bounded by both objects and if there is overlap returns true
         // Source: https://java-programming.mooc.fi/part-14/3-larger-application-asteroids
         Shape hitBox = Shape.intersect(this.polygon, object.getPolygon());
+
+        // By setting the hitbox to the width, we get a significantly more accurate measurement.
+        // Hitboxes without perform quite poorly.
         return hitBox.getBoundsInLocal().getWidth() != -1;
     }
 

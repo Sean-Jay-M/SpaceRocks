@@ -5,6 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.io.FileNotFoundException;
 
+// Note: this is a UI present. Its structure is identical to the others, and its
+// responsibility is to generate the UI text and buttons and package them
+// in a "setScreen" method that needs to be implemented via an interface.
 public class HighScoreUIPreset extends UIPreset {
 
     private final ScoreBoardHandler scoreBoardHandler = new ScoreBoardHandler();

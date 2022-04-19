@@ -11,27 +11,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+// This class is responsible for the overall running of the game.
+// It contains the game logic, and shows how the various components of the game will
+// interact.
 public class Game {
-    // initialize game objects
+
+    // Initialise variables and components necessary for running of the game.
+    // This includes a reference to the screen instance.
     Screen screen = Screen.getScreenInstance();
     Ship ship = new Ship();
     Controller shipController = new Controller(ship);
 
+    // Variables relating to the alien ship
     AlienShip alienShip = new AlienShip();
     boolean isAlienSpawned = false;
     int alienSpawnCooldown = 500;
 
+    // Static reference to all asteroids that have been created
+    ArrayList<Asteroid> asteroids = Asteroid.asteroids;
+
+    // Miscellaneous components relating to the running of the game
+    Spawner spawner = screen.getSpawner();
+    LevelManager levelManager = new LevelManager();
+    ScoreBoardHandler scoreBoardHandler;
+
+    // This figure represents the "in progress" score in the level.
+    // If the player dies without finishing the level, this will go into
+    // the high score (if high enough)
+    int scoreToAdd = 0;
+
+    // Miscellaneous variables, including
     Random random = new Random();
     boolean writtenToFile = false;
     private final Duration pauseBetweenLevels = new Duration(1000);
 
-    ArrayList<Asteroid> asteroids = Asteroid.asteroids;
-
-    Spawner spawner = screen.getSpawner();
-    LevelManager levelManager = new LevelManager();
-    ScoreBoardHandler scoreBoardHandler;
-    int scoreToAdd = 0;
-
+    // Constructor that initialises the game and sets certain values
     public Game() {
         screen.getUI().resetUIValues();
         spawner.spawnGameObject(ship);
@@ -39,12 +53,15 @@ public class Game {
         initNewAsteroids();
     }
 
+    // This method represents the actual playing of the game. It should be called whenever the game starts.
     public void play(){
         // Starting new animation timer and setting up the controls inside to read user input continuously.
         new AnimationTimer() {
             @Override
             public void handle(long l) {
 
+                // We deal with any significant events relating to the game at the start of each loop.
+                // This includes events such as game over, or the player moving on to a new level.
                 if (levelManager.getLives() == 0) {
                     saveAndExit();
                 }
@@ -77,6 +94,7 @@ public class Game {
                     ship.playInvincibilityAnimation();
                 }
 
+                // Alien behaviour
                 if (isAlienSpawned) {
                     alienShip.move();
                     alienShip.changeDirection(); //every 100 calls this will change the angle of travel of the alien
@@ -95,7 +113,7 @@ public class Game {
                     }
                 }
 
-                // Note: UI manipulation and pausing have to be done and separate parts of the frame
+                // All UI manipulation was included at the bottom of each loop for convenience.
                 if (asteroids.isEmpty()) {
                     screen.getUI().toggleNextLevelText(true);
                 }
@@ -107,6 +125,10 @@ public class Game {
         }.start();
     }
     
+
+    // Note: The methods listed below represent broken out versions of the methods in the core loop.
+    // We have included comments to the extent anything in the code was unclear, with the method names
+    // clearly representing what such method does.
 
     // METHODS RELATING TO COLLISIONS
     public void readHyperspaceJump(){
@@ -126,6 +148,7 @@ public class Game {
         }
     }
 
+    // Check if ship has collided
     private boolean shipHasCollided() {
         if (ship.getIsInvincible()) return false;
         if (shipHasCollidedWithAsteroid()) return true;
@@ -134,6 +157,7 @@ public class Game {
         return false;
     }
 
+    // Check if ship has collided with an alien bullet
     private boolean shipHasCollidedWithAlienBullet() {
         for (Bullet bullet: alienShip.getBullets()){
             if (ship.hasCollided(bullet)){
@@ -144,6 +168,7 @@ public class Game {
         return false;
     }
 
+    // Check if ship has collided with an asteroid
     private boolean shipHasCollidedWithAsteroid() {
         for (Asteroid asteroid: asteroids){
             if (ship.hasCollided(asteroid)){
@@ -153,12 +178,14 @@ public class Game {
         return false;
     }
 
+    // Check if alien ship has collided with anything
     private boolean alienHasCollided(){
         if (alienShipHasCollidedWithShipBullet()) return true;
         if (alienShip.hasCollided(ship)) return true;
         return false;
     }
 
+    // Check if alien ship has collided with a ship bullet
     private boolean alienShipHasCollidedWithShipBullet() {
         for (Bullet bullet: ship.getBullets()){
             if (bullet.hasCollided(alienShip)){
@@ -169,6 +196,7 @@ public class Game {
         return false;
     }
 
+    // Check if bullet has collided with an asteroid
     private void checkForBulletCollisionWithAsteroid() {
         // detect bullet collision with asteroid
         for (Bullet bullet: ship.getBullets()){
@@ -181,6 +209,7 @@ public class Game {
         }
     }
 
+    // Manage asteroid if it has collided with something
     private void manageAsteroidAfterCollision(Bullet bullet, Asteroid asteroid) {
         bullet.setUsed();
         spawner.despawnGameObject(bullet);
@@ -192,6 +221,7 @@ public class Game {
         spawner.despawnGameObject(asteroid);
     }
 
+    // Breaks the asteroid pieces into two
     private void createNewAsteroidPieces(Asteroid asteroid) {
         Asteroid newAsteroid1 = Asteroid.getAsteroidPieces(asteroid);
         Asteroid newAsteroid2 = Asteroid.getAsteroidPieces(asteroid);
@@ -201,6 +231,8 @@ public class Game {
 
 
     // METHODS RELATING TO ADDING / REMOVING OBJECTS TO SCREEN
+
+    // Removes all the bullets from the screen
     public void removeAllBulletsFromScreen() {
         for (Bullet bullet: ship.getBullets()) {
             spawner.despawnGameObject(bullet);
@@ -220,12 +252,14 @@ public class Game {
         }
     }
 
+    // Removes the alien ship and resets the cooldown
     private void despawnAlienShip() {
         spawner.despawnGameObject(alienShip);
         isAlienSpawned = false;
         alienSpawnCooldown = 500;
     }
 
+    // Shows all the bullets on the screen
     public void showAlienBulletOnScreen() {
         if (alienShip.checkBulletCooldown()){ //every 20 calls to the checkBulletCooldown creates a bullet
             Bullet bullet = new Bullet((int) alienShip.getCurrentXPosition(), (int) alienShip.getCurrentYPosition(), alienShip.getSpeed() + 1.0);
@@ -239,6 +273,8 @@ public class Game {
     }
 
     // METHODS RELATING TO UI
+
+    // Adds score depending on size of asteroid that was hit
     private void addToScore(Asteroid asteroid) {
         if (asteroid.getSize() == AsteroidSize.BIG){
             screen.getUI().addScoreValue(300);
@@ -251,6 +287,7 @@ public class Game {
         }
     }
 
+    // Adds the core to the scoreboard
     private void addScoreToScoreboard() {
         String currentScore = Integer.toString(scoreToAdd);
         try {
@@ -274,6 +311,7 @@ public class Game {
         }
     }
 
+    // Sets the next level of the game
     public void nextLevel(AnimationTimer timer) {
         pauseTimerForDuration(timer, pauseBetweenLevels);
         pauseGame();
@@ -292,6 +330,7 @@ public class Game {
         screen.getUI().updateLives(levelManager.getLives());
     }
 
+    // Pauses the game for one second, there is an exception in case something goes wrong with the thread.
     public void pauseGame() {
         try {
             Thread.sleep(1000);
@@ -300,6 +339,7 @@ public class Game {
         }
     }
 
+    // Pauses the animation time for a particular duration
     private void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
         PauseTransition pt = new PauseTransition(duration);
         pt.setOnFinished(event -> timer.start());
@@ -307,6 +347,7 @@ public class Game {
         pt.play();
     }
 
+    // Saves the high score and exits the game
     private void saveAndExit() {
         scoreToAdd = screen.getUI().getCurrentScoreValue();
         if (!writtenToFile) {
