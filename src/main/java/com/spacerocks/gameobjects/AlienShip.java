@@ -12,27 +12,27 @@ import static com.spacerocks.main.Screen.getScreenWidth;
 
 public class AlienShip extends GameObject {
 
-    private int calls = 0;
-    private final ArrayList<Bullet> bullets;
-    private int bulletCalls = 0;
+    private int calls = 0; //counter for changing direction
+    private final ArrayList<Bullet> bullets; //instantiate array that will store created bullets
+    private int bulletCalls = 0; //counter to prevent continuous bullet stream
     Image image = new Image("file:images/alienship.jpg");
     ImagePattern pattern = new ImagePattern(image);
 
     public AlienShip() {
-        super(new Polygon(-15, -15, 15, -15, 15, 15, -15, 15), 1);
-            //AlienShip is a square for now with constant speed 2
-        setSpawnX((int)(Math.random() * getScreenWidth()));
+        super(new Polygon(-15, -15, 15, -15, 15, 15, -15, 15), 1); //creates instance of GameObject
+            //AlienShip is a square with constant speed 1
+        setSpawnX((int)(Math.random() * getScreenWidth())); //spawn pint is not set
         setSpawnY((int)(Math.random() * getScreenHeight()));
-        polygon.setFill(pattern);
+        polygon.setFill(pattern); //place image on alien ship
         bullets = new ArrayList<>();
     }
 
     public void changeDirection(){
         calls++;
-        int TURN_FREQUENCY = 100;
+        final int TURN_FREQUENCY = 100; //when counter reaches this number the alien ship rotates
         if (calls >= TURN_FREQUENCY){
-            this.turn((int)(Math.random() * 360));
-            calls = 0;
+            this.turn((int)(Math.random() * 360)); //will rotate a random amount
+            calls = 0; //reset counter back to 0
         }
     }
 
@@ -49,10 +49,10 @@ public class AlienShip extends GameObject {
     }
 
     public boolean checkBulletCooldown(){
-        if (bulletCalls >= 20){
+        if (bulletCalls >= 20){ //when counter hits 20 it returns true (to fire a bullet)
              bulletCalls = 0;
              return true;
-        } else {
+        } else { //otherwise increment counter and tell it not to fire bullet yet
             bulletCalls++;
             return false;
         }
@@ -62,7 +62,7 @@ public class AlienShip extends GameObject {
     public void shoot() {
         for (Bullet bullet: bullets) {
             bullet.move();
-            if (bullet.isDecayed()) {
+            if (bullet.isDecayed()) { //remove bullet when it has travelled its max distance
                 removeBullet(bullet);
                 Screen.getScreenInstance().getSpawner().despawnGameObject(bullet);
                 break;
