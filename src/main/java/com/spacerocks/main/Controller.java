@@ -19,6 +19,8 @@ public class Controller {
     // Initialising default variables.
     Ship ship;
     Screen screen = Screen.getScreenInstance();
+    // set up consecutive keys and continuous keys
+    // source: https://www.youtube.com/watch?v=7Vb9StpxFtw&t=637s&ab_channel=LeeStemkoski
     private final ArrayList<String> pressedKeys = new ArrayList<>();
     private final ArrayList<String> tempPressedKeys = new ArrayList<>();
 
