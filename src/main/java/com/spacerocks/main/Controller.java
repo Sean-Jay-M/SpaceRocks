@@ -89,6 +89,7 @@ public class Controller {
     }
 
     // Reading the hyperspace key and ensuring we can only press it discretely (i.e. not continuously).
+    // hyperspace methods more specific to provide greater control to implement within Game class
     public void readHyperspaceKey(){
             ship.activateHyperSpaceJump();
     }

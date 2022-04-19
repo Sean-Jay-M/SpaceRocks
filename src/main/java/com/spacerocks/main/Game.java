@@ -132,14 +132,14 @@ public class Game {
 
     // METHODS RELATING TO COLLISIONS
     public void readHyperspaceJump(){
-        if(shipController.isShiftPressed()){ //if shift not pressed nothing happens
+        if(shipController.isShiftPressed()){ //if shift not pressed then nothing happens
             int i = 0;
             do {
                 shipController.readHyperspaceKey();
                 i++;
             } while (shipHasCollided() && i < 10); //attempt to find safe location up to 10 times
 
-            if (shipHasCollided()){ //if it never found a safe location move it anyway but start invincibility
+            if (shipHasCollided()){ //if it didn't find a safe location move it anyway but give it invincibility
                 ship.resetInvincibility();
                 ship.toggleInvincibility();
             }
