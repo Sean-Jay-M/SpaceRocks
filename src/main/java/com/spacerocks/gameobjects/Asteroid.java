@@ -9,20 +9,20 @@ import java.util.Random;
 
 public class Asteroid extends GameObject {
 
-    public static ArrayList<Asteroid> asteroids = new ArrayList<>();
+    public static ArrayList<Asteroid> asteroids = new ArrayList<>(); //create list to contain the asteroids
 
     AsteroidSize size;
-    Random random = new Random();
+    Random random = new Random(); //random object to be used for choosing asteroid spawn coordinates
     Image image = new Image("file:images/asteroid.jpg");
     ImagePattern pattern = new ImagePattern(image);
 
-    public static void moveAsteroids() {
+    public static void moveAsteroids() { //for each asteroid moves it to next point according to its speed and current point
         for (Asteroid asteroid: asteroids)
             asteroid.move();
     }
 
     public Asteroid(AsteroidSize size) {
-        super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3,
+        super(new Polygon(size.x1,size.y1,size.x2,size.y2,size.x3,size.y3, //creates GameObject with random speed within a range
                             size.x4,size.y4,size.x5,size.y5,size.x6,
                             size.y6, size.x7,size.y7,size.x8,size.y8), (Math.random() * (size.max - size.min) + size.min));
         this.size = size;
