@@ -93,8 +93,9 @@ public class UI {
     }
 
     // Switching on the "Well Done" text
-    public void toggleNextLevelText(boolean on) {
-        gameUIPreset.getNextLevelText().setVisible(on);
-    }
+    public void toggleNextLevelText(boolean on) { gameUIPreset.getNextLevelText().setVisible(on); }
+
+    // Switching on the "Game Over" text
+    public void toggleGameOverText(boolean on) { gameUIPreset.getGameOverText().setVisible(on); }
 
 }

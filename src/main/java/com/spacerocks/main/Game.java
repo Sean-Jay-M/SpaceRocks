@@ -44,6 +44,11 @@ public class Game {
         new AnimationTimer() {
             @Override
             public void handle(long l) {
+
+                if (levelManager.getLives() == 0) {
+                    saveAndExit();
+                }
+
                 // Check if ship has collided, in which case
                 if (shipHasCollided()) {
                     // remove the alien ship
@@ -54,6 +59,7 @@ public class Game {
                     despawnAlienShip();
                     nextLevel(this);
                 }
+
 
                 shipController.readUserInput();
                 readHyperspaceJump();
@@ -95,7 +101,7 @@ public class Game {
                 }
 
                 if (levelManager.getLives() == 0) {
-                    saveAndExit();
+                    screen.getUI().toggleGameOverText(true);
                 }
             }
         }.start();

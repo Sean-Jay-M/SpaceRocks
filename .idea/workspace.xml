@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="Tied bullet speed to speed of ship">
+    <list default="true" id="14317a91-fb1c-4074-96b1-93433cd94aa4" name="Changes" comment="finished asteroid comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpaceRocks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SpaceRocks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/gameobjects/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/score.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/score.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/presets/GameUIPreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spacerocks/ui/presets/GameUIPreset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +43,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="27vrGTzNSZayrID3WwYlkExVEvm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -133,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650223279156</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="finished asteroid comments">
+      <created>1650382867208</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1650382867208</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +158,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ASTEROIDS-20" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -170,6 +178,7 @@
     <MESSAGE value="Added Spawner comments" />
     <MESSAGE value="Added Controller comments" />
     <MESSAGE value="Fixed issue with scoreboard refreshing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with scoreboard refreshing" />
+    <MESSAGE value="finished asteroid comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished asteroid comments" />
   </component>
 </project>

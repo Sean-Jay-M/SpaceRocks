@@ -8,10 +8,10 @@ public class GameUIPreset extends UIPreset {
     private final Label scoreValue = new Label ("0");
     private final Label livesText = new Label("Lives:");
     private final Label livesValue = new Label("3");
-    private final Label crashText = new Label("YOU CRASHED!");
+    private final Label gameOverText = new Label("GAME OVER!");
     private final Label nextLevelText = new Label("WELL DONE!");
 
-    private final Label[] allTextElements = {scoreText, scoreValue, livesText, livesValue, crashText, nextLevelText};
+    private final Label[] allTextElements = {scoreText, scoreValue, livesText, livesValue, gameOverText, nextLevelText};
 
     @Override
     public void setScreen() {
@@ -20,15 +20,16 @@ public class GameUIPreset extends UIPreset {
         scoreValue.relocate(120,30);
         livesText.relocate(365,30);
         livesValue.relocate(475,30);
-        crashText.relocate(150,200);
+        gameOverText.relocate(150, 200);
         nextLevelText.relocate(150,200);
         scoreText.setId("game_content");
         scoreValue.setId("game_content");
         livesText.setId("game_content");
         livesValue.setId("game_content");
         nextLevelText.setId("game_content");
+        gameOverText.setId("game_content");
+        gameOverText.setVisible(false);
         setTextElement(allTextElements);
-        crashText.setVisible(false);
         nextLevelText.setVisible(false);
     }
 
@@ -40,9 +41,7 @@ public class GameUIPreset extends UIPreset {
         return livesValue;
     }
 
-    public Label getCrashText() {
-        return crashText;
-    }
+    public Label getGameOverText() { return gameOverText; }
 
     public Label getNextLevelText() {
         return nextLevelText;
