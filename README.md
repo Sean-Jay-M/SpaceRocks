@@ -31,6 +31,20 @@ The Main Menu of SpaceRocks presents the user with several options, each of whic
 
 * **Exit**: This option quits the application.
 
+# Gamplay 
+
+![](./readmeimages/gamestart.PNG)
+
+* **Game Start**: When the user begins a game they will spawn in the center of the screen, with asteroid(s) set to spawn psuedo-randomly outside the collision zone of the user. After another random length of time an Alien Space Ship (Borg Cube) will spawn as well.
+
+![](./readmeimages/midgame.PNG)
+
+* **Gamplay**: The user controls the ship and can shoot Asteroids to gain points. When an Asteroid is hit it will split into multiple different smaller asteroids, moving at a higher speed. The 
+Alien ship too can be shot at by the User to gain points, when the Alien ship is hit it will be destroyed. The user has the ability to enter "Hyperspace", whichj when activated will move them to
+a random part of the available map outside of a collision zone with an Asteroid or Alien Ship. Hyperspace also provides the user with a short period of invincibility.
+
+* **Lives & Spawning**: When the user collids with an Asteroid or is hit by the Alien ship they will be destroyed and lose a life. Upon respawning the user will return to the center of the screen and will have one life decreased from their count. Upon exhausting all lives, the game will end and exit to the desktop.
+
 # Technologies Used
 
 * **Java**: This project was completed as part of the Java Programming module, and as such the language used for SpaceRocks was Java.
